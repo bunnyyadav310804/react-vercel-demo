@@ -1,0 +1,856 @@
+/* ============================================
+   MODERN BLUE + WHITE + GRAY LIGHT THEME
+   ============================================
+   Complete light theme - NO DARK COLORS
+*/
+
+:root {
+  /* PRIMARY COLORS */
+  --violet-primary: #2563EB;
+  --violet-dark: #1E40AF;
+  --violet-light: #DBEAFE;
+  --violet-pale: #EFF6FF;
+  
+  /* BACKGROUNDS */
+  --bg-dark: #F9FAFB;
+  --bg-darker: #F3F4F6;
+  --bg-light: #FFFFFF;
+  --bg-white: #FFFFFF;
+  
+  /* TEXT COLORS */
+  --text-white: #111827;
+  --text-white-muted: #6B7280;
+  --text-dark: #111827;
+  --text-dark-muted: #6B7280;
+  
+  /* ACCENT COLORS */
+  --accent-purple: #2563EB;
+  --accent-blue: #2563EB;
+  --accent-red: #DC2626;
+  --accent-green: #16A34A;
+  
+  /* SHADOWS */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   GLOBAL RESET & BASE STYLES
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  background: #F9FAFB;
+  color: #111827;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  background: #F9FAFB;
+}
+
+/* ============================================
+   LAYOUT COMPONENTS
+   ============================================ */
+
+.app {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  background: #F9FAFB;
+  position: relative;
+  overflow: visible;
+}
+
+.main,
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background: #F9FAFB;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.sidebar {
+  width: 280px;
+  padding: 25px;
+  background: #FFFFFF !important;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid #E5E7EB;
+  color: #000000 !important;
+  transition: all 0.3s ease;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 12px 15px;
+  border-radius: 8px;
+  color: #000000 !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+}
+
+.sidebar nav a:hover {
+  background: #F0F9FF !important;
+  color: #2563EB !important;
+  border-left-color: #2563EB !important;
+  padding-left: 20px;
+}
+
+.sidebar nav a.active {
+  background: #EFF6FF !important;
+  color: #2563EB !important;
+  font-weight: 600;
+  border-left-color: #2563EB !important;
+  padding-left: 20px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000000 !important;
+  margin-bottom: 30px;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile Sidebar Toggle */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 2000;
+  background: #2563EB;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  transform: scale(1.08);
+  background: #1E40AF;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1024px) {
+  .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    z-index: 999;
+    height: 100vh;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY & HEADINGS
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #111827 !important;
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #1E40AF !important;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #2563EB !important;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #111827 !important;
+}
+
+h4 {
+  font-size: 1.2rem;
+  color: #111827 !important;
+}
+
+p {
+  color: #6B7280 !important;
+  margin-bottom: 12px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #2563EB !important;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #DBEAFE !important;
+}
+
+/* ============================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ============================================ */
+
+button,
+.btn,
+.enter {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  text-align: center;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover,
+.btn:hover,
+.enter:hover {
+  background: #1E40AF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+button:active,
+.btn:active,
+.enter:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Button Variants */
+.btn-secondary {
+  background: #2563EB !important;
+}
+
+.btn-secondary:hover {
+  background: #1E40AF !important;
+}
+
+.btn-danger {
+  background: #DC2626 !important;
+}
+
+.btn-danger:hover {
+  background: #B91C1C !important;
+}
+
+.btn-success {
+  background: #16A34A !important;
+}
+
+.btn-success:hover {
+  background: #047857 !important;
+}
+
+/* ============================================
+   CARDS - DARK BACKGROUND
+   ============================================ */
+
+.big-card,
+.round-card,
+.college-card,
+.company-card,
+.job-card,
+.job-role-card,
+.dept-card,
+.year-card,
+.card-dark,
+.dark-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.big-card::before,
+.round-card::before,
+.college-card::before,
+.company-card::before,
+.job-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #2563EB;
+}
+
+.big-card:hover,
+.round-card:hover,
+.college-card:hover,
+.company-card:hover,
+.job-card:hover {
+  border-color: #DBEAFE !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+.big-card h3,
+.round-card h3,
+.college-card h3,
+.company-card h3,
+.job-card h3,
+.job-role-card h3,
+.dept-card h3,
+.year-card h3 {
+  color: #111827 !important;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.big-card p,
+.round-card p,
+.college-card p,
+.company-card p,
+.job-card p,
+.job-role-card p,
+.dept-card p,
+.year-card p,
+.college-location,
+.company-subtitle,
+.job-location,
+.dept-description,
+.action-text,
+.muted,
+.subtitle {
+  color: #6B7280 !important;
+  font-size: 0.95rem;
+}
+
+.college-card .company-count,
+.dept-card .job-count {
+  color: #000000 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.company-count {
+  color: #000000 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.job-count {
+  color: #000000 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.resource-badge {
+  color: #000000 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  background: #e8f5e9 !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  border: 1px solid #c8e6c9 !important;
+  display: inline-block !important;
+}
+
+.company-card .resource-badge {
+  color: #000000 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  background: #e8f5e9 !important;
+}
+
+.big-card .enter,
+.round-card .enter,
+.college-card .enter,
+.company-card .enter,
+.job-card .enter,
+.dark-card .enter {
+  margin-top: 12px;
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  border: none;
+}
+
+.big-card a,
+.round-card a,
+.college-card a,
+.company-card a,
+.job-card a {
+  color: #2563EB !important;
+}
+
+/* ============================================
+   CARDS - LIGHT BACKGROUND
+   ============================================ */
+
+.topic-card,
+.theory-topic-card,
+.subtopic-card,
+.theory-box,
+.white-card,
+.card.light,
+.card--light,
+.practice-card,
+.light-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.topic-card::before,
+.theory-topic-card::before,
+.subtopic-card::before,
+.theory-box::before,
+.white-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #2563EB;
+}
+
+.topic-card:hover,
+.theory-topic-card:hover,
+.subtopic-card:hover,
+.theory-box:hover,
+.white-card:hover {
+  border-color: #DBEAFE !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+.topic-card h3,
+.theory-topic-card h3,
+.theory-topic-card h4,
+.subtopic-card h4,
+.theory-box h2,
+.theory-box h3,
+.white-card h3,
+.light-card h3 {
+  color: #1E40AF !important;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.topic-card p,
+.theory-topic-card p,
+.subtopic-card p,
+.subtopic-preview,
+.theory-box p,
+.white-card p,
+.light-card p,
+.topic-card .muted,
+.topic-card .subtitle {
+  color: #6B7280 !important;
+  font-size: 0.95rem;
+}
+
+.topic-card .enter,
+.theory-topic-card .enter,
+.subtopic-card .enter,
+.theory-box .enter,
+.white-card .enter {
+  margin-top: 12px;
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  border: none;
+}
+
+.topic-card a,
+.theory-topic-card a,
+.subtopic-card a,
+.white-card a {
+  color: #2563EB !important;
+  font-weight: 600;
+}
+
+/* ============================================
+   UNIVERSAL LIGHT/DARK OVERRIDES
+   ============================================ */
+
+/* Force dark text inside light card containers */
+.theory-topic-card *,
+.subtopic-card *,
+.theory-box *,
+.white-card *,
+.light-card *,
+.card.light *,
+.card--light * {
+  color: #111827 !important;
+}
+
+/* Keep headings and text readable */
+.theory-topic-card h1,
+.theory-topic-card h2,
+.theory-topic-card h3,
+.theory-topic-card h4,
+.subtopic-card h4,
+.theory-box h1,
+.theory-box h2,
+.theory-box h3 {
+  color: #111827 !important;
+  font-weight: 800 !important;
+}
+
+/* Force dark text inside dark card containers */
+.big-card *,
+.round-card *,
+.college-card *,
+.company-card *,
+.job-card *,
+.dark-card * {
+  color: #6B7280 !important;
+}
+
+.big-card h3,
+.round-card h3,
+.college-card h3,
+.company-card h3,
+.job-card h3,
+.dark-card h3 {
+  color: #111827 !important;
+}
+
+/* ============================================
+   BADGES & LABELS
+   ============================================ */
+
+.badge,
+.label,
+.tag,
+.pill {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  margin: 4px 4px 4px 0;
+  white-space: nowrap;
+}
+
+.badge-secondary {
+  background: #2563EB !important;
+}
+
+.badge-danger {
+  background: #DC2626 !important;
+}
+
+.badge-success {
+  background: #16A34A !important;
+}
+
+/* ============================================
+   INPUT FIELDS & FORMS
+   ============================================ */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #DBEAFE;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #FFFFFF !important;
+  color: #111827 !important;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #2563EB !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9CA3AF !important;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF !important;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+th {
+  background: #2563EB !important;
+  color: #FFFFFF !important;
+  padding: 16px;
+  text-align: left;
+  font-weight: 700;
+}
+
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #E5E7EB !important;
+  color: #111827 !important;
+}
+
+tr:hover {
+  background: #F9FAFB !important;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .main,
+  .main-content {
+    padding: 15px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .big-card,
+  .topic-card,
+  .theory-topic-card {
+    padding: 20px;
+  }
+
+  button,
+  .btn,
+  .enter {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main,
+  .main-content {
+    padding: 10px;
+  }
+
+  .page-title {
+    font-size: 1.2rem;
+  }
+
+  .big-card,
+  .topic-card {
+    padding: 16px;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.rounded {
+  border-radius: 10px;
+}
+
+.rounded-lg {
+  border-radius: 14px;
+}
+
+.shadow {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===== TEXT VISIBILITY RULES FOR THEME VIOLET ===== */
+.theme-violet h1,
+.theme-violet h2,
+.theme-violet h3,
+.theme-violet h4,
+.theme-violet h5,
+.theme-violet h6,
+.theme-violet p,
+.theme-violet label,
+.theme-violet span {
+  color: #111827 !important;
+}
+
+.theme-violet input,
+.theme-violet select,
+.theme-violet textarea {
+  color: #111827 !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+.theme-violet button,
+.theme-violet .btn {
+  color: #111827 !important;
+}
+
+
+
+

@@ -1,101 +1,167 @@
-// ChatGPT Integration Service
-// Connects to OpenAI API for intelligent responses
+// Gemini AI Chatbot Service
+// Uses Google Generative AI (Gemini) API
+// ============================================
 
-const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+const GOOGLE_API_KEY = import.meta.env?.VITE_GOOGLE_API_KEY || '';
+const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 // System prompts for different contexts
 const systemPrompts = {
-  dsa: `You are an expert Data Structures and Algorithms tutor. Help users understand DSA concepts, explain algorithms, and provide solutions to coding problems. Be clear, concise, and provide code examples when helpful. Focus on time complexity, space complexity, and best practices.`,
+  dsa: `You are an expert Data Structures and Algorithms tutor. Help users understand DSA concepts, explain algorithms, and provide solutions to coding problems. Be clear, concise, and provide code examples when helpful. Focus on time complexity, space complexity, and best practices. Keep responses focused and practical.`,
   
-  programming: `You are an expert programming language instructor. Help users learn programming concepts, syntax, best practices, and solve programming problems. Provide clear explanations and code examples. Cover fundamentals, intermediate, and advanced topics.`,
+  programming: `You are an expert programming language instructor. Help users learn programming concepts, syntax, best practices, and solve programming problems. Provide clear explanations and code examples. Cover fundamentals, intermediate, and advanced topics. Be practical and encouraging.`,
   
-  interview: `You are an expert interview coach for software engineering positions. Help users prepare for technical interviews, explain concepts, practice questions, and provide interview strategies. Focus on clarity and confidence building.`,
+  interview: `You are an expert interview coach for software engineering positions. Help users prepare for technical interviews, explain concepts, practice questions, and provide interview strategies. Focus on clarity, confidence building, and practical tips. Give actionable advice.`,
   
-  placement: `You are a career guidance counselor specializing in tech placements. Help students with resume preparation, company knowledge, salary negotiations, and interview strategies. Provide actionable advice based on industry standards.`,
+  placement: `You are a career guidance counselor specializing in tech placements. Help students with resume preparation, company knowledge, salary negotiations, and interview strategies. Provide actionable advice based on industry standards. Be encouraging and supportive.`,
   
-  general: `You are a helpful AI assistant for a software engineering learning platform. Help users with questions about programming, data structures, web development, databases, and career guidance. Be encouraging and provide practical solutions.`,
+  general: `You are a helpful AI assistant for a software engineering learning platform. Help users with questions about programming, data structures, web development, databases, and career guidance. Be encouraging, clear, and provide practical solutions. Keep responses concise and focused.`,
+};
+
+// Local knowledge base as fallback
+const fallbackResponses = {
+  dsa: `I'm here to help with Data Structures and Algorithms. I can explain concepts like arrays, linked lists, trees, graphs, sorting, searching, and dynamic programming. Ask me about specific problems or algorithms!`,
+  
+  programming: `I can help you learn programming in Python, JavaScript, Java, C++, and more. I can explain syntax, concepts, best practices, and help debug your code. What would you like to learn?`,
+  
+  interview: `I'm here to help you prepare for technical interviews. I can practice questions with you, explain concepts, and give interview tips. What type of questions would you like to practice?`,
+  
+  placement: `I can help with your placement journey! I can discuss resume building, company preparation, salary negotiations, and interview strategies. What aspect would you like help with?`,
+  
+  general: `Hello! I'm your AI learning assistant. I can help with programming, DSA, interview prep, and career guidance. What would you like to learn today?`,
 };
 
 /**
- * Send message to ChatGPT API
+ * Detect context from user message
+ * @param {string} message - User's message
+ * @returns {string} - Detected context
+ */
+const detectContext = (message) => {
+  const lowerMessage = message.toLowerCase();
+  
+  if (lowerMessage.includes('dsa') || lowerMessage.includes('algorithm') || 
+      lowerMessage.includes('data structure') || lowerMessage.includes('array') ||
+      lowerMessage.includes('linked list') || lowerMessage.includes('tree') ||
+      lowerMessage.includes('graph') || lowerMessage.includes('sorting') ||
+      lowerMessage.includes('search')) {
+    return 'dsa';
+  }
+  
+  if (lowerMessage.includes('python') || lowerMessage.includes('javascript') ||
+      lowerMessage.includes('java') || lowerMessage.includes('c++') ||
+      lowerMessage.includes('code') || lowerMessage.includes('program') ||
+      lowerMessage.includes('syntax')) {
+    return 'programming';
+  }
+  
+  if (lowerMessage.includes('interview') || lowerMessage.includes('preparation') ||
+      lowerMessage.includes('practice question') || lowerMessage.includes('coding round')) {
+    return 'interview';
+  }
+  
+  if (lowerMessage.includes('placement') || lowerMessage.includes('resume') ||
+      lowerMessage.includes('salary') || lowerMessage.includes('company') ||
+      lowerMessage.includes('job')) {
+    return 'placement';
+  }
+  
+  return 'general';
+};
+
+/**
+ * Send message to Gemini API
  * @param {string} userMessage - User's message
  * @param {string} context - Context type (dsa, programming, interview, placement, general)
- * @param {Array} conversationHistory - Previous messages for context
- * @returns {Promise<string>} - ChatGPT response
+ * @returns {Promise<string>} - Gemini response
  */
-export const chatWithChatGPT = async (userMessage, context = 'general', conversationHistory = []) => {
+export const chatWithGemini = async (userMessage, context = null) => {
   try {
-    if (!OPENAI_API_KEY) {
-      // Return mock response when API key is not configured
-      return `I'm currently in demo mode. To enable ChatGPT integration, please add your REACT_APP_OPENAI_API_KEY environment variable. For now, I can provide general guidance: The topic you're asking about is important for your preparation!`;
+    // Auto-detect context if not provided
+    const detectedContext = context || detectContext(userMessage);
+    
+    console.log(`🤖 Chatbot Context: ${detectedContext}`);
+    console.log(`📝 User Message: ${userMessage.substring(0, 50)}...`);
+
+    // If no API key, use fallback response
+    if (!GOOGLE_API_KEY) {
+      console.warn('⚠️ No Gemini API key found, using fallback response');
+      return fallbackResponses[detectedContext] || fallbackResponses.general;
     }
 
-    // Prepare messages for API
-    const messages = [
-      {
-        role: 'system',
-        content: systemPrompts[context] || systemPrompts.general,
-      },
-      // Add conversation history
-      ...conversationHistory,
-      // Add current user message
-      {
-        role: 'user',
-        content: userMessage,
-      },
-    ];
+    // Prepare the system message
+    const systemMessage = systemPrompts[detectedContext] || systemPrompts.general;
+    const fullMessage = `${systemMessage}\n\nUser Question: ${userMessage}`;
 
-    const response = await fetch(OPENAI_API_URL, {
+    // Call Gemini API
+    const response = await fetch(`${GEMINI_ENDPOINT}?key=${GOOGLE_API_KEY}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: messages,
-        temperature: 0.7,
-        max_tokens: 1500,
-        top_p: 0.9,
+        contents: [
+          {
+            parts: [
+              {
+                text: fullMessage,
+              },
+            ],
+          },
+        ],
+        generationConfig: {
+          temperature: 0.7,
+          topK: 40,
+          topP: 0.95,
+          maxOutputTokens: 1024,
+        },
       }),
     });
 
     if (!response.ok) {
-      const error = await response.json();
-      if (response.status === 401) {
-        throw new Error('Invalid OpenAI API key. Please check your configuration.');
-      } else if (response.status === 429) {
-        throw new Error('Rate limit exceeded. Please wait a moment before trying again.');
-      } else if (response.status === 500) {
-        throw new Error('OpenAI service is temporarily unavailable. Please try again later.');
-      }
-      throw new Error(error.error?.message || 'Failed to get response from ChatGPT');
+      console.error(`❌ API Error: ${response.status}`);
+      console.warn('💡 Using fallback response');
+      return fallbackResponses[detectedContext] || fallbackResponses.general;
     }
 
     const data = await response.json();
-    const assistantMessage = data.choices[0]?.message?.content;
 
-    if (!assistantMessage) {
-      throw new Error('No response from ChatGPT');
+    // Extract response text
+    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+      const aiResponse = data.candidates[0].content.parts[0].text;
+      console.log('✅ Gemini API Response Received');
+      return aiResponse;
     }
 
-    return assistantMessage;
+    console.warn('⚠️ No valid response from API, using fallback');
+    return fallbackResponses[detectedContext] || fallbackResponses.general;
   } catch (error) {
-    console.error('ChatGPT Error:', error);
-    throw error;
+    console.error('💥 Chatbot Error:', error.message);
+    const context2 = context || 'general';
+    return fallbackResponses[context2] || `Error: ${error.message}`;
   }
 };
 
 /**
- * Get code explanation from ChatGPT
+ * Send message to ChatGPT API (Legacy - kept for backward compatibility)
+ * @param {string} userMessage - User's message
+ * @param {string} context - Context type (dsa, programming, interview, placement, general)
+ * @param {Array} conversationHistory - Previous messages for context
+ * @returns {Promise<string>} - Response
+ */
+export const chatWithChatGPT = async (userMessage, context = 'general') => {
+  // Redirect to Gemini API
+  return chatWithGemini(userMessage, context);
+};
+
+/**
+ * Get code explanation from Gemini
  * @param {string} code - Code to explain
  * @param {string} language - Programming language
  * @returns {Promise<string>} - Code explanation
  */
 export const explainCode = async (code, language = 'JavaScript') => {
   const prompt = `Please explain the following ${language} code. Break down what it does, explain key concepts, and highlight any important patterns or best practices:\n\n${code}`;
-  return chatWithChatGPT(prompt, 'programming', []);
+  return chatWithGemini(prompt, 'programming');
 };
 
 /**
@@ -106,7 +172,7 @@ export const explainCode = async (code, language = 'JavaScript') => {
  */
 export const optimizeCode = async (code, language = 'JavaScript') => {
   const prompt = `Please review and optimize the following ${language} code. Suggest improvements for performance, readability, and best practices. Provide the optimized code and explain the changes:\n\n${code}`;
-  return chatWithChatGPT(prompt, 'programming', []);
+  return chatWithGemini(prompt, 'programming');
 };
 
 /**
@@ -122,7 +188,7 @@ export const solveDSAProblem = async (problemStatement, hints = []) => {
   }
   prompt += 'Provide a clear solution strategy, explain the approach, and provide pseudocode or actual code.';
   
-  return chatWithChatGPT(prompt, 'dsa', []);
+  return chatWithGemini(prompt, 'dsa');
 };
 
 /**
@@ -139,10 +205,11 @@ export const getInterviewTips = async (company, role) => {
 4. Salary negotiation advice
 5. Company-specific insights`;
   
-  return chatWithChatGPT(prompt, 'interview', []);
+  return chatWithGemini(prompt, 'interview');
 };
 
 export default {
+  chatWithGemini,
   chatWithChatGPT,
   explainCode,
   optimizeCode,

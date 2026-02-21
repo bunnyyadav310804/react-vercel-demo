@@ -3,7 +3,7 @@
 .career-container {
   max-width: 1400px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d1b4e 100%);
+  background: #FFFFFF;
   min-height: 100vh;
   padding: 50px 30px;
   border-radius: 0;
@@ -19,7 +19,7 @@
   height: 100%;
   background: radial-gradient(
     circle at 20% 50%,
-    rgba(102, 126, 234, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 0%,
     transparent 50%
   );
   pointer-events: none;
@@ -32,7 +32,7 @@
 }
 
 .back-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -42,12 +42,22 @@
   cursor: pointer;
   margin-bottom: 30px;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.2);
 }
+.card {
+  background-color: #ffffff;
+}
+
+.card h3,
+.card p,
+.card span {
+  color: #111827; /* Dark readable color */
+}
+
 
 .back-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* ==================== MAIN DEPARTMENTS VIEW ==================== */
@@ -55,18 +65,14 @@
 .main-title {
   font-size: 2.5rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #000000;
   text-align: center;
   margin-bottom: 15px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .subtitle {
   text-align: center;
-  color: #cbd5e1;
+  color: #000000;
   font-size: 1.1rem;
   margin-bottom: 50px;
   max-width: 800px;
@@ -85,7 +91,7 @@
   background: rgba(30, 41, 59, 0.8);
   border-radius: 16px;
   padding: 35px 25px;
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   cursor: pointer;
@@ -105,7 +111,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .dept-card::after {
@@ -115,13 +121,13 @@
   right: -50%;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
   transition: all 0.4s ease;
 }
 
 .dept-card:hover {
-  border-color: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+  border-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
   transform: translateY(-12px);
   background: rgba(30, 41, 59, 0.95);
 }
@@ -139,16 +145,12 @@
 .dept-card h3 {
   font-size: 1.5rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #000000;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .dept-card p {
-  color: #cbd5e1;
+  color: #000000;
   font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 15px;
@@ -156,18 +158,18 @@
 }
 
 .job-count {
-  background: rgba(102, 126, 234, 0.15);
-  color: #a5b4fc;
+  background: #F3F4F6;
+  color: #000000 !important;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 20px;
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  border: 1px solid #E5E7EB;
 }
 
 .explore-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
   color: white;
   border: none;
   padding: 12px 28px;
@@ -176,14 +178,14 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.2);
   margin-top: auto;
 }
 
 .explore-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  background: #1d4ed8;
 }
 
 /* ==================== JOBS VIEW ==================== */
@@ -191,16 +193,12 @@
 .page-title {
   font-size: 2rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #111827;
   margin-bottom: 10px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .dept-description {
-  color: #cbd5e1;
+  color: #1a1a2e;
   font-size: 1.1rem;
   margin-bottom: 40px;
   line-height: 1.7;
@@ -214,10 +212,10 @@
 }
 
 .job-card {
-  background: rgba(30, 41, 59, 0.8);
+  background: #FFFFFF;
   border-radius: 14px;
   padding: 30px;
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   cursor: pointer;
@@ -226,6 +224,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  color: #000000 !important;
 }
 
 .job-card::before {
@@ -235,34 +234,60 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .job-card:hover {
-  border-color: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+  border-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
   transform: translateY(-10px);
+}
+
+.jobs-grid .job-card .job-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #000000 !important;
+  margin-bottom: 12px;
+  text-shadow: none !important;
+}
+
+.jobs-grid .job-card .job-salary {
+  font-size: 1.1rem;
+  color: #000000 !important;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-shadow: none !important;
+}
+
+.jobs-grid .job-card .job-companies {
+  color: #000000 !important;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-weight: 500;
+  text-shadow: none !important;
 }
 
 .job-title {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #000000 !important;
   margin-bottom: 12px;
 }
 
 .job-salary {
   font-size: 1.1rem;
-  color: #34d399;
+  color: #000000 !important;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
 .job-companies {
-  color: #cbd5e1;
+  color: #000000 !important;
   font-size: 0.9rem;
   margin-bottom: 20px;
   line-height: 1.6;
+  font-weight: 500;
 }
 
 .job-skills {
@@ -273,13 +298,13 @@
 }
 
 .skill-tag {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-  color: #a5b4fc;
+  background: rgba(0, 0, 0, 0.2);
+  color: #000000;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 /* ==================== LEARNING PATH VIEW ==================== */
@@ -287,13 +312,13 @@
 .job-header {
   margin-bottom: 40px;
   padding-bottom: 30px;
-  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .job-header h2 {
   font-size: 2.2rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #000000;
   margin-bottom: 20px;
 }
 
@@ -306,24 +331,24 @@
 .salary,
 .companies {
   font-size: 1rem;
-  color: #cbd5e1;
+  color: #000000;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 600;
 }
 
 .salary {
-  color: #34d399;
+  color: #000000;
   font-weight: 700;
 }
 
 .section-box {
-  background: rgba(30, 41, 59, 0.8);
+  background: #FFFFFF;
   border-radius: 14px;
   padding: 30px;
-  border: 2px solid rgba(102, 126, 234, 0.1);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 30px;
   position: relative;
   overflow: hidden;
@@ -336,18 +361,14 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .section-box h3 {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #111827;
   margin-bottom: 25px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .skills-grid {
@@ -357,20 +378,21 @@
 }
 
 .skill-badge {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-  color: #a5b4fc;
+  background: #F3F4F6;
+  color: #111827;
   padding: 15px;
   border-radius: 10px;
-  border: 2px solid rgba(102, 126, 234, 0.3);
+  border: 2px solid #E5E7EB;
   font-weight: 700;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .skill-badge:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
-  border-color: rgba(102, 126, 234, 0.6);
+  background: #FFFFFF;
+  border-color: #2563EB;
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
 }
 
 .clickable-skill {
@@ -378,10 +400,10 @@
 }
 
 .clickable-skill:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);
-  border-color: rgba(102, 126, 234, 0.8);
+  background: #E0F2FE;
+  border-color: #2563EB;
   transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2);
 }
 
 /* ==================== LEARNING PHASES ==================== */
@@ -393,12 +415,8 @@
 .learning-phases h3 {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #111827;
   margin-bottom: 30px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .timeline {
@@ -409,11 +427,10 @@
 }
 
 .phase-box {
-  background: rgba(30, 41, 59, 0.8);
+  background: #FFFFFF;
   border-radius: 14px;
-  border: 2px solid rgba(102, 126, 234, 0.1);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   position: relative;
   transition: all 0.4s ease;
@@ -426,25 +443,26 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .phase-box:hover {
-  border-color: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+  border-color: #2563EB;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
   transform: translateY(-8px);
 }
 
 .phase-header {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  background: #F9FAFB;
   padding: 20px;
-  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+  border-bottom: 2px solid #E5E7EB;
+  border-left: 4px solid #2563EB;
 }
 
 .phase-header h4 {
   font-size: 1.2rem;
   font-weight: 900;
-  color: #a5b4fc;
+  color: #111827;
   margin: 0;
 }
 
@@ -466,7 +484,7 @@
 .resources-list h5 {
   font-size: 1rem;
   font-weight: 900;
-  color: #cbd5e1;
+  color: #6B7280;
   margin: 0 0 15px 0;
 }
 
@@ -482,7 +500,7 @@
 
 .topics-list li,
 .resources-list li {
-  color: #cbd5e1;
+  color: #6B7280;
   font-size: 0.95rem;
   line-height: 1.6;
   padding-left: 0;
@@ -504,7 +522,7 @@
 }
 
 .resource-link {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
   color: white;
   padding: 18px;
   border-radius: 10px;
@@ -513,15 +531,15 @@
   font-weight: 700;
   font-size: 0.95rem;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.3);
   display: inline-block;
   width: 100%;
 }
 
 .resource-link:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  background: #1d4ed8;
 }
 
 /* ==================== RESPONSIVE DESIGN ==================== */
@@ -655,4 +673,64 @@
   .job-card h4 {
     font-size: 1.1rem;
   }
+}
+
+/* ===== TEXT VISIBILITY RULES FOR CAREER PATH ===== */
+.career-path-container h1,
+.career-path-container h2,
+.career-path-container h3,
+.career-path-container h4,
+.career-path-container p,
+.career-path-container label,
+.career-path-container span {
+  color: #111827 !important;
+}
+
+.timeline-item h3,
+.timeline-item p,
+.job-card h3,
+.job-card h4,
+.job-card p {
+  color: #111827 !important;
+}
+
+.career-path-container input,
+.career-path-container select,
+.career-path-container textarea {
+  color: #111827 !important;
+    background-color: #FFFFFF !important;
+}
+.card-text {
+  color: #000000 !important;
+}
+/* ===== FORCE PURE BLACK TEXT FOR JOB CARDS ===== */
+
+.job-title,
+.job-salary,
+.job-companies,
+.job-card h3,
+.job-card h4,
+.job-card p,
+.job-card span {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Fix skill tags text */
+.skill-tag {
+  color: #000000 !important;
+}
+
+/* Fix department & card text */
+.dept-card h3,
+.dept-card p,
+.card h3,
+.card p,
+.card span {
+  color: #000000 !important;
+}
+
+/* Remove faded overlay effect on text */
+.job-card {
+  color: #000000 !important;
 }

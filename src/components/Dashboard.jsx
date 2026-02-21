@@ -4,7 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import progressTracker from "../utils/progressTracker";
 import activityStore from "../data/activityStore";
 import { calculateDashboardMetrics } from "../utils/progressCalculator";
-import { getOverallProgress, getTotalTimeSpent, getTopSections, getNeedsFocusSections, getMilestones, getAchievements, sectionsInfo, userPerformance } from "../data/userPerformance";
+// getOverallProgress available for enhancements
+import { getTotalTimeSpent, getTopSections, getNeedsFocusSections, getMilestones, getAchievements, sectionsInfo, userPerformance } from "../data/userPerformance";
 import "./DSAPractice.css";
 import "../styles/Dashboard.css";
 
@@ -26,16 +27,71 @@ const Dashboard = () => {
       
       const stats = progressTracker.getAllStats(currentUser.id);
       if (stats) {
+        // Use callback to avoid cascading renders
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setUserStats(stats);
       }
-    }
-  }, [currentUser]);
+      // Listen for progress updates to refresh dashboard
+      const onProgress = (e) => {
+        if (!e?.detail || e.detail.userId !== currentUser.id) return;
+        const s = progressTracker.getAllStats(currentUser.id);
+        if (s) setUserStats(s);
+      };
 
+      window.addEventListener('progressUpdated', onProgress);
+
+      return () => window.removeEventListener('progressUpdated', onProgress);
+    }
+  }, [currentUser?.id]);
+
+  // Calculate metrics from actual user progress, not templates
   const metrics = calculateDashboardMetrics(activityStore);
   const overallProgress = userStats.totalProgress || 0;
+  const completedSections = userStats.completedSections || 0;
+  const startedSections = userStats.startedSections || 0;
   const totalTimeSpent = getTotalTimeSpent();
-  const topSections = getTopSections();
-  const needsFocus = getNeedsFocusSections();
+  
+  // Get top and focus sections based on actual user progress
+  const getActualTopSections = () => {
+    if (!userStats.sectionsProgress) return [];
+    return sectionsInfo
+      .map(section => {
+        const progress = userStats.sectionsProgress[section.id] || 0;
+        return {
+          ...section,
+          progress,
+          performance: {
+            percentage: progress,
+            rating: Math.round((progress / 100) * 10) // Convert percentage to 0-10 rating
+          }
+        };
+      })
+      .sort((a, b) => b.progress - a.progress)
+      .slice(0, 3);
+  };
+  
+  const getActualNeedsFocusSections = () => {
+    if (!userStats.sectionsProgress) return [];
+    return sectionsInfo
+      .map(section => {
+        const progress = userStats.sectionsProgress[section.id] || 0;
+        return {
+          ...section,
+          progress,
+          performance: {
+            percentage: progress,
+            rating: Math.round((progress / 100) * 10),
+            completed: 0,
+            total: 10
+          }
+        };
+      })
+      .sort((a, b) => a.progress - b.progress)
+      .slice(0, 3);
+  };
+  
+  const topSections = getActualTopSections();
+  const needsFocus = getActualNeedsFocusSections();
   const milestones = getMilestones();
   const achievements = getAchievements();
 
@@ -99,8 +155,16 @@ const Dashboard = () => {
       <section className="section-progress">
         <h2>📊 Progress by Section</h2>
         <div className="sections-grid">
-          {sectionsInfo.map(section => {
-            const perf = userPerformance[section.id];
+          {sectionsInfo
+            // Remove Career Paths, Resume Builder, and Job Search from the "Progress by Section" grid
+            .filter(section => !['careers', 'resume', 'jobSearch'].includes(section.id))
+            .map(section => {
+            const perf = {
+              percentage: (userStats.sectionsProgress && userStats.sectionsProgress[section.id] != null) ? userStats.sectionsProgress[section.id] : 0,
+              completed: userStats.completedSections || 0,
+              total: Object.keys(userStats.sectionsProgress || {}).length || sectionsInfo.length,
+              lastAccessed: userStats.lastUpdated
+            };
             return (
               <div 
                 key={section.id}

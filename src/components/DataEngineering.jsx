@@ -255,7 +255,7 @@ const DataEngineering = () => {
                                 background: "#b3e5fc",
                                 borderRadius: "6px",
                                 textDecoration: "none",
-                                color: "#0066aa",
+                                color: "#000000",
                                 transition: "all 0.2s ease",
                                 fontSize: "12px",
                                 fontWeight: "500",

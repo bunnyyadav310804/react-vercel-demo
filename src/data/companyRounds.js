@@ -1,10 +1,15 @@
+import generatePracticeQuestions from "../utils/practiceGenerator";
+
 export const companyRounds = {
   Amazon: [
     {
       round: "Online Assessment",
       type: "Technical",
       resources: [
-        { title: "DSA Practice", link: "https://leetcode.com/" }
+        { title: "DSA Practice", link: "https://leetcode.com/" },
+        { title: "Amazon Interview Questions", link: "https://leetcode.com/discuss/interview-question?currentPage=1&orderBy=hot&query=amazon" },
+        { title: "Two Pointers Guide", link: "https://www.geeksforgeeks.org/two-pointers-technique/" },
+        { title: "Sliding Window Tutorial", link: "https://www.geeksforgeeks.org/window-sliding-technique/" }
       ],
       questions: [
         {
@@ -25,7 +30,10 @@ export const companyRounds = {
       round: "Technical Interview",
       type: "Technical",
       resources: [
-        { title: "System Design Basics", link: "https://www.geeksforgeeks.org/system-design-tutorial/" }
+        { title: "System Design Basics", link: "https://www.geeksforgeeks.org/system-design-tutorial/" },
+        { title: "Amazon System Design", link: "https://www.youtube.com/results?search_query=amazon+system+design+interview" },
+        { title: "HashMap Internals", link: "https://www.geeksforgeeks.org/hashing-set-1-introduction/" },
+        { title: "OOP Concepts", link: "https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/" }
       ],
       questions: [
         {
@@ -46,6 +54,8 @@ export const companyRounds = {
       round: "HR Round",
       type: "HR",
       resources: [
+        { title: "Amazon Leadership Principles", link: "https://www.amazon.jobs/en/principles" },
+        { title: "HR Interview Tips", link: "https://www.geeksforgeeks.org/top-hr-interview-questions-and-answers/" },
         { title: "HR Questions", link: "https://www.interviewbit.com/hr-interview-questions/" }
       ],
       questions: [
@@ -2384,6 +2394,7 @@ export const companyRounds = {
     }
   ],
 
+  // eslint-disable-next-line no-dupe-keys
   "Qualcomm": [
     {
       round: "Online Assessment",
@@ -2476,3 +2487,48 @@ export const companyRounds = {
     }
   ]
 };
+
+// Add generic rounds/questions for smaller or college-specific companies missing above
+const _ensureCompanies = [
+  "LTIMindtree",
+  "Virtuosa",
+  "Mindtree",
+  "Softvan",
+  "DRDoS Technologies",
+  "Nivia Software",
+  "Intel",
+  "Goldman Sachs",
+  "Oracle",
+  "Cisco",
+  "Adobe",
+  "Salesforce",
+  "SAP"
+];
+
+_ensureCompanies.forEach((name) => {
+  if (!companyRounds[name]) {
+    const gen = generatePracticeQuestions({ area: 'interview', count: 20, role: 'Software Engineer', company: name });
+    companyRounds[name] = [
+      {
+        round: "Online Assessment",
+        type: "Aptitude/Technical",
+        resources: [ { title: "DSA Practice", link: "https://leetcode.com/" } ],
+        questions: gen.slice(0, 8).map(g => ({ question: g.q, answer: g.ans }))
+      },
+      {
+        round: "Technical Interview",
+        type: "Technical",
+        resources: [ { title: "Core CS", link: "https://www.geeksforgeeks.org/" } ],
+        questions: gen.slice(8, 16).map(g => ({ question: g.q, answer: g.ans }))
+      },
+      {
+        round: "HR Round",
+        type: "HR",
+        resources: [ { title: "HR Prep", link: "https://www.interviewbit.com/hr-interview-questions/" } ],
+        questions: gen.slice(16, 20).map(g => ({ question: g.q, answer: g.ans }))
+      }
+    ];
+  }
+});
+
+export default companyRounds;

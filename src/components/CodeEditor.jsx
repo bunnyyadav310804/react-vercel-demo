@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/CodeEditor.css';
+import codeCompilerService from '../services/codeCompilerService';
 
 const CodeEditor = ({ 
   initialCode = '', 
@@ -17,6 +18,7 @@ const CodeEditor = ({
   const [selectedLanguage, setSelectedLanguage] = useState(language);
   const [showInput, setShowInput] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
+  const [compilerStatus, setCompilerStatus] = useState(null); // { piston: 'ok'|'error', ... }
 
   const languages = ['Python', 'JavaScript', 'Java', 'C++', 'C#', 'Ruby', 'Go', 'Rust'];
 
@@ -36,18 +38,36 @@ const CodeEditor = ({
     }
   };
 
+  // Sync local code state when `initialCode` prop changes (allows loading saved practice code)
+  useEffect(() => {
+    setCode(initialCode || '');
+  }, [initialCode]);
+
+  // Sync selected language when `language` prop changes
+  useEffect(() => {
+    if (language && language !== selectedLanguage) {
+      setSelectedLanguage(language);
+    }
+  }, [language, selectedLanguage]);
+
   const handleExecute = async () => {
     setIsExecuting(true);
     setExecutionResult(null);
     setShowOutput(true);
 
     try {
-      setOutput('Code execution is disabled. This is a code editor for viewing and editing code only. To run code, integrate with a code compiler service like Judge0.');
-      setExecutionResult({
-        success: false,
-        error: 'Compiler not available',
-        output: 'Please add a code compiler API to enable execution.',
-      });
+      // Use codeCompilerService.executeCode if available
+      const res = await codeCompilerService.executeCode(code, selectedLanguage, input);
+
+      if (res.success) {
+        setOutput(res.output || '(No output)');
+        setExecutionResult({ success: true, executionTime: res.executionTime, memory: res.memory });
+      } else {
+        // format error or message from service
+        const errMsg = res.error || res.output || res.message || 'Unknown error from compiler';
+        setOutput(errMsg);
+        setExecutionResult({ success: false, error: errMsg, statusDescription: res.statusDescription });
+      }
     } finally {
       setIsExecuting(false);
     }
@@ -63,13 +83,48 @@ const CodeEditor = ({
     }
   };
 
+  const handleCheckCompilers = async () => {
+    setIsExecuting(true);
+    setExecutionResult(null);
+    setShowOutput(true);
+    setOutput('Checking compiler backends...');
+
+    try {
+      const status = await codeCompilerService.checkCompilers();
+      setOutput(JSON.stringify(status, null, 2));
+      setExecutionResult({ success: true });
+    } catch (e) {
+      setOutput('Error checking compilers: ' + (e.message || e));
+      setExecutionResult({ success: false, error: e.message || '' });
+    } finally {
+      setIsExecuting(false);
+    }
+  };
+
   const handleCopyCode = () => {
     navigator.clipboard.writeText(code);
     alert('Code copied to clipboard!');
   };
 
+  // check compiler status when component mounts (if compiler UI is shown)
+  useEffect(() => {
+    if (!showCompiler) return;
+    codeCompilerService.checkCompilers()
+      .then(status => setCompilerStatus(status))
+      .catch(err => {
+        console.warn('Unable to fetch compiler status', err);
+        setCompilerStatus({ error: 'unknown' });
+      });
+  }, [showCompiler]);
+
+
   const codeEditorContent = (
     <div className="code-editor-wrapper">
+      {(compilerStatus && Object.values(compilerStatus).every(v => v !== 'ok')) && (
+        <div className="compiler-warning-banner">
+          ⚠️ All code compilation backends are currently unreachable. Please check your internet connection, ensure the backend server is running, or try again later.
+        </div>
+      )}
       <div className="editor-header">
         <div className="editor-controls">
           {allowLanguageChange && (
@@ -98,10 +153,23 @@ const CodeEditor = ({
           <button 
             className="btn btn-execute" 
             onClick={handleExecute}
-            disabled={isExecuting || !showCompiler}
-            title={showCompiler ? 'Execute Code' : 'Compiler not available'}
+            disabled={isExecuting || !showCompiler || (compilerStatus && Object.values(compilerStatus).every(v => v !== 'ok'))}
+            title={
+              !showCompiler ? 'Compiler not available' :
+              (compilerStatus && Object.values(compilerStatus).every(v => v !== 'ok'))
+                ? 'All backends appear down' :
+                'Execute Code'
+            }
           >
             {isExecuting ? '⏳ Executing...' : '▶ Execute'}
+          </button>
+          <button
+            className="btn btn-check"
+            onClick={handleCheckCompilers}
+            disabled={isExecuting || !showCompiler}
+            title="Ping remote compiler services"
+          >
+            🔍 Check Compilers
           </button>
           <button 
             className="btn btn-copy" 

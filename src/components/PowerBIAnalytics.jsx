@@ -264,7 +264,7 @@ const PowerBIAnalytics = () => {
                                 background: "#ffe8cc",
                                 borderRadius: "6px",
                                 textDecoration: "none",
-                                color: "#333",
+                                color: "#000000",
                                 transition: "all 0.2s",
                                 fontSize: "12px",
                                 border: "1px solid #ffb366"
@@ -328,7 +328,7 @@ const PowerBIAnalytics = () => {
                         style={{
                           display: "block",
                           padding: "6px 0",
-                          color: "white",
+                          color: "#000000",
                           textDecoration: "none",
                           fontSize: "11px",
                           transition: "all 0.2s"

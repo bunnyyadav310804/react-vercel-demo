@@ -4,6 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import '../styles/AuthPages.css';
 
 export default function SignUp() {
+    const [showPassword, setShowPassword] = useState(false);
+  
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +24,7 @@ export default function SignUp() {
 
   const validatePassword = (pwd) => {
     const hasUpperCase = /[A-Z]/.test(pwd);
-    const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pwd);
+    const hasSpecialChar = /[!@#$%^&*()_+=[\]{};':"\\|,.<>/?]/.test(pwd);
     const hasMinLength = pwd.length >= 8;
     
     setPasswordRequirements({
@@ -83,19 +85,27 @@ export default function SignUp() {
     setLoading(true);
 
     try {
+      console.log('📝 Starting signup process...');
       const result = await signUp(email, password, fullName);
       
       if (result?.error) {
+        console.error('❌ Signup returned error:', result.error.message);
         setError('❌ ' + result.error.message);
+        setLoading(false);
       } else {
-        setSuccess('✓ Account created successfully! Redirecting...');
+        console.log('✅ Signup returned successfully');
+        setSuccess('✓ Account created! Loading dashboard...');
+        localStorage.removeItem('education_path_welcome_seen');
+        console.log('🔄 Cleared welcome flag, navigating...');
+        
+        // Immediate navigation - App.jsx will detect auth state change
         setTimeout(() => {
-          navigate('/');
-        }, 1500);
+          navigate('/', { replace: true });
+        }, 500);
       }
     } catch (err) {
+      console.error('❌ Signup exception:', err);
       setError('❌ ' + (err.message || 'Sign up failed'));
-    } finally {
       setLoading(false);
     }
   };
@@ -150,10 +160,28 @@ export default function SignUp() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <label htmlFor="password">Password</label>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#000000',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    padding: '0',
+                    textDecoration: 'underline'
+                  }}
+                >
+                  {showPassword ? '🙈 Hide' : '👁️ Show'}
+                </button>
+              </div>
               <input
                 id="password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Min 8 chars, 1 Upper, 1 Special"
                 value={password}
                 onChange={(e) => {
@@ -200,7 +228,7 @@ export default function SignUp() {
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 id="confirmPassword"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Confirm your password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -214,7 +242,6 @@ export default function SignUp() {
 
             <button
               type="submit"
-              disabled={loading || !password || !email || !fullName}
               className="auth-submit-btn"
             >
               {loading ? <span className="spinner"></span> : '🚀 Create Account'}

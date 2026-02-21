@@ -366,3 +366,29 @@
     font-size: 12px;
   }
 }
+
+/* ===== TEXT VISIBILITY RULES FOR CODE EDITOR (COMPONENT) ===== */
+.code-editor-component h2,
+.code-editor-component h3,
+.code-editor-component label,
+.code-editor-component span {
+  color: #111827 !important;
+}
+
+.code-editor-component textarea,
+.code-editor-component input {
+  color: #111827 !important;
+  background-color: #0a1520 !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+.code-editor-component .output-text,
+.code-editor-component .error,
+.code-editor-component .result {
+  color: #111827 !important;
+}
+
+.code-editor-component button {
+  color: #111827 !important;
+}
+

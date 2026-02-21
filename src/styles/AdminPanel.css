@@ -4,9 +4,9 @@
 
 .admin-container {
   padding: 30px;
-  background: #ffffff;
+  background: #F9FAFB;
   min-height: 100vh;
-  color: #1f2937;
+  color: #111827;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -17,14 +17,14 @@
   align-items: center;
   margin-bottom: 40px;
   padding-bottom: 20px;
-  border-bottom: 2px solid rgba(139, 92, 246, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .admin-header h1 {
   font-size: 32px;
   font-weight: 800;
   margin: 0;
-  background: linear-gradient(135deg, #8b5cf6, #d946ef);
+  background: linear-gradient(135deg, #2563EB, #2563EB);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -32,9 +32,9 @@
 
 .admin-back-btn {
   padding: 12px 25px;
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  color: #6b7280;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #111827;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
@@ -42,9 +42,9 @@
 }
 
 .admin-back-btn:hover {
-  background: rgba(139, 92, 246, 0.15);
-  border-color: rgba(139, 92, 246, 0.5);
-  color: #1f2937;
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.5);
+  color: #111827;
   transform: translateY(-2px);
 }
 
@@ -60,8 +60,8 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  background: #000000;
-  border: 1px solid #333333;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 180, 216, 0.06);
   padding: 20px;
   border-radius: 15px;
   backdrop-filter: blur(10px);
@@ -69,10 +69,10 @@
 }
 
 .stat-card:hover {
-  background: #111111;
-  border-color: #8b5cf6;
+  background: rgba(240, 249, 255, 0.9);
+  border-color: rgba(37, 99, 235, 0.12);
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.15);
 }
 
 .stat-icon {
@@ -83,7 +83,7 @@
 
 .stat-label {
   font-size: 12px;
-  color: #888888;
+  color: #111827;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -92,7 +92,7 @@
 .stat-value {
   font-size: 24px;
   font-weight: 700;
-  color: #8b5cf6;
+  color: #2563EB;
   margin: 5px 0 0 0;
 }
 
@@ -113,9 +113,9 @@
 .search-input {
   width: 100%;
   padding: 12px 18px;
-  background: #ffffff;
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  color: #1f2937;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  color: #111827;
   border-radius: 10px;
   font-size: 14px;
   transition: all 0.3s ease;
@@ -123,9 +123,9 @@
 
 .search-input:focus {
   outline: none;
-  border-color: rgba(139, 92, 246, 0.5);
-  background: #ffffff;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+  border-color: rgba(37, 99, 235, 0.2);
+  background: #FFFFFF;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.06);
 }
 
 .search-input::placeholder {
@@ -189,12 +189,12 @@
   font-size: 20px;
   font-weight: 700;
   margin: 0 0 20px 0;
-  color: #1f2937;
+  color: #1a1a2e;
 }
 
 /* Users Table */
 .users-table {
-  background: #000000;
+  background: #2563EB;
   border: 1px solid #333333;
   border-radius: 15px;
   overflow: hidden;
@@ -207,44 +207,44 @@ table {
 }
 
 thead {
-  background: #111111;
-  border-bottom: 2px solid #333333;
+  background: #F3F4F6;
+  border-bottom: 2px solid #E5E7EB;
 }
 
 th {
   padding: 15px;
   text-align: left;
   font-weight: 600;
-  color: #ffffff;
+  color: #1a1a2e;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 tbody tr {
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #e2e8f0333;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 tbody tr:hover {
-  background: #111111;
+  background: #F9FAFB;
 }
 
 tbody tr.selected {
-  background: rgba(139, 92, 246, 0.1);
-  border-left: 3px solid rgba(139, 92, 246, 0.5);
+  background: rgba(0, 0, 0, 0.1);
+  border-left: 3px solid rgba(0, 0, 0, 0.5);
 }
 
 td {
   padding: 15px;
-  color: #888888;
+  color: #111827;
   font-size: 13px;
 }
 
 .user-name {
   font-weight: 600;
-  color: #ffffff;
+  color: #111827;
 }
 
 .current-badge {
@@ -266,7 +266,7 @@ td {
   border-radius: 5px;
   font-family: 'Courier New', monospace;
   font-size: 11px;
-  color: #a78bfa;
+  color: #000000;
 }
 
 .user-date {
@@ -305,7 +305,7 @@ td {
 /* User Details Section */
 .user-details-section {
   background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   padding: 25px;
   backdrop-filter: blur(10px);
@@ -336,12 +336,12 @@ td {
 
 .detail-item span {
   font-size: 13px;
-  color: #e2e8f0;
+  color: #111827;
   word-break: break-all;
 }
 
 .detail-item code {
-  background: rgba(30, 41, 59, 0.8);
+  background: #FFFFFF;
   padding: 8px 12px;
   border-radius: 6px;
   font-family: 'Courier New', monospace;
@@ -364,7 +364,7 @@ td {
 .detail-actions {
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 1px solid rgba(102, 126, 234, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .detail-delete-btn {
@@ -489,3 +489,39 @@ td {
     margin-top: 20px;
   }
 }
+
+/* ===== TEXT VISIBILITY RULES FOR ADMIN PANEL ===== */
+.admin-panel h1,
+.admin-panel h2,
+.admin-panel h3,
+.admin-panel h4,
+.admin-panel p,
+.admin-panel label,
+.admin-panel span {
+  color: #111827 !important;
+}
+
+.admin-header h1,
+.user-section h3,
+.stats-item h3,
+.action-section h3 {
+  color: #111827 !important;
+}
+
+.admin-panel input,
+.admin-panel select,
+.admin-panel textarea {
+  color: #111827 !important;
+    background-color: #FFFFFF !important;
+.admin-btn,
+.admin-action-btn {
+  color: #111827 !important;
+}
+
+.user-list-item,
+.stats-value {
+  color: #111827 !important;
+}
+
+
+

@@ -4,8 +4,8 @@
   width: 100%;
   padding: 40px 30px;
   min-height: 100vh;
-  background: #ffffff;
-  color: #1f2937;
+  background: #F9FAFB;
+  color: #1a1a2e;
 }
 
 /* Header */
@@ -22,16 +22,13 @@
 .company-header h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000;
   margin: 0 0 10px 0;
 }
 
 .company-header p {
   font-size: 1rem;
-  color: #cbd5e1;
+  color: #000000;
   margin: 0;
 }
 
@@ -46,24 +43,24 @@
   display: block;
   margin: 0 auto;
   padding: 15px 20px;
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
   border-radius: 10px;
-  color: #e2e8f0;
+  color: #111827;
   font-size: 1rem;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
 
 .company-search-input::placeholder {
-  color: #94a3b8;
+  color: #cbd5e1666;
 }
 
 .company-search-input:focus {
   outline: none;
-  border-color: #a78bfa;
-  background: rgba(30, 41, 59, 0.9);
-  box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+  border-color: #000000;
+  background: #FFFFFF;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.06);
 }
 
 /* Company Content Layout */
@@ -78,11 +75,10 @@
 
 /* Companies Panel */
 .companies-panel {
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
   border-radius: 12px;
   padding: 20px;
-  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -93,8 +89,9 @@
 
 .companies-panel h2 {
   margin: 0;
-  font-size: 1.3rem;
-  color: #f1f5f9;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #111827;
 }
 
 .companies-list {
@@ -110,8 +107,8 @@
   align-items: center;
   gap: 12px;
   padding: 15px;
-  background: rgba(30, 41, 59, 0.5);
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -123,8 +120,8 @@
 }
 
 .company-item.active {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
-  border-color: #a78bfa;
+  background: #EFF6FF;
+  border-color: #2563EB;
 }
 
 .company-logo {
@@ -140,8 +137,8 @@
 .company-name h3 {
   margin: 0 0 3px 0;
   font-size: 0.95rem;
-  font-weight: 600;
-  color: #f1f5f9;
+  font-weight: 700;
+  color: #000000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -149,11 +146,11 @@
 
 .company-founded {
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: #cbd5e1666;
 }
 
 .company-arrow {
-  color: #a78bfa;
+  color: #000000;
   font-size: 1.2rem;
   flex-shrink: 0;
 }
@@ -171,19 +168,19 @@
 }
 
 .company-details {
-  border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+  border-bottom: 1px solid #cccccc;
   padding-bottom: 20px;
 }
 
 .company-header-info h2 {
   margin: 0 0 8px 0;
   font-size: 1.5rem;
-  color: #f1f5f9;
+  color: #000000;
 }
 
 .company-info-text {
   margin: 0 0 15px 0;
-  color: #cbd5e1;
+  color: #000000;
   font-size: 0.95rem;
 }
 
@@ -195,31 +192,31 @@
 
 .info-item {
   padding: 10px;
-  background: rgba(102, 126, 234, 0.1);
+  background: #f5f5f5;
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #cbd5e1;
+  color: #000000;
 }
 
 .info-item strong {
-  color: #a78bfa;
+  color: #000000;
 }
 
 .company-link {
-  color: #60a5fa;
+  color: #000000;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .company-link:hover {
-  color: #a78bfa;
+  color: #333333;
 }
 
 .jobs-list-container h3 {
   margin: 0 0 15px 0;
   font-size: 1.2rem;
-  color: #f1f5f9;
+  color: #000000;
 }
 
 .jobs-list {
@@ -248,8 +245,8 @@
 }
 
 .job-item.active {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
-  border-color: #a78bfa;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: #000000;
 }
 
 .job-info {
@@ -259,42 +256,41 @@
 .job-info h4 {
   margin: 0 0 5px 0;
   font-size: 1rem;
-  font-weight: 600;
-  color: #f1f5f9;
+  font-weight: 700;
+  color: #000000;
 }
 
 .job-location {
   margin: 3px 0;
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: #000000;
 }
 
 .job-salary {
   margin: 3px 0;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #34d399;
+  color: #000000 !important;
 }
 
 .job-meta {
   margin-top: 8px;
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #000000;
 }
 
 .job-arrow {
-  color: #a78bfa;
+  color: #000000;
   font-size: 1.2rem;
   margin-left: 10px;
 }
 
 /* Prep Panel */
 .prep-panel {
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
   border-radius: 12px;
   padding: 25px;
-  backdrop-filter: blur(10px);
   max-height: 800px;
   overflow-y: auto;
 }
@@ -302,12 +298,12 @@
 .prep-header h2 {
   margin: 0 0 5px 0;
   font-size: 1.5rem;
-  color: #f1f5f9;
+  color: #000000;
 }
 
 .prep-company {
   margin: 0 0 20px 0;
-  color: #a78bfa;
+  color: #000000;
   font-weight: 500;
 }
 
@@ -318,14 +314,14 @@
 }
 
 .prep-section {
-  border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+  border-bottom: 1px solid #cccccc;
   padding-bottom: 20px;
 }
 
 .prep-section h3 {
   margin: 0 0 15px 0;
   font-size: 1.1rem;
-  color: #f1f5f9;
+  color: #000000;
 }
 
 .prep-section:last-child {
@@ -341,10 +337,10 @@
 
 .skill-tag {
   padding: 8px 12px;
-  background: rgba(167, 139, 250, 0.2);
-  border: 1px solid rgba(167, 139, 250, 0.4);
+  background: #f5f5f5;
+  border: 1px solid #000000;
   border-radius: 6px;
-  color: #a78bfa;
+  color: #000000;
   font-weight: 500;
   text-align: center;
   font-size: 0.9rem;
@@ -493,17 +489,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
-  background: rgba(102, 126, 234, 0.1);
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  background: #FFFFFF;
+  border: 2px solid #2563EB;
   border-radius: 8px;
   text-decoration: none;
   color: inherit;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
 }
 
 .resource-link:hover {
-  background: rgba(102, 126, 234, 0.2);
+  background: #F0F9FF;
   transform: translateX(5px);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
 }
 
 .resource-content {
@@ -514,21 +512,23 @@
 }
 
 .resource-name {
-  color: #f1f5f9;
-  font-weight: 500;
+  color: #111827;
+  font-weight: 700;
   font-size: 0.95rem;
 }
 
 .resource-type {
-  color: #a78bfa;
+  color: #6B7280;
   font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .resource-arrow {
-  color: #34d399;
+  color: #2563EB;
   font-size: 1.2rem;
   margin-left: 10px;
   flex-shrink: 0;
+  font-weight: 700;
 }
 
 /* Job Details Grid */
@@ -543,11 +543,11 @@
   background: rgba(102, 126, 234, 0.08);
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #cbd5e1;
+  color: #000000;
 }
 
 .detail-item strong {
-  color: #a78bfa;
+  color: #000000;
 }
 
 /* Empty State */
@@ -721,3 +721,27 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== TEXT VISIBILITY RULES FOR COMPANY SPECIFIC ===== */
+.company-section h1,
+.company-section h2,
+.company-section h3,
+.company-section h4,
+.company-section p,
+.company-section label,
+.company-section span {
+  color: #111827 !important;
+}
+
+.company-card h3,
+.company-card p,
+.prep-phase h4,
+.info-card li {
+  color: #111827 !important;
+}
+
+.company-section input,
+.company-section select,
+.company-section textarea {
+  color: #111827 !important;
+    background-color: #FFFFFF !important;

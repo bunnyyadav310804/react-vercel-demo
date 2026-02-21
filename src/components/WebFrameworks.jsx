@@ -156,7 +156,7 @@ const WebFrameworks = () => {
                 onClick={() => setExpandedFramework(expandedFramework === fw.id ? null : fw.id)}
               >
                 <div style={{ marginBottom: "10px" }}>
-                  <h4 style={{ margin: "0 0 5px 0", color: "#2d3561", fontSize: "15px", fontWeight: "700" }}>{fw.name}</h4>
+                  <h4 style={{ margin: "0 0 5px 0", color: "#000000", fontSize: "15px", fontWeight: "700" }}>{fw.name}</h4>
                   <span style={{
                     display: "inline-block",
                     fontSize: "11px",
@@ -170,13 +170,13 @@ const WebFrameworks = () => {
                   </span>
                 </div>
 
-                <p style={{ fontSize: "13px", color: "#2d3561", margin: "10px 0", fontWeight: "500" }}>
+                <p style={{ fontSize: "13px", color: "#000000", margin: "10px 0", fontWeight: "500" }}>
                   {fw.description}
                 </p>
 
                 {expandedFramework === fw.id && (
                   <div style={{ marginTop: "15px", borderTop: "2px solid #667eea", paddingTop: "15px", backgroundColor: "#f5fbff", padding: "15px", borderRadius: "8px" }}>
-                    <h5 style={{ marginBottom: "12px", color: "#2d3561", fontSize: "13px", fontWeight: "700" }}>✨ Core Features:</h5>
+                    <h5 style={{ marginBottom: "12px", color: "#000000", fontSize: "13px", fontWeight: "700" }}>✨ Core Features:</h5>
                     <div style={{ marginBottom: "15px" }}>
                       {fw.features.map((feature, i) => (
                         <span key={i} style={{
@@ -194,7 +194,7 @@ const WebFrameworks = () => {
                         </span>
                       ))}
                     </div>
-                    <h5 style={{ marginBottom: "12px", color: "#2d3561", fontSize: "13px", fontWeight: "700" }}>🔧 Ecosystem:</h5>
+                    <h5 style={{ marginBottom: "12px", color: "#000000", fontSize: "13px", fontWeight: "700" }}>🔧 Ecosystem:</h5>
                     <div style={{ marginBottom: "15px" }}>
                       {fw.ecosystem.map((tool, i) => (
                         <div key={i} style={{
@@ -203,7 +203,7 @@ const WebFrameworks = () => {
                           borderLeft: "4px solid #667eea",
                           marginBottom: "10px",
                           fontSize: "13px",
-                          color: "#2d3561",
+                          color: "#000000",
                           fontWeight: "500",
                           borderRadius: "4px",
                           boxShadow: "0 1px 3px rgba(102, 126, 234, 0.15)"
@@ -214,7 +214,7 @@ const WebFrameworks = () => {
                     </div>
                     {fw.resources && (
                       <div style={{ marginTop: "15px" }}>
-                        <h5 style={{ marginBottom: "12px", color: "#4d5a9e", fontSize: "13px", fontWeight: "600" }}>📚 Learning Resources:</h5>
+                        <h5 style={{ marginBottom: "12px", color: "#000000", fontSize: "13px", fontWeight: "600" }}>📚 Learning Resources:</h5>
                         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                           {fw.resources.map((resource, r) => (
                             <a
@@ -229,7 +229,7 @@ const WebFrameworks = () => {
                                 background: "#d8deff",
                                 borderRadius: "6px",
                                 textDecoration: "none",
-                                color: "#3d4a7f",
+                                color: "#000000",
                                 transition: "all 0.2s ease",
                                 fontSize: "12px",
                                 fontWeight: "500",
@@ -296,7 +296,7 @@ const WebFrameworks = () => {
                         style={{
                           display: "block",
                           padding: "6px 0",
-                          color: "white",
+                          color: "#000000",
                           textDecoration: "none",
                           fontSize: "11px",
                           transition: "all 0.2s"

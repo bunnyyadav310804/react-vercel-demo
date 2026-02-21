@@ -1,425 +1,1304 @@
-// Mock AI Service - Comprehensive Software Knowledge Base
-// This version includes extensive software development information
+// AI Chatbot Service - LOCAL KNOWLEDGE BASE
+// No API dependency - all responses from curated technical knowledge base
 
-// Comprehensive knowledge base for software-related topics
-const softwareKnowledgeBase = {
-  dsa: [
-    "Binary Search is an efficient algorithm to search in sorted arrays with O(log n) time complexity. It works by dividing the search space in half with each iteration.",
-    "Dynamic Programming solves problems by breaking them into subproblems and storing results to avoid recomputation. Great for optimization problems like fibonacci, knapsack, longest substring.",
-    "Hash Tables provide O(1) average time for search, insert, and delete operations using a hash function to map keys to values.",
-    "Linked Lists are useful when you need frequent insertions/deletions. They use nodes with data and pointers to traverse. Types: singly, doubly, circular.",
-    "Graphs can be represented using adjacency matrix or adjacency list. Use BFS/DFS for traversal and Dijkstra for shortest path.",
-    "Trees are hierarchical data structures. Important types: BST, AVL, Red-Black, B-Tree. Used in databases and file systems.",
-    "Sorting algorithms: QuickSort (avg O(n log n)), MergeSort (O(n log n)), HeapSort (O(n log n)), BubbleSort (O(n²)).",
-    "Recursion is a function calling itself. Requires base case and recursive case. Watch out for stack overflow.",
-    "Stack (LIFO) and Queue (FIFO) are fundamental data structures. Used in expression evaluation, BFS/DFS.",
-    "Greedy algorithms make locally optimal choices. Used in Huffman coding, activity selection, Dijkstra's algorithm.",
-  ],
-  programming: [
-    "Python is great for beginners with clean syntax. Use for AI/ML, web development, scripting. Popular frameworks: Django, Flask.",
-    "Java is enterprise standard with strong OOP. Master collections, multithreading, memory management. Spring framework is powerful.",
-    "JavaScript powers web development. Learn async/await, promises, closures, prototypal inheritance, ES6+ features.",
-    "C++ is fast and used in competitive programming, game engines, system software. Master pointers, STL, memory management.",
-    "C# is used for Windows and Unity development. Similar to Java with language-integrated query (LINQ).",
-    "Go is modern, compiled language with fast execution. Great for microservices, concurrent programming, cloud tools.",
-    "Rust provides memory safety without garbage collection. Used in systems programming, WebAssembly.",
-    "OOPS concepts: Encapsulation (data hiding), Inheritance (code reuse), Polymorphism (method overriding), Abstraction.",
-    "Functions should be single responsibility. Use meaningful names. Keep them small and focused.",
-    "Design patterns: Singleton, Factory, Observer, Strategy, Decorator, Adapter, MVC. Learn when and how to use them.",
-  ],
-  webdevelopment: [
-    "Frontend: HTML (structure), CSS (styling), JavaScript (interactivity). Learn responsive design and accessibility.",
-    "React is a JavaScript library for building UIs with components, state management (hooks, context), and virtual DOM.",
-    "Vue.js is lightweight with great documentation. Uses templates, reactive data binding, and composable components.",
-    "Angular is a full framework with TypeScript, dependency injection, RxJS observables. Good for large applications.",
-    "HTML semantic elements: header, nav, article, section, footer improve SEO and accessibility.",
-    "CSS Flexbox and Grid for modern layouts. Learn media queries for responsive design. BEM methodology for naming.",
-    "JavaScript DOM manipulation: querySelector, addEventListener, innerHTML. Avoid inline scripts for security.",
-    "RESTful APIs: Use HTTP methods (GET, POST, PUT, DELETE) properly. Return appropriate status codes (200, 201, 400, 404, 500).",
-    "GraphQL is an alternative to REST with precise data fetching. Query language for APIs with strong typing.",
-    "Web security: HTTPS, CSRF tokens, SQL injection prevention, XSS protection, CORS, authentication, authorization.",
-  ],
-  backend: [
-    "Backend handles business logic, database operations, authentication, server management.",
-    "Node.js runs JavaScript on server. Express.js is popular framework for building REST APIs quickly.",
-    "Django (Python) includes ORM, admin panel, authentication. Great for rapid development of full-featured applications.",
-    "Spring Boot (Java) simplifies Spring development. Handles dependency injection, auto-configuration, embedded server.",
-    "ASP.NET Core is Microsoft's modern framework for APIs and web apps. Fast, cross-platform, built-in dependency injection.",
-    "Middleware in web frameworks intercepts requests/responses. Used for logging, authentication, error handling.",
-    "RESTful API design: Use nouns for endpoints, HTTP verbs for operations. Version your API (/v1, /v2).",
-    "Authentication: Passwords, OAuth2, JWT tokens. Authorization: Role-based access (RBAC), permissions.",
-    "Rate limiting prevents abuse. Use tokens, IP-based limits, or API keys to control request frequency.",
-    "Error handling: Return meaningful error messages. Use proper HTTP status codes. Log errors for debugging.",
-  ],
-  database: [
-    "SQL databases (MySQL, PostgreSQL) use tables with structured schema. Good for relational data.",
-    "NoSQL databases (MongoDB, Firebase): Document-based, key-value stores. Flexible schema, horizontal scaling.",
-    "ACID properties: Atomicity (all or nothing), Consistency (valid state), Isolation (concurrent), Durability (persistent).",
-    "Normalization reduces data redundancy. 1NF: atomic values, 2NF: functional dependency, 3NF: transitive dependency.",
-    "Indexing speeds up queries. Primary key (unique), foreign key (relationships), unique index, full-text search.",
-    "JOIN types: INNER (matching), LEFT (left + matching), RIGHT (right + matching), FULL (all rows).",
-    "Transactions ensure data integrity. BEGIN, COMMIT, ROLLBACK. Use for multi-step operations.",
-    "Denormalization improves read performance by storing redundant data. Trade-off: less consistency.",
-    "Sharding distributes data across multiple databases. Horizontal scaling for large datasets.",
-    "Backup and recovery: Regular backups, replication, point-in-time recovery. Critical for data safety.",
-  ],
-  versioncontrol: [
-    "Git tracks code changes. Distributed version control system.",
-    "Commands: git init (create), git add (stage), git commit (save), git push (upload), git pull (download).",
-    "Branches allow parallel work. Create: git branch name. Switch: git checkout name. Merge: git merge name.",
-    "GitHub/GitLab hosting platforms. Push to remote, create pull requests for code review.",
-    "Commit messages should be clear: 'Fix bug in login validation' not 'fixed stuff'.",
-    "Merge conflicts happen when changes overlap. Manually resolve conflicts in conflicted files.",
-    "Rebase rewrites history by replaying commits. Good for clean history but use with caution.",
-    "Stash saves work temporarily: git stash save 'message', git stash pop to restore.",
-    ".gitignore file specifies files to ignore (node_modules, .env, build outputs).",
-    "GitHub Actions automate tests, builds, deployments. CI/CD pipelines run on every push.",
-  ],
-  testing: [
-    "Unit testing tests individual functions/methods. Use frameworks: Jest (JavaScript), unittest (Python), JUnit (Java).",
-    "Integration testing tests multiple components working together. Tests API endpoints, database interactions.",
-    "E2E testing simulates real user scenarios. Tools: Selenium, Cypress, Playwright.",
-    "Test coverage: Aim for 70-80%. Tools: Istanbul (JavaScript), coverage (Python).",
-    "Mocking replaces dependencies with test doubles. Useful for isolating code under test.",
-    "TDD (Test-Driven Development): Write tests first, then code. Ensures code is testable.",
-    "BDD (Behavior-Driven Development): Tests describe behavior in plain language. Bridges gap between technical and non-technical.",
-    "Assertions check expected outcomes. Example: assert(result === 5).",
-    "Performance testing: Load testing, stress testing, spike testing. Tools: JMeter, Locust.",
-    "Security testing: SQL injection, XSS, authentication bypass. Use tools like OWASP ZAP.",
-  ],
-  designpatterns: [
-    "Singleton: One instance of a class. Example: database connection pool, logger.",
-    "Factory: Creates objects without specifying exact classes. Example: UI element creation.",
-    "Observer: One-to-many relationship. Subject notifies observers of state changes. Example: event listeners.",
-    "Strategy: Define family of algorithms, encapsulate each. Example: payment methods, sorting algorithms.",
-    "Decorator: Add behavior to objects without modifying them. Example: stream wrappers.",
-    "Adapter: Make incompatible interfaces compatible. Example: legacy system integration.",
-    "MVC (Model-View-Controller): Separates concerns. Model (data), View (UI), Controller (logic).",
-    "Repository: Abstracts data access. Enables switching databases without changing business logic.",
-    "Dependency Injection: Pass dependencies as parameters. Improves testability and loose coupling.",
-    "Service Locator: Object finds dependencies. Alternative to DI but less testable.",
-  ],
-  devops: [
-    "Docker containers package applications with dependencies. Ensures consistency across environments.",
-    "Docker images are templates, containers are running instances. Use Dockerfile to build images.",
-    "Kubernetes orchestrates containers. Auto-scaling, load balancing, self-healing.",
-    "CI/CD automates testing and deployment. Continuous Integration (frequent merges), Continuous Deployment (auto release).",
-    "Jenkins, GitLab CI, GitHub Actions automate pipelines.",
-    "Infrastructure as Code (IaC): Terraform, CloudFormation define infrastructure in code. Version controllable.",
-    "Monitoring and logging: Prometheus, ELK stack, DataDog track application health.",
-    "Load balancing distributes traffic. Nginx, HAProxy, cloud load balancers.",
-    "SSL/TLS encryption secures data in transit. Use certificates for HTTPS.",
-    "Blue-Green deployment: Run two identical environments, switch traffic instantly. Zero downtime.",
-  ],
-  clouddevelopment: [
-    "AWS (Amazon Web Services): EC2 (compute), S3 (storage), RDS (database), Lambda (serverless).",
-    "Azure (Microsoft): VMs, App Service, SQL Database, Cosmos DB.",
-    "Google Cloud: Compute Engine, Cloud Storage, Cloud SQL, BigQuery.",
-    "Serverless computing: Write functions, no server management. AWS Lambda, Google Cloud Functions.",
-    "CDN (Content Delivery Network) caches content globally. CloudFront (AWS), CloudFlare.",
-    "Auto-scaling: Add/remove resources based on demand. Cost-effective for variable loads.",
-    "Microservices architecture: Small independent services. Easier scaling but complex management.",
-    "API Gateway: Single entry point for APIs. Rate limiting, authentication, request transformation.",
-    "Message queues: Decouple services. RabbitMQ, Kafka, AWS SQS.",
-    "Containerization: Docker, Kubernetes. Orchestrate and scale containers.",
-  ],
-  security: [
-    "Authentication: Verify who you are. Passwords, biometrics, OAuth2, JWT tokens.",
-    "Authorization: Verify what you can do. Role-based (RBAC), attribute-based (ABAC).",
-    "Encryption: Data at rest (database), data in transit (HTTPS), end-to-end.",
-    "SQL Injection: Input validation and parameterized queries prevent it.",
-    "XSS (Cross-Site Scripting): Sanitize user input, use Content Security Policy (CSP).",
-    "CSRF (Cross-Site Request Forgery): Use CSRF tokens, SameSite cookies.",
-    "Password security: Minimum 8 chars, complexity requirements, hashing (bcrypt, argon2).",
-    "Secrets management: Environment variables, vault systems. Never commit secrets.",
-    "API security: Authentication, rate limiting, input validation, CORS properly configured.",
-    "Security headers: X-Frame-Options, X-Content-Type-Options, Strict-Transport-Security.",
-  ],
-  apidesign: [
-    "RESTful design uses HTTP methods: GET (retrieve), POST (create), PUT (update), DELETE (remove).",
-    "Stateless APIs don't store client context. Client sends all needed info. Easier to scale.",
-    "Versioning: /v1/users, /v2/users. Allows backward compatibility while improving API.",
-    "Pagination: Limit results with offset/limit or cursor-based. Improves performance.",
-    "Filtering: /users?role=admin&status=active. Reduces data transferred.",
-    "Sorting: /users?sort=name,-date. Ascending (default) or descending (-).",
-    "Response format: JSON is standard. Include status codes, error messages, metadata.",
-    "HTTP status codes: 200 (OK), 201 (Created), 400 (Bad Request), 401 (Unauthorized), 404 (Not Found), 500 (Server Error).",
-    "API documentation: OpenAPI/Swagger. Auto-generated documentation, client SDKs.",
-    "Rate limiting: Prevent abuse. Return X-RateLimit headers with limit, remaining, reset.",
-  ],
-  softwareengineer: [
-    "Clean Code: Meaningful names, small functions, DRY (Don't Repeat Yourself), KISS (Keep It Simple).",
-    "SOLID principles: S (Single Responsibility), O (Open/Closed), L (Liskov Substitution), I (Interface Segregation), D (Dependency Inversion).",
-    "Code Review: Check logic, edge cases, tests, style. Constructive feedback improves team.",
-    "Refactoring: Improve code without changing behavior. Extract methods, reduce duplication, improve readability.",
-    "Technical Debt: Shortcuts that cost later. Must balance speed with quality.",
-    "Performance optimization: Profile code, identify bottlenecks, cache results, database indexing.",
-    "Documentation: Code comments, README files, API docs. Helps maintainability.",
-    "Logging: Appropriate levels (DEBUG, INFO, WARNING, ERROR). Helps debugging and monitoring.",
-    "Version control workflow: Feature branches, code review, merge main. Prevents chaos.",
-    "Agile methodology: Sprints, standups, retrospectives. Iterative development and continuous improvement.",
-  ],
-  problemsolving: [
-    "Understand the problem: Read carefully, clarify requirements, identify constraints.",
-    "Think before coding: Draw diagrams, think through examples, plan approach.",
-    "Start simple: Brute force solution first, then optimize if needed.",
-    "Test edge cases: Empty input, single element, very large input, negative numbers.",
-    "Debug systematically: Add print statements, use debugger, isolate the issue.",
-    "Ask for help: Code reviews, pair programming, asking colleagues. Faster solution.",
-    "Break into subproblems: Large problem into smaller manageable pieces.",
-    "Pattern recognition: Similar problems solved before? Reuse approaches.",
-    "Optimize later: Get working solution first, then optimize if needed.",
-    "Learn from mistakes: Keep a notebook of errors and solutions for future reference.",
-  ],
-  aiml: [
-    "Machine Learning: Algorithms learn patterns from data. Supervised (labeled data), Unsupervised (no labels), Reinforcement (rewards).",
-    "TensorFlow (Python): Google's ML library. Used for deep learning, neural networks, computer vision, NLP.",
-    "PyTorch (Python): Facebook's ML framework. Dynamic computation graph, popular for research and production.",
-    "Scikit-learn (Python): Simple ML library. Great for beginners. Classification, regression, clustering, preprocessing.",
-    "Deep Learning: Neural networks with multiple layers. CNNs for images, RNNs for sequences, Transformers for NLP.",
-    "OpenAI API: GPT-3/GPT-4 for language tasks. Chat completion, text generation, embeddings for semantic search.",
-    "Hugging Face: Pre-trained models library. BERT, GPT-2, DistilBERT. Easy fine-tuning and deployment.",
-    "Keras: High-level API for TensorFlow. Simple API for building neural networks quickly.",
-    "Natural Language Processing (NLP): Tokenization, word embeddings (Word2Vec, GloVe), sentiment analysis, named entity recognition.",
-    "Computer Vision: Image classification (CNNs), object detection (YOLO, R-CNN), face recognition, image segmentation.",
-    "LangChain (Python): Build LLM applications. Chains, agents, memory management. For complex AI workflows.",
-    "Prompt Engineering: Craft effective prompts for LLMs. Few-shot learning, chain-of-thought, role-playing.",
-    "Transfer Learning: Use pre-trained models, fine-tune on your data. Saves time and improves accuracy.",
-    "Data Preprocessing: Cleaning, normalization, feature scaling. Crucial for model performance.",
-    "Evaluation Metrics: Accuracy, Precision, Recall, F1-score, AUC-ROC, RMSE, MAE.",
-  ],
-  powerbi: [
-    "Power BI: Microsoft's business intelligence tool. Create dashboards and reports from data.",
-    "Power BI Desktop: Design reports locally. Connects to various data sources (SQL, Excel, APIs).",
-    "Power BI Service (Cloud): Publish and share reports. Real-time dashboards, collaboration, security.",
-    "DAX (Data Analysis Expressions): Language for calculations. Similar to Excel formulas but more powerful.",
-    "Power Query: Data transformation tool. Clean data, merge sources, unpivot/pivot data.",
-    "Visualizations: Charts, maps, cards, tables, gauges. Choose visualization matching data type.",
-    "KPIs (Key Performance Indicators): Track metrics. Conditional formatting shows status (red/yellow/green).",
-    "Filters and Slicers: Interactive elements. Users filter data to explore insights.",
-    "Relationships: Connect tables through keys. Enables cross-table analysis and calculations.",
-    "Row-Level Security (RLS): Different users see different data based on roles.",
-    "Refresh schedules: Automatic data updates from sources. Real-time or scheduled refresh.",
-    "Drill-through: Click to see detailed data. Navigate from summary to granular details.",
-    "Bookmarks: Save filter states. Users navigate between different report perspectives.",
-    "Sharing and Collaboration: Share reports with team. Comments, annotations, version history.",
-    "Performance Optimization: Reduce data model size, optimize DAX, aggregations, use efficient visuals.",
-  ],
-  dataanalysis: [
-    "Pandas (Python): Data manipulation library. DataFrames for tabular data, groupby, merge, pivot operations.",
-    "NumPy (Python): Numerical computing. Arrays, matrix operations, mathematical functions.",
-    "SQL: Query language for databases. SELECT, WHERE, GROUP BY, JOIN, aggregations.",
-    "Excel: Spreadsheet tool. Pivot tables, VLOOKUP, formulas, basic analysis.",
-    "Tableau: Data visualization tool. Interactive dashboards, story-telling with data.",
-    "Data Mining: Extract patterns from large datasets. Useful for business intelligence.",
-    "Statistical Analysis: Mean, median, standard deviation, correlation, regression.",
-    "Hypothesis Testing: Null hypothesis, p-values, significance testing.",
-    "Data Visualization: Charts, graphs, heatmaps. Communicate insights clearly.",
-    "ETL Process: Extract (source), Transform (clean, combine), Load (destination).",
-  ],
-  softwaretools: [
-    "Version Control: Git, GitHub, GitLab, Bitbucket. Manage code changes, collaborate.",
-    "IDEs: VS Code, IntelliJ, PyCharm, Visual Studio. Code editing, debugging, extensions.",
-    "Project Management: Jira, Asana, Monday, Trello. Track tasks, sprints, team collaboration.",
-    "Communication: Slack, Teams, Discord. Team messaging, file sharing, integrations.",
-    "Documentation: Confluence, Notion, Google Docs. Knowledge base, wikis, shared notes.",
-    "Design Tools: Figma, Adobe XD, Sketch. UI/UX design, prototyping, collaboration.",
-    "API Testing: Postman, Insomnia, REST Client. Test endpoints, manage collections, automation.",
-    "Database Tools: DBeaver, pgAdmin, MySQL Workbench. Connect, query, manage databases.",
-    "Monitoring: New Relic, Datadog, Grafana. Application monitoring, performance insights.",
-    "Bug Tracking: GitHub Issues, Jira, Bugzilla. Report, track, manage bugs.",
-  ],
-  cloudplatforms: [
-    "AWS (Amazon Web Services): EC2 (compute), S3 (storage), Lambda (serverless), RDS (database), DynamoDB (NoSQL).",
-    "Azure (Microsoft): Virtual Machines, App Service, SQL Database, Cosmos DB, AI services.",
-    "Google Cloud: Compute Engine, Cloud Storage, BigQuery (data warehouse), Vertex AI (ML platform).",
-    "Firebase (Google): Real-time database, Authentication, Hosting, Cloud Functions, Storage.",
-    "Heroku: Platform as a Service (PaaS). Simple deployment for web apps, databases, add-ons.",
-    "DigitalOcean: Affordable cloud provider. Droplets (VMs), App Platform, Databases.",
-    "AWS Lambda: Serverless computing. Pay per execution. Write functions without managing servers.",
-    "Google Cloud Functions: Serverless functions. Trigger on events, auto-scale.",
-    "RDS (AWS): Managed relational databases. MySQL, PostgreSQL, Oracle, SQL Server.",
-    "DynamoDB (AWS): NoSQL database. Fast, scalable, pay-per-request pricing.",
-  ],
-  webframeworks: [
-    "React: JavaScript library for UIs. Component-based, state management (hooks, context), virtual DOM.",
-    "Vue.js: Progressive framework. Single File Components, reactive data, easy to learn.",
-    "Angular: Full framework. TypeScript-first, RxJS, dependency injection, large applications.",
-    "Next.js: React framework. Server-side rendering (SSR), static generation, API routes.",
-    "Svelte: Compiler framework. No virtual DOM, compile to vanilla JS, very performant.",
-    "Express.js: Node.js backend framework. Middleware, routing, simple and fast.",
-    "Django: Python web framework. ORM, admin panel, authentication, batteries-included.",
-    "Flask: Lightweight Python framework. Flexible, minimal boilerplate, microservices.",
-    "FastAPI: Modern Python framework. Async, automatic API documentation, fast development.",
-    "Spring Boot: Java framework. Microservices, cloud-native, enterprise applications.",
-  ],
-  devtoolsutilities: [
-    "Docker: Containerization. Package app with dependencies. Works consistently across environments.",
-    "Kubernetes (K8s): Container orchestration. Auto-scaling, load balancing, self-healing.",
-    "Jenkins: CI/CD automation. Build pipelines, testing, deployment automation.",
-    "GitHub Actions: Automated workflows. CI/CD, testing, deployments on code events.",
-    "GitLab CI/CD: Integrated CI/CD. Pipeline files in repo, runner architecture.",
-    "Webpack: Module bundler for JavaScript. Code splitting, asset optimization, tree-shaking.",
-    "Vite: Fast build tool. Lightning-fast development, optimized production build.",
-    "Babel: JavaScript transpiler. Write ES6+, transpile to compatible JavaScript.",
-    "ESLint: JavaScript linter. Code quality, style enforcement, bug detection.",
-    "Prettier: Code formatter. Consistent code style, auto-format on save.",
-  ],
-  mobiledev: [
-    "React Native: Build mobile apps with React. Android and iOS from single codebase.",
-    "Flutter: Dart-based framework. High performance, beautiful UIs, iOS and Android.",
-    "Swift: Apple's language for iOS. Type-safe, modern, integrated with Xcode.",
-    "Kotlin: Modern language for Android. Concise syntax, null-safety, interoperable with Java.",
-    "Expo: React Native framework. Simplified development, instant updates, cloud build.",
-    "Firebase: Backend services. Authentication, real-time database, push notifications.",
-    "Mobile UI Guidelines: Apple HIG (Human Interface Guidelines), Material Design (Android).",
-    "App Performance: Optimize memory, battery usage, startup time, smooth animations.",
-    "Testing: Unit tests, integration tests, UI tests. XCTest (iOS), Espresso (Android).",
-    "App Store: Distribution, reviews, in-app purchases, analytics.",
-  ],
-  dataengineering: [
-    "Data Pipelines: ETL workflows moving data through systems. Automation, scheduling, monitoring.",
-    "Apache Spark: Big data processing. Distributed computing, fast processing of large datasets.",
-    "Apache Kafka: Event streaming. Real-time data pipelines, message broker.",
-    "Apache Airflow: Workflow orchestration. DAGs (Directed Acyclic Graphs), scheduling, monitoring.",
-    "Data Warehousing: Centralized data repository. BigQuery, Redshift, Snowflake.",
-    "Data Lakes: Store raw data at scale. Unstructured data, cost-effective, Hadoop, Delta Lake.",
-    "Batch Processing: Process large data in batches. Spark, MapReduce for overnight jobs.",
-    "Stream Processing: Real-time data processing. Kafka, Flink, Spark Streaming.",
-    "Data Quality: Validation, anomaly detection, monitoring. Ensures reliable analytics.",
-    "Metadata Management: Track data lineage, schemas, ownership, governance.",
-  ],
-};
+const KNOWLEDGE_BASE = [
+  // DATA STRUCTURES & ALGORITHMS
+  {
+    keywords: ['binary search', 'search', 'algorithm'],
+    title: 'Binary Search',
+    answer: `Binary Search is an efficient algorithm for finding a target value in a **sorted array**.
 
-// Enhanced topic detection
-const detectTopic = (message) => {
-  const lowerMessage = message.toLowerCase();
+**How it works:**
+- Divide the search space in half each iteration
+- Compare middle element with target
+- Eliminate half of remaining elements
+- Repeat until found or search space is empty
+
+**Time Complexity:** O(log n)
+**Space Complexity:** O(1) iterative, O(log n) recursive
+
+**Code Example (JavaScript):**
+\`\`\`javascript
+function binarySearch(arr, target) {
+  let left = 0, right = arr.length - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (arr[mid] === target) return mid;
+    if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+  return -1;
+}
+\`\`\`
+
+**Use Cases:**
+- Searching in sorted arrays/lists
+- Finding insertion positions
+- Range queries
+
+**Important:** Array MUST be sorted!`
+  },
+  {
+    keywords: ['sorting', 'merge sort', 'quick sort', 'sort'],
+    title: 'Sorting Algorithms',
+    answer: `**Common Sorting Algorithms Comparison:**
+
+**Merge Sort**
+- Time: O(n log n) always
+- Space: O(n)
+- Stable: Yes
+- Best for: Large datasets, external sorting
+
+**Quick Sort**
+- Time: O(n log n) avg, O(n²) worst
+- Space: O(log n)
+- Stable: No
+- Best for: Average case performance
+
+**Bubble Sort**
+- Time: O(n²)
+- Space: O(1)
+- Stable: Yes
+- Best for: Educational purposes only
+
+**Selection Sort**
+- Time: O(n²)
+- Space: O(1)
+- Stable: No
+- Use: Minimal memory scenarios
+
+**Insertion Sort**
+- Time: O(n²)
+- Space: O(1)
+- Stable: Yes
+- Use: Small arrays, nearly sorted data
+
+**Heap Sort**
+- Time: O(n log n)
+- Space: O(1)
+- Stable: No
+- Use: Guaranteed O(n log n)
+
+**Real-world choice:** Most languages use Timsort (merge+insertion hybrid)`
+  },
+  {
+    keywords: ['data structures', 'array', 'linked list', 'stack', 'queue', 'hash', 'tree', 'graph'],
+    title: 'Data Structures Overview',
+    answer: `**Essential Data Structures:**
+
+**Arrays**
+- O(1) access by index
+- O(n) insertion/deletion (middle)
+- Fixed size (in most languages)
+- Use: Index-based access
+
+**Linked Lists**
+- O(n) access
+- O(1) insertion/deletion (with pointer)
+- Dynamic size
+- Use: Frequent insertions/deletions
+
+**Stacks (LIFO)**
+- O(1) push/pop
+- Last In First Out
+- Use: Function calls, expression evaluation, undo
+
+**Queues (FIFO)**
+- O(1) enqueue/dequeue
+- First In First Out
+- Use: Task scheduling, BFS
+
+**Hash Tables**
+- O(1) avg lookup/insert/delete
+- O(n) worst case (collision)
+- Use: Fast lookups, caching
+
+**Binary Trees**
+- O(log n) balanced search
+- O(n) unbalanced
+- Use: BST, expression trees
+
+**Graphs**
+- Adjacency list: O(V+E)
+- Adjacency matrix: O(V²)
+- Use: Networks, relationships`
+  },
+  {
+    keywords: ['recursion', 'recursive'],
+    title: 'Recursion Explained',
+    answer: `**Recursion:** A function calling itself to solve smaller subproblems.
+
+**Key Components:**
+1. **Base Case:** Condition to stop recursion
+2. **Recursive Case:** Function calls itself
+3. **Progress toward base case:** Each call gets closer to base
+
+**Example - Factorial:**
+\`\`\`javascript
+function factorial(n) {
+  // Base case
+  if (n <= 1) return 1;
   
-  // DSA & Algorithms
-  if (/dsa|algorithm|array|string|tree|graph|sort|search|dynamic|hash|linked|stack|queue|binary/.test(lowerMessage)) {
-    return "dsa";
+  // Recursive case
+  return n * factorial(n - 1);
+}
+// factorial(5) = 5 * 4 * 3 * 2 * 1 = 120
+\`\`\`
+
+**Time & Space Complexity:**
+- Time: Depends on problem (e.g., fibonacci O(2^n))
+- Space: O(depth) call stack
+
+**Common Problems:**
+- Factorial, Fibonacci
+- Tree traversal (DFS)
+- Backtracking (N-Queens)
+- Divide & Conquer
+
+**Memoization:** Cache results to avoid recalculation`
+  },
+  {
+    keywords: ['dynamic programming', 'dp', 'memoization'],
+    title: 'Dynamic Programming',
+    answer: `**Dynamic Programming:** Optimization technique using **overlapping subproblems** and **optimal substructure**.
+
+**Two Approaches:**
+
+**1. Top-Down (Memoization)**
+- Recursion + caching
+- Store results to avoid recalculation
+\`\`\`javascript
+const memo = {};
+function fib(n) {
+  if (n <= 1) return n;
+  if (memo[n]) return memo[n];
+  memo[n] = fib(n-1) + fib(n-2);
+  return memo[n];
+}
+\`\`\`
+
+**2. Bottom-Up (Tabulation)**
+- Iterative approach
+- Build solution from base cases
+\`\`\`javascript
+function fib(n) {
+  const dp = [0, 1];
+  for (let i = 2; i <= n; i++) {
+    dp[i] = dp[i-1] + dp[i-2];
   }
-  // Programming Languages
-  if (/python|java|cpp|javascript|c\+\+|golang|rust|c#|ruby|php|kotlin/.test(lowerMessage)) {
-    return "programming";
+  return dp[n];
+}
+\`\`\`
+
+**Classic Problems:**
+- Fibonacci: O(n) vs O(2^n)
+- Coin Change: Min coins needed
+- Longest Common Subsequence
+- 0/1 Knapsack Problem
+- Edit Distance
+
+**Space Optimization:** Often reduce 2D DP to 1D`
+  },
+
+  // PROGRAMMING LANGUAGES
+  {
+    keywords: ['python', 'syntax', 'basics'],
+    title: 'Python Basics',
+    answer: `**Python: Beginner-Friendly, Powerful Language**
+
+**Variables & Types:**
+\`\`\`python
+x = 10              # int
+y = 3.14            # float
+name = "John"       # str
+is_active = True    # bool
+\`\`\`
+
+**Common Data Structures:**
+\`\`\`python
+lst = [1, 2, 3]              # List (mutable)
+tpl = (1, 2, 3)              # Tuple (immutable)
+dct = {'a': 1, 'b': 2}       # Dictionary
+st = {1, 2, 3}               # Set
+\`\`\`
+
+**Functions:**
+\`\`\`python
+def greet(name="World"):
+    return f"Hello, {name}!"
+
+# Default parameters, keyword arguments supported
+\`\`\`
+
+**Loops & Conditionals:**
+\`\`\`python
+for i in range(5):       # 0 to 4
+    if i % 2 == 0:
+        print(f"{i} is even")
+
+while condition:
+    # do something
+\`\`\`
+
+**List Comprehensions:**
+\`\`\`python
+squares = [x**2 for x in range(10)]  # [0, 1, 4, 9, ...]
+\`\`\`
+
+**Key Features:**
+- Indentation-based syntax
+- Dynamic typing
+- Extensive standard library
+- Great for DSA, ML, web development`
+  },
+  {
+    keywords: ['javascript', 'js', 'async', 'promise', 'callback'],
+    title: 'JavaScript Async Programming',
+    answer: `**Handling Asynchronous Code in JavaScript**
+
+**1. Callbacks (Older approach):**
+\`\`\`javascript
+function fetchData(callback) {
+  setTimeout(() => {
+    callback('Data loaded');
+  }, 1000);
+}
+fetchData(console.log);  // Callback Hell problems
+\`\`\`
+
+**2. Promises:**
+\`\`\`javascript
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Done'), 1000);
+});
+
+promise
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+\`\`\`
+
+**3. Async/Await (Modern & Clean):**
+\`\`\`javascript
+async function fetchData() {
+  try {
+    const response = await fetch('/api/data');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
   }
-  // Web Development
-  if (/react|angular|vue|html|css|frontend|web|browser|responsive|responsive/.test(lowerMessage)) {
-    return "webdevelopment";
-  }
-  // Backend
-  if (/backend|server|express|django|spring|api|endpoint|http|framework/.test(lowerMessage)) {
-    return "backend";
-  }
-  // Database
-  if (/database|sql|mysql|postgresql|mongodb|firebase|nosql|table|query|index|transaction/.test(lowerMessage)) {
-    return "database";
-  }
-  // Version Control
-  if (/git|github|gitlab|commit|branch|merge|version|control|repository/.test(lowerMessage)) {
-    return "versioncontrol";
-  }
-  // Testing
-  if (/test|jest|unit|integration|e2e|coverage|mock|cypress|selenium/.test(lowerMessage)) {
-    return "testing";
-  }
-  // Design Patterns
-  if (/pattern|singleton|factory|observer|strategy|decorator|mvc|adapter/.test(lowerMessage)) {
-    return "designpatterns";
-  }
-  // DevOps
-  if (/docker|kubernetes|ci\/cd|pipeline|jenkins|deployment|container|orchestr/.test(lowerMessage)) {
-    return "devops";
-  }
-  // Cloud
-  if (/aws|azure|google cloud|serverless|lambda|s3|ec2|cloud|microservices/.test(lowerMessage)) {
-    return "clouddevelopment";
-  }
-  // Security
-  if (/security|encrypt|authentication|authorization|password|jwt|oauth|sql injection|xss|csrf/.test(lowerMessage)) {
-    return "security";
-  }
-  // API Design
-  if (/api|rest|endpoint|http|request|response|status|pagination|filter|sort/.test(lowerMessage)) {
-    return "apidesign";
-  }
-  // Software Engineering
-  if (/clean code|solid|refactor|code review|technical debt|documentation|logging/.test(lowerMessage)) {
-    return "softwareengineer";
-  }
-  // Problem Solving
-  if (/solve|approach|think|debug|optimize|edge case|problem/.test(lowerMessage)) {
-    return "problemsolving";
-  }
-  // AI & Machine Learning
-  if (/ai|machine learning|ml|tensorflow|pytorch|neural|deep learning|nlp|gpt|transformers|langchain|prompt/.test(lowerMessage)) {
-    return "aiml";
-  }
-  // Power BI & Data Analysis
-  if (/power bi|powerbi|dax|power query|visualization|dashboard|kpi|tableau|data|analytics/.test(lowerMessage)) {
-    return "powerbi";
-  }
-  // Data Analysis & Tools
-  if (/pandas|numpy|sql|excel|statistics|hypothesis|etl|data mining/.test(lowerMessage)) {
-    return "dataanalysis";
-  }
-  // Software Tools
-  if (/tool|jira|asana|postman|figma|slack|confluence|notion|debugger|ide/.test(lowerMessage)) {
-    return "softwaretools";
-  }
-  // Cloud Platforms
-  if (/aws|azure|google cloud|firebase|heroku|digitalocean|lambda|serverless/.test(lowerMessage)) {
-    return "cloudplatforms";
-  }
-  // Web Frameworks
-  if (/next\.js|svelte|fastapi|django|flask|express|spring/.test(lowerMessage)) {
-    return "webframeworks";
-  }
-  // Dev Tools & Utilities
-  if (/webpack|vite|babel|eslint|prettier|npm|yarn|rollup|parcel/.test(lowerMessage)) {
-    return "devtoolsutilities";
-  }
-  // Mobile Development
-  if (/react native|flutter|swift|kotlin|expo|mobile|ios|android|app|xcode/.test(lowerMessage)) {
-    return "mobiledev";
-  }
-  // Data Engineering
-  if (/spark|kafka|airflow|data pipeline|big data|warehouse|lake|batch|stream|processing/.test(lowerMessage)) {
-    return "dataengineering";
+}
+
+// Usage
+const data = await fetchData();
+\`\`\`
+
+**Key Concepts:**
+- **Synchronous:** Code executes line-by-line
+- **Asynchronous:** Code doesn't block; executes when ready
+- **Event Loop:** JS engine handles async operations
+- **Microtask Queue:** Promises, async/await
+- **Macrotask Queue:** setTimeout, setInterval
+
+**Best Practice:** Use async/await for readability`
+  },
+  {
+    keywords: ['java', 'oop', 'class', 'object'],
+    title: 'Java OOP Concepts',
+    answer: `**Object-Oriented Programming in Java**
+
+**Classes & Objects:**
+\`\`\`java
+public class Person {
+  private String name;
+  private int age;
+  
+  // Constructor
+  public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
   }
   
-  return "placement"; // default fallback to general knowledge
-};
+  // Method
+  public void greet() {
+    System.out.println("Hello, " + name);
+  }
+}
+
+Person p = new Person("John", 25);
+p.greet();
+\`\`\`
+
+**Pillars of OOP:**
+
+**1. Encapsulation**
+- Hide internal data with private/public
+- Protect data integrity
+
+**2. Inheritance**
+\`\`\`java
+class Animal { }
+class Dog extends Animal { }  // Dog inherits from Animal
+\`\`\`
+
+**3. Polymorphism**
+- Same interface, multiple implementations
+- Method overriding, overloading
+
+**4. Abstraction**
+\`\`\`java
+abstract class Shape {
+  abstract double area();
+}
+\`\`\`
+
+**Key Features:**
+- Statically typed
+- Compiled to bytecode
+- JVM = platform independent
+- Strong for enterprise apps`
+  },
+
+  // WEB DEVELOPMENT
+  {
+    keywords: ['react', 'jsx', 'hooks', 'state', 'usestate', 'useeffect'],
+    title: 'React & Hooks Essentials',
+    answer: `**Modern React with Hooks**
+
+**Components:**
+\`\`\`jsx
+// Functional Component (modern approach)
+function Counter() {
+  const [count, setCount] = useState(0);
+  
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+\`\`\`
+
+**Important Hooks:**
+
+**useState:** Manage local state
+\`\`\`javascript
+const [state, setState] = useState(initialValue);
+\`\`\`
+
+**useEffect:** Handle side effects
+\`\`\`javascript
+useEffect(() => {
+  // Runs after render
+  // Fetch data, setup subscriptions
+  
+  return () => {
+    // Cleanup function (optional)
+  };
+}, [dependencies]);  // Run only when dependencies change
+\`\`\`
+
+**useContext:** Share data across components
+\`\`\`javascript
+const value = useContext(MyContext);
+\`\`\`
+
+**Best Practices:**
+- Props flow down, events flow up
+- Component composition > inheritance
+- Keep components small and focused
+- Memoize expensive computations
+
+**Performance Tips:**
+- React.memo for function components
+- useMemo, useCallback for optimization
+- Code splitting for large apps`
+  },
+  {
+    keywords: ['html', 'css', 'web design', 'responsive'],
+    title: 'HTML & CSS Fundamentals',
+    answer: `**Building Web Foundations**
+
+**HTML5 Semantic Tags:**
+\`\`\`html
+<header>Page header</header>
+<nav>Navigation menu</nav>
+<main>Main content</main>
+<article>Independent content</article>
+<section>Thematic grouping</section>
+<aside>Side content</aside>
+<footer>Page footer</footer>
+\`\`\`
+
+**CSS Box Model:**
+\`\`\`
+Margin > Border > Padding > Content
+\`\`\`
+
+**Responsive Design:**
+\`\`\`css
+/* Mobile First Approach */
+.container { width: 100%; }
+
+@media (min-width: 768px) {
+  .container { width: 750px; }
+}
+
+@media (min-width: 1024px) {
+  .container { width: 960px; }
+}
+\`\`\`
+
+**Flexbox Layout:**
+\`\`\`css
+.container {
+  display: flex;
+  justify-content: center;      /* Horizontal alignment */
+  align-items: center;           /* Vertical alignment */
+  gap: 20px;
+}
+\`\`\`
+
+**Grid Layout:**
+\`\`\`css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+  gap: 20px;
+}
+\`\`\`
+
+**Key Principles:**
+- Accessibility (a11y)
+- Performance (optimize images)
+- SEO (proper structure)
+- Cross-browser compatibility`
+  },
+  {
+    keywords: ['rest', 'api', 'http', 'get', 'post', 'json'],
+    title: 'REST APIs Explained',
+    answer: `**Building and Consuming REST APIs**
+
+**HTTP Methods:**
+- **GET:** Retrieve data (safe, idempotent)
+- **POST:** Create new resource
+- **PUT:** Update entire resource
+- **PATCH:** Partial update
+- **DELETE:** Remove resource
+
+**Example API Calls:**
+\`\`\`javascript
+// GET - Fetch user
+fetch('/api/users/123')
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+// POST - Create user
+fetch('/api/users', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name: 'John', email: 'john@example.com' })
+})
+
+// PUT - Update user
+fetch('/api/users/123', {
+  method: 'PUT',
+  body: JSON.stringify({ name: 'Jane' })
+})
+
+// DELETE - Remove user
+fetch('/api/users/123', { method: 'DELETE' })
+\`\`\`
+
+**Status Codes:**
+- 2xx: Success (200 OK, 201 Created)
+- 3xx: Redirection
+- 4xx: Client error (400 Bad Request, 404 Not Found)
+- 5xx: Server error
+
+**Best Practices:**
+- Use correct HTTP methods
+- Version your APIs (/v1/users)
+- Proper error handling
+- Documentation (Swagger/OpenAPI)
+- Authentication (JWT, OAuth)
+- Rate limiting
+- CORS handling`
+  },
+
+  // DATABASES
+  {
+    keywords: ['sql', 'database', 'query', 'select', 'insert'],
+    title: 'SQL Basics',
+    answer: `**Structured Query Language for Data**
+
+**CRUD Operations:**
+\`\`\`sql
+-- CREATE (Insert)
+INSERT INTO users (name, email, age)
+VALUES ('John', 'john@example.com', 30);
+
+-- READ (Select)
+SELECT * FROM users WHERE age > 25;
+SELECT name, email FROM users;
+SELECT DISTINCT country FROM users;
+
+-- UPDATE
+UPDATE users SET age = 31 WHERE id = 1;
+
+-- DELETE
+DELETE FROM users WHERE id = 1;
+\`\`\`
+
+**Filtering & Sorting:**
+\`\`\`sql
+-- WHERE conditions
+SELECT * FROM users WHERE age > 25 AND country = 'USA';
+
+-- ORDER BY
+SELECT * FROM users ORDER BY age DESC;
+
+-- LIMIT
+SELECT * FROM users LIMIT 10;
+
+-- LIKE (pattern matching)
+SELECT * FROM users WHERE name LIKE 'J%';
+\`\`\`
+
+**Joins:**
+\`\`\`sql
+-- INNER JOIN (matching records)
+SELECT users.name, orders.total
+FROM users
+INNER JOIN orders ON users.id = orders.user_id;
+
+-- LEFT JOIN (all from left table)
+SELECT * FROM users
+LEFT JOIN orders ON users.id = orders.user_id;
+\`\`\`
+
+**Aggregations:**
+\`\`\`sql
+SELECT COUNT(*) FROM users;
+SELECT AVG(age) FROM users;
+SELECT MAX(salary) FROM employees;
+SELECT SUM(total) FROM orders;
+
+-- GROUP BY
+SELECT country, COUNT(*) as count
+FROM users
+GROUP BY country;
+\`\`\``
+  },
+  {
+    keywords: ['mongodb', 'nosql', 'document', 'database'],
+    title: 'MongoDB & NoSQL',
+    answer: `**Document-Based Database**
+
+**Key Differences from SQL:**
+- Flexible schema (documents can differ)
+- Stores JSON-like documents
+- Horizontal scaling (sharding)
+- No strict relationships
+
+**CRUD in MongoDB:**
+\`\`\`javascript
+// CREATE (Insert)
+db.users.insertOne({
+  name: 'John',
+  email: 'john@example.com',
+  age: 30
+});
+
+// READ (Find)
+db.users.find({ age: { $gt: 25 } });
+db.users.findOne({ name: 'John' });
+
+// UPDATE
+db.users.updateOne(
+  { _id: ObjectId('...') },
+  { $set: { age: 31 } }
+);
+
+// DELETE
+db.users.deleteOne({ _id: ObjectId('...') });
+\`\`\`
+
+**Query Operators:**
+- \`$gt\` - Greater than
+- \`$lt\` - Less than
+- \`$eq\` - Equal to
+- \`$in\` - In array
+- \`$and\`, \`$or\` - Logical
+
+**Indexes:**
+\`\`\`javascript
+db.users.createIndex({ email: 1 });
+db.users.createIndex({ email: 1, age: -1 });
+\`\`\`
+
+**When to use MongoDB:**
+- Rapid development
+- Flexible/evolving schemas
+- Large volumes of unstructured data
+- Real-time web apps
+
+**When to use SQL:**
+- Complex relationships
+- ACID transactions
+- Data consistency critical`
+  },
+
+  // SYSTEM DESIGN
+  {
+    keywords: ['system design', 'scalability', 'architecture', 'caching', 'load balancing'],
+    title: 'System Design Principles',
+    answer: `**Building Scalable Systems**
+
+**Key Concepts:**
+
+**1. Caching**
+- Reduce database queries
+- Levels: Browser, CDN, Application, Database
+- Tools: Redis, Memcached
+
+**2. Load Balancing**
+- Distribute requests across servers
+- Round-robin, least connections, weighted
+- Horizontal scaling
+
+**3. Database Replication**
+- Master-Slave: One writer, multiple readers
+- Master-Master: Multiple writers (complex)
+- Increases availability
+
+**4. Sharding (Horizontal Partitioning)**
+- Split data across multiple databases
+- Range-based, hash-based, directory-based
+- Improves scalability
+
+**5. Message Queues**
+- Async processing (RabbitMQ, Kafka)
+- Decouple services
+- Handle spikes
+
+**6. CDN (Content Delivery Network)**
+- Distribute static assets globally
+- Reduce latency
+
+**Scaling Strategy:**
+\`\`\`
+Vertical (bigger server) → Horizontal (more servers)
+Monitor → Identify bottleneck → Scale appropriately
+\`\`\`
+
+**Common Patterns:**
+- Microservices: Small, independent services
+- API Gateway: Single entry point
+- Circuit Breaker: Handle failures
+- Rate Limiting: Prevent abuse
+
+**Monitoring & Metrics:**
+- Response time
+- CPU/Memory usage
+- Database query time
+- Error rates`
+  },
+
+  // SECURITY
+  {
+    keywords: ['security', 'authentication', 'authorization', 'jwt', 'password', 'encryption'],
+    title: 'Web Security Essentials',
+    answer: `**Protecting Your Applications**
+
+**1. Authentication (Who are you?)**
+- Verify user identity
+- Common methods: Username/password, OAuth, JWT
+
+**JWT (JSON Web Token):**
+\`\`\`javascript
+// Structure: Header.Payload.Signature
+
+// Creating JWT
+const token = jwt.sign({ userId: 123 }, 'secret_key', { expiresIn: '24h' });
+
+// Verifying JWT
+const decoded = jwt.verify(token, 'secret_key');
+\`\`\`
+
+**2. Authorization (What can you do?)**
+- Check permissions/roles
+- Role-Based Access Control (RBAC)
+- Attribute-Based (ABAC)
+
+**3. Password Security:**
+- Never store plaintext passwords
+- Use bcrypt/scrypt/argon2
+\`\`\`javascript
+const hash = await bcrypt.hash('password', 10);
+const match = await bcrypt.compare('password', hash);
+\`\`\`
+
+**4. HTTPS/TLS:**
+- Encrypt data in transit
+- Prevents man-in-the-middle attacks
+
+**5. SQL Injection Prevention:**
+\`\`\`javascript
+// VULNERABLE
+const query = \`SELECT * FROM users WHERE id = \${userId}\`;
+
+// SAFE (Parameterized queries)
+const query = 'SELECT * FROM users WHERE id = ?';
+db.query(query, [userId]);
+\`\`\`
+
+**6. CORS (Cross-Origin Resource Sharing):**
+\`\`\`javascript
+app.use(cors({
+  origin: 'https://yourdomain.com',
+  credentials: true
+}));
+\`\`\`
+
+**OWASP Top 10:**
+1. Injection
+2. Broken Authentication
+3. Sensitive Data Exposure
+4. XML External Entities
+5. Broken Access Control
+6. Security Misconfiguration
+7. XSS (Cross-Site Scripting)
+8. Insecure Deserialization
+9. Using Components with Known Vulnerabilities
+10. Insufficient Logging & Monitoring`
+  },
+
+  // DEVOPS & DEPLOYMENT
+  {
+    keywords: ['docker', 'container', 'deployment', 'devops'],
+    title: 'Docker & Containerization',
+    answer: `**Container Technology Basics**
+
+**What is Docker?**
+- Package app + dependencies in container
+- "Works on my machine" → works everywhere
+- Lightweight, fast startup
+
+**Dockerfile Example:**
+\`\`\`dockerfile
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+\`\`\`
+
+**Docker Commands:**
+\`\`\`bash
+# Build image
+docker build -t myapp:1.0 .
+
+# Run container
+docker run -p 3000:3000 myapp:1.0
+
+# List containers
+docker ps
+
+# Stop container
+docker stop container_id
+
+# Remove container
+docker rm container_id
+\`\`\`
+
+**Docker Compose (Multiple containers):**
+\`\`\`yaml
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: secret
+\`\`\`
+
+**Benefits:**
+- Consistency across environments
+- Easy scaling
+- Fast deployment
+- Resource isolation
+- Microservices architecture
+
+**CI/CD Integration:**
+- Automated testing
+- Build & push to registry
+- Deploy to production
+- Rollback if needed`
+  },
+  {
+    keywords: ['git', 'version control', 'github', 'commit', 'branch'],
+    title: 'Git & Version Control',
+    answer: `**Essential Git Workflows**
+
+**Basic Commands:**
+\`\`\`bash
+# Initialize repo
+git init
+
+# Clone existing repo
+git clone https://github.com/user/repo.git
+
+# Stage changes
+git add .
+
+# Commit
+git commit -m "Fix login bug"
+
+# Push to remote
+git push origin main
+
+# Pull latest changes
+git pull origin main
+\`\`\`
+
+**Branching:**
+\`\`\`bash
+# Create & switch branch
+git checkout -b feature/login
+
+# List branches
+git branch -a
+
+# Switch branch
+git checkout main
+
+# Merge branch
+git merge feature/login
+
+# Delete branch
+git branch -d feature/login
+\`\`\`
+
+**Pull Requests (Collaboration):**
+1. Create feature branch
+2. Make changes & commit
+3. Push to remote
+4. Open Pull Request
+5. Code review
+6. Merge to main
+
+**Undoing Changes:**
+\`\`\`bash
+# Undo last commit (keep changes)
+git reset --soft HEAD~1
+
+# Undo last commit (discard changes)
+git reset --hard HEAD~1
+
+# Revert commit (create new commit)
+git revert commit_hash
+\`\`\`
+
+**Best Practices:**
+- Meaningful commit messages
+- Small, focused commits
+- Branch per feature
+- Review before merging`
+  },
+
+  // GENERAL TECHNICAL QUESTIONS
+  {
+    keywords: ['time complexity', 'big o', 'space complexity', 'performance'],
+    title: 'Time & Space Complexity',
+    answer: `**Big O Notation - Performance Analysis**
+
+**Time Complexity (Execution time):**
+
+\`\`\`
+O(1) - Constant: Array access by index
+O(log n) - Logarithmic: Binary search
+O(n) - Linear: Simple loop
+O(n log n) - Linearithmic: Merge sort, Quick sort
+O(n²) - Quadratic: Nested loops, Bubble sort
+O(n³) - Cubic: Triple nested loops
+O(2^n) - Exponential: Recursive fibonacci
+O(n!) - Factorial: Permutations
+\`\`\`
+
+**Performance Ranking (Best to Worst):**
+O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2^n) < O(n!)
+
+**Examples:**
+\`\`\`javascript
+// O(1) - Constant
+function getFirst(arr) { return arr[0]; }
+
+// O(n) - Linear
+function findMax(arr) {
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) max = arr[i];
+  }
+  return max;
+}
+
+// O(n²) - Quadratic
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+  return arr;
+}
+\`\`\`
+
+**Space Complexity:**
+- O(1): No extra space
+- O(n): Extra space proportional to input
+- O(n²): Extra space quadratic
+- Recursive calls use O(h) call stack space
+
+**Optimization Principle:**
+Trade space for time or vice versa`
+  },
+  {
+    keywords: ['testing', 'unit test', 'jest', 'mocha', 'test'],
+    title: 'Testing & Quality Assurance',
+    answer: `**Software Testing Fundamentals**
+
+**Testing Types:**
+
+**1. Unit Testing** (Test individual functions)
+\`\`\`javascript
+// Jest example
+describe('Calculator', () => {
+  it('should add two numbers', () => {
+    const result = add(2, 3);
+    expect(result).toBe(5);
+  });
+});
+\`\`\`
+
+**2. Integration Testing** (Test component interactions)
+\`\`\`javascript
+// Test API endpoint with database
+describe('User API', () => {
+  it('should fetch user from database', async () => {
+    const user = await getUser(1);
+    expect(user.name).toBe('John');
+  });
+});
+\`\`\`
+
+**3. End-to-End (E2E) Testing** (Test entire flow)
+\`\`\`javascript
+// Selenium, Cypress example
+describe('Login Flow', () => {
+  it('should login and redirect to dashboard', () => {
+    cy.visit('/login');
+    cy.get('input[name=email]').type('test@example.com');
+    cy.get('input[name=password]').type('password');
+    cy.get('button[type=submit]').click();
+    cy.url().should('include', '/dashboard');
+  });
+});
+\`\`\`
+
+**Test Coverage:**
+- Statement coverage
+- Branch coverage
+- Function coverage
+- Line coverage
+
+**Best Practices:**
+- Test happy path AND edge cases
+- Use descriptive test names
+- Don't test implementation details
+- Mock external dependencies
+- Keep tests fast
+- One assertion per test (ideally)
+
+**Common Tools:**
+- Jest: JavaScript testing framework
+- Mocha: Test runner
+- Chai: Assertion library
+- Cypress: E2E testing
+- Selenium: Browser automation`
+  },
+  {
+    keywords: ['oop', 'design patterns', 'solid', 'architecture'],
+    title: 'OOP & Design Patterns',
+    answer: `**Object-Oriented Design Principles**
+
+**SOLID Principles:**
+
+**S - Single Responsibility**
+- Class should have ONE reason to change
+\`\`\`javascript
+// BAD: User class does too much
+class User {
+  getUser() { }
+  sendEmail() { }
+  log() { }
+}
+
+// GOOD: Separate concerns
+class User { getUser() { } }
+class EmailService { sendEmail() { } }
+class Logger { log() { } }
+\`\`\`
+
+**O - Open/Closed**
+- Open for extension, closed for modification
+
+**L - Liskov Substitution**
+- Derived classes should be substitutable
+
+**I - Interface Segregation**
+- Many specific interfaces > one general interface
+
+**D - Dependency Inversion**
+- Depend on abstractions, not concretions
+
+**Common Design Patterns:**
+
+**Singleton** - One instance only
+\`\`\`javascript
+class Database {
+  static instance;
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = new Database();
+    }
+    return this.instance;
+  }
+}
+\`\`\`
+
+**Factory** - Create objects
+\`\`\`javascript
+class AnimalFactory {
+  static create(type) {
+    if (type === 'dog') return new Dog();
+    if (type === 'cat') return new Cat();
+  }
+}
+\`\`\`
+
+**Observer** - Notify multiple objects
+\`\`\`javascript
+class Subject {
+  constructor() { this.observers = []; }
+  subscribe(obs) { this.observers.push(obs); }
+  notify(data) { this.observers.forEach(o => o.update(data)); }
+}
+\`\`\`
+
+**Strategy** - Interchangeable algorithms`
+  },
+
+  // CODING PROBLEM SOLVING
+  {
+    keywords: ['load solution', 'solution', 'problem solving', 'approach'],
+    title: 'Load Solution & Problem Solving Approach',
+    answer: `**How to Load & Use Solutions**
+
+**Finding Solutions:**
+1. ✅ Click on any coding problem from the company drives
+2. ✅ Read the problem statement carefully
+3. ✅ Click "Load Solution" to see the approach and code
+4. ✅ Understand the logic before memorizing
+
+**Problem-Solving Approach:**
+\`\`\`
+1. UNDERSTAND the problem
+   - Read examples
+   - Identify input/output
+   - Check edge cases
+
+2. PLAN your solution
+   - Discuss approach verbally
+   - Write pseudocode
+   - Estimate time & space complexity
+
+3. CODE the solution
+   - Write clean, readable code
+   - Add comments
+   - Handle edge cases
+
+4. TEST your solution
+   - Run against test cases
+   - Check edge cases
+   - Optimize if needed
+\`\`\`
+
+**Types of Solutions:**
+- **Brute Force:** Simple, inefficient (good starting point)
+- **Optimized:** Better complexity, clever tricks
+- **Advanced:** Dynamic programming, greedy, etc.
+
+**Tips for Learning:**
+- 🔍 Understand the pattern (similar problems?)
+- 💭 Why does this solution work?
+- 🎯 Can you simplify or optimize further?
+- 📝 Practice writing from scratch (don't just copy)
+
+**Common Problem Patterns:**
+- Two pointers
+- Sliding window
+- Binary search
+- Trees/Graphs
+- Dynamic programming
+- Greedy algorithms`
+  },
+
+  // CODE EDITOR
+  {
+    keywords: ['code editor', 'editor', 'code', 'coding', 'write code'],
+    title: 'Using the Code Editor',
+    answer: `**Online Code Editor - Practice Coding**
+
+**Features:**
+✅ **Write Code:** Write solutions directly in the editor
+✅ **Run Code:** Execute your code instantly
+✅ **Check Output:** See results immediately
+✅ **Test Cases:** Auto-run against provided test cases
+✅ **Syntax Highlighting:** Color-coded language support
+✅ **Language Support:** JavaScript, Python, Java, C++, etc.
+
+**How to Use:**
+\`\`\`
+1. Select your programming language
+2. Write or paste your code
+3. Click "Run" to execute
+4. Check the output in the console
+5. Fix errors if needed
+6. Submit when ready
+\`\`\`
+
+**Example: Solve Two Sum Problem**
+\`\`\`javascript
+// Problem: Find two numbers that sum to target
+function twoSum(nums, target) {
+  const seen = {};
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (complement in seen) {
+      return [seen[complement], i];
+    }
+    seen[nums[i]] = i;
+  }
+  return [];
+}
+
+// Test
+console.log(twoSum([2, 7, 11, 15], 9)); // Output: [0, 1]
+\`\`\`
+
+**Pro Tips:**
+💡 **Start Simple:** Write working code first, optimize later
+🧪 **Test Early:** Run code after writing a small section
+🔍 **Debug:** Use console.log() to trace values
+📚 **Reference:** Use "Load Solution" to compare approaches
+🎯 **Practice:** Try variations of problems
+
+**Keyboard Shortcuts:**
+- \`Ctrl+Enter\` : Run code
+- \`Tab\` : Indent code
+- \`Ctrl+Z\` : Undo
+- \`Ctrl+Shift+Z\` : Redo
+
+**Submit Checklist:**
+✓ All test cases pass
+✓ Edge cases handled
+✓ Code is readable
+✓ Time & space complexity acceptable`
+  }
+];
+
+// Scoring algorithm for relevance
+function calculateRelevance(query, keywords) {
+  const queryLower = query.toLowerCase();
+  let score = 0;
+  
+  keywords.forEach(keyword => {
+    if (queryLower === keyword) score += 10; // Exact match
+    else if (queryLower.includes(keyword)) score += 5; // Partial match
+    else if (keyword.includes(queryLower)) score += 3; // Keyword contains query
+  });
+  
+  return score;
+}
+// Helper: Format a matched article into a friendly markdown response
+function formatArticleResponse(article, query) {
+  // Keep the article.answer as-is (it contains markdown/code blocks)
+  const header = `📚 **${article.title}**`;
+  const suggestion = `\n---\n💡 You can ask follow-ups: "Explain in simple terms", "Show code example", or "Compare with X"`;
+
+  // Related topics: find other article titles that share keywords
+  const related = KNOWLEDGE_BASE
+    .filter(a => a !== article && a.keywords.some(k => article.keywords.includes(k)))
+    .slice(0, 4)
+    .map(a => a.title);
+
+  const relatedLine = related.length ? `\n🔎 Related topics: ${related.join(' • ')}` : '';
+
+  return `${header}\n\n${article.answer}${relatedLine}${suggestion}`;
+}
+
+// Helper: Formatted generic fallback
+function formatGenericResponse(query) {
+  return `I don't have a direct article for "${query}". Here are helpful suggestions and related topics you can ask about:\n\n- **Algorithms & DSA:** binary search, sorting, dynamic programming\n- **Programming Languages:** Python, JavaScript, Java\n- **Web & Backend:** React, REST APIs, Databases (SQL/MongoDB)\n- **System Design & DevOps:** caching, load balancing, Docker\n\nTip: Ask specifics (e.g., "Explain merge sort with code" or "Compare quicksort vs mergesort").`;
+}
 
 export const chatWithAI = async (userMessage) => {
   try {
-    // Simulate API delay for realistic experience
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    const topic = detectTopic(userMessage);
-    const responses = softwareKnowledgeBase[topic] || softwareKnowledgeBase.placement;
-    
-    // Return a random response from the detected topic
-    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-    
-    return randomResponse;
+    console.log('🤖 Searching knowledge base:', userMessage.substring(0, 50) + '...');
+    const query = (userMessage || '').trim();
+    if (!query) return 'Please provide a question or topic to search.';
+
+    // Find best matching article
+    let bestMatch = null;
+    let bestScore = 0;
+    KNOWLEDGE_BASE.forEach(article => {
+      const score = calculateRelevance(query, article.keywords);
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = article;
+      }
+    });
+
+    if (bestMatch && bestScore > 0) {
+      console.log('✅ Found relevant article:', bestMatch.title, 'score=', bestScore);
+      return formatArticleResponse(bestMatch, query);
+    }
+
+    console.log('⚠️ No specific match found; returning helpful fallback');
+    return formatGenericResponse(query);
   } catch (error) {
-    console.error("AI Chatbot Error:", error);
-    throw new Error("Failed to get response. Please try again.");
+    console.error('❌ Chatbot Error:', error.message);
+    return `Sorry, I encountered an error: ${error.message}\n\nPlease try asking a different question or refresh the page.`;
   }
 };
 
-export const generateContextualResponse = async (userMessage, context) => {
-  try {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    const topic = detectTopic(userMessage);
-    const responses = softwareKnowledgeBase[topic] || softwareKnowledgeBase.placement;
-    
-    return responses[Math.floor(Math.random() * responses.length)];
-  } catch (error) {
-    console.error("AI Response Generation Error:", error);
-    throw new Error("Failed to generate response.");
-  }
+// Export for generating contextual responses
+export const generateContextualResponse = async (userMessage) => {
+  return await chatWithAI(userMessage);
 };

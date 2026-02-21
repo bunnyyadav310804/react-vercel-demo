@@ -22,7 +22,7 @@ const ResumeTemplate = ({ data }) => {
 
           html2canvas(resumeRef.current, {
             scale: 2,
-            backgroundColor: '#ffffff'
+            backgroundColor: '#FFFFFF'
           }).then((canvas) => {
             const pdf = new jsPDF('p', 'mm', 'a4');
             const imgData = canvas.toDataURL('image/png');
@@ -54,7 +54,7 @@ const ResumeTemplate = ({ data }) => {
   // Export as Word (DOCX)
   const exportWord = () => {
     const filename = `${data.personal.fullName || 'Resume'}.doc`;
-    const element = resumeRef.current;
+    // resumeRef available for future enhancements
 
     let docContent = `
     <html xmlns:x="urn:schemas-microsoft-com:office:excel"
@@ -343,3 +343,4 @@ const ResumeTemplate = ({ data }) => {
 };
 
 export default ResumeTemplate;
+

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import progressTracker from "../utils/progressTracker";
 import { dsaData, dsaTopics } from "../data/dsaProblems";
+import { getSolution } from "../data/dsaSolutions";
 import CodeEditor from "./CodeEditor";
 import "./DSAPractice.css";
 
@@ -13,6 +14,14 @@ export default function DSAPractice() {
   const [selectedProblem, setSelectedProblem] = useState(null);
   const [showCodeEditor, setShowCodeEditor] = useState(false);
   const [problemCode, setProblemCode] = useState('');
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Helper to create a localStorage key for saved practice code per user+problem
+  const practiceKey = (userId, problemName) => {
+    if (!userId || !problemName) return null;
+    const slug = problemName.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_-]/g, '');
+    return `education_path_practice_code_${userId}_${slug}`;
+  };
 
   // Track when user enters DSA Practice section
   useEffect(() => {
@@ -20,6 +29,19 @@ export default function DSAPractice() {
       progressTracker.trackModuleAccess(currentUser.id, 'dsa');
     }
   }, [currentUser]);
+
+  // When selectedProblem changes, reset the code editor to the saved practice code
+  useEffect(() => {
+    if (!selectedProblem) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setProblemCode('');
+      return;
+    }
+    const slug = selectedProblem.name.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_-]/g, '');
+    const key = `education_path_practice_code_${currentUser?.id}_${slug}`;
+    const saved = localStorage.getItem(key);
+    setProblemCode(saved || '');
+  }, [selectedProblem, currentUser?.id]);
 
   const languages = ["Python", "JavaScript", "Java", "C++", "Go", "Rust", "TypeScript", "C#"];
   const difficulties = ["All", "Easy", "Medium", "Hard"];
@@ -83,7 +105,7 @@ export default function DSAPractice() {
 
       {/* Topics Grid - 2 per row */}
       <div className="topics-grid">
-        {dsaTopics.map((topic, index) => {
+        {dsaTopics.map((topic) => {
           const topicProblems = dsaData[topic];
           const filteredProblems = filterProblems(topicProblems);
           const isExpanded = expandedTopic === topic;
@@ -146,19 +168,47 @@ export default function DSAPractice() {
 
       {/* Problem Platforms Modal */}
       {selectedProblem && (
-        <div className="modal-overlay" onClick={() => setSelectedProblem(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay" onClick={() => {
+          if (isFullscreen) {
+            setIsFullscreen(false);
+          } else {
+            setSelectedProblem(null);
+          }
+        }}>
+          <div 
+            className={`modal-content ${isFullscreen ? 'fullscreen-modal' : ''}`}
+            onClick={(e) => e.stopPropagation()}
+            style={isFullscreen ? {
+              width: '100vw',
+              height: '100vh',
+              maxWidth: 'none',
+              borderRadius: '0',
+              maxHeight: 'none'
+            } : {}}
+          >
             <div className="modal-header">
               <h2>{selectedProblem.name}</h2>
-              <button
-                className="modal-close"
-                onClick={() => setSelectedProblem(null)}
-              >
-                ✕
-              </button>
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <button
+                  className="modal-fullscreen"
+                  onClick={() => setIsFullscreen(!isFullscreen)}
+                  title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+                >
+                  {isFullscreen ? '⛔' : '⛶'}
+                </button>
+                <button
+                  className="modal-close"
+                  onClick={() => {
+                    setIsFullscreen(false);
+                    setSelectedProblem(null);
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
-            <div className="modal-body">
+            <div className="modal-body" style={isFullscreen ? { maxHeight: 'calc(100vh - 120px)', overflowY: 'auto' } : {}}>
               <div className="difficulty-info">
                 <span
                   className="difficulty-badge-modal"
@@ -187,8 +237,57 @@ export default function DSAPractice() {
                 {showCodeEditor ? '▼ Hide Code Editor' : '▶ Open Code Editor'}
               </button>
 
+              <div style={{ marginTop: 8, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                <button
+                  className="btn btn-load"
+                  onClick={() => {
+                    const solution = getSolution(selectedProblem.name, selectedLanguage);
+                    if (solution && !solution.includes("Solution not available")) {
+                      setProblemCode(solution);
+                      setShowCodeEditor(true);
+                      alert('✓ Solution loaded! Check the editor.');
+                    } else {
+                      alert('Solution not available for ' + selectedLanguage + ' yet.');
+                    }
+                  }}
+                >
+                  💡 Load Solution
+                </button>
+
+                <button
+                  className="btn btn-load"
+                  onClick={() => {
+                    const key = practiceKey(currentUser?.id, selectedProblem.name);
+                    if (!key) return alert('Please sign in to load practice code.');
+                    const saved = localStorage.getItem(key);
+                    if (saved) {
+                      setProblemCode(saved);
+                      setShowCodeEditor(true);
+                    } else {
+                      alert('No saved practice code found for this problem.');
+                    }
+                  }}
+                >
+                  📂 Load Practice Code
+                </button>
+
+                <button
+                  className="btn btn-save"
+                  onClick={() => {
+                    const key = practiceKey(currentUser?.id, selectedProblem.name);
+                    if (!key) return alert('Please sign in to save practice code.');
+                    localStorage.setItem(key, problemCode || '');
+                    alert('Practice code saved locally.');                    // Update progress when user saves practice code
+                    if (currentUser?.id) {
+                      progressTracker.updateSectionProgress(currentUser.id, 'dsa', 70);
+                    }                  }}
+                >
+                  💾 Save Practice Code
+                </button>
+              </div>
+
               {showCodeEditor && (
-                <div className="code-editor-section">
+                <div className="code-editor-section" style={isFullscreen ? { height: '60vh' } : {}}>
                   <p className="modal-label">💻 Write & Test Solution:</p>
                   <CodeEditor
                     initialCode={problemCode}

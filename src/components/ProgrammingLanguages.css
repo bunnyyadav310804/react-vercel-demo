@@ -4,22 +4,22 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 50px 20px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d1b4e 100%);
+  background: #FFFFFF;
   min-height: 100vh;
 }
 
 .page-title {
   text-align: center;
   font-size: 3rem;
-  color: #fff;
+  color: #111827;
   margin-bottom: 50px;
   font-weight: 900;
-  text-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  text-shadow: none;
   letter-spacing: -1px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: transparent;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
 }
 
 /* Languages Grid */
@@ -31,13 +31,13 @@
 }
 
 .language-card {
-  background: rgba(30, 41, 59, 0.7);
+  background: #FFFFFF;
   border-radius: 16px;
   padding: 35px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.4s ease;
-  border: 2px solid rgba(102, 126, 234, 0.1);
-  backdrop-filter: blur(10px);
+  border: 1px solid #E5E7EB;
+  backdrop-filter: none;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -52,13 +52,13 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .language-card:hover {
-  border-color: rgba(102, 126, 234, 0.5);
-  box-shadow: 0 20px 80px rgba(102, 126, 234, 0.3);
-  transform: translateY(-8px);
+  border-color: #2563EB;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
 }
 
 .lang-icon {
@@ -69,13 +69,13 @@
 .language-card h3 {
   font-size: 1.8rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #111827;
   letter-spacing: -0.5px;
   margin: 10px 0;
 }
 
 .lang-difficulty {
-  color: #a5b4fc;
+  color: #2563EB;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -84,7 +84,7 @@
 }
 
 .lang-description {
-  color: #cbd5e1;
+  color: #6B7280;
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 15px;
@@ -101,9 +101,9 @@
 .level-badge {
   display: inline-block;
   padding: 6px 12px;
-  background: rgba(102, 126, 234, 0.2);
-  color: #a5b4fc;
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  background: #F3F4F6;
+  color: #111827;
+  border: 1px solid #E5E7EB;
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -114,8 +114,8 @@
 .enter {
   align-self: flex-start;
   padding: 10px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: #2563EB;
+  color: #FFFFFF;
   border: none;
   border-radius: 10px;
   font-weight: 700;
@@ -123,13 +123,13 @@
   text-transform: uppercase;
   letter-spacing: 0.3px;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
   transition: all 0.3s ease;
 }
 
 .language-card:hover .enter {
-  transform: translateX(4px);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+  transform: translateX(2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 /* Topics Grid */
@@ -141,12 +141,12 @@
 }
 
 .topic-card {
-  background: rgba(30, 41, 59, 0.7);
+  background: #FFFFFF;
   border-radius: 14px;
   padding: 30px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(102, 126, 234, 0.1);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E5E7EB;
+  backdrop-filter: none;
   cursor: pointer;
   transition: all 0.4s ease;
   position: relative;
@@ -160,28 +160,28 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .topic-card:hover {
-  border-color: rgba(102, 126, 234, 0.5);
-  box-shadow: 0 20px 80px rgba(102, 126, 234, 0.3);
-  transform: translateY(-8px);
+  border-color: #2563EB;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
 }
 
 .topic-level {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #a5b4fc;
+  color: #111827;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: transparent;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
 }
 
 .topic-content-count {
-  color: #cbd5e1;
+  color: #6B7280;
   font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 15px;
@@ -212,7 +212,7 @@
   font-weight: 900;
   color: #e0e7ff;
   margin-bottom: 25px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%);
+  background: linear-gradient(135deg, #a78bfa 0%, #2563EB 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -285,9 +285,9 @@
 
 .mcq-option {
   padding: 12px 15px;
-  background: rgba(102, 126, 234, 0.1);
-  border: 1px solid rgba(102, 126, 234, 0.3);
-  color: #cbd5e1;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -296,20 +296,20 @@
 }
 
 .mcq-option:hover {
-  background: rgba(102, 126, 234, 0.2);
-  border-color: rgba(102, 126, 234, 0.6);
+  background: #f3f4f6;
+  border-color: #9ca3af;
 }
 
 .mcq-option.correct {
-  background: rgba(34, 197, 94, 0.2);
-  border-color: #22c55e;
-  color: #22c55e;
+  background: #059669;
+  border-color: #047857;
+  color: #ffffff;
 }
 
 .mcq-option.incorrect {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: #ef4444;
-  color: #ef4444;
+  background: #dc2626;
+  border-color: #b91c1c;
+  color: #ffffff;
 }
 
 .mcq-explanation {
@@ -331,12 +331,14 @@
 
 .problem-card {
   display: flex;
+  align-items: center;
   gap: 15px;
   padding: 20px;
   background: rgba(102, 126, 234, 0.1);
   border-left: 4px solid #667eea;
   border-radius: 8px;
   transition: all 0.3s ease;
+  justify-content: space-between;
 }
 
 .problem-card:hover {
@@ -363,6 +365,32 @@
   font-size: 0.95rem;
   line-height: 1.6;
   font-weight: 500;
+  flex: 1;
+}
+
+.load-problem-solution-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.load-problem-solution-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+}
+
+.load-problem-solution-btn:active {
+  transform: translateY(0);
 }
 
 /* Resources Box */
@@ -496,6 +524,12 @@
   .problem-card {
     gap: 12px;
     padding: 15px;
+    flex-wrap: wrap;
+  }
+
+  .load-problem-solution-btn {
+    padding: 8px 12px;
+    font-size: 11px;
   }
 
   .resources-box {
@@ -551,6 +585,7 @@
   .problem-card {
     padding: 12px;
     gap: 10px;
+    flex-wrap: wrap;
   }
 
   .problem-number {
@@ -561,6 +596,11 @@
 
   .problem-text {
     font-size: 0.9rem;
+  }
+
+  .load-problem-solution-btn {
+    padding: 6px 10px;
+    font-size: 10px;
   }
 
   .resource-link {
@@ -619,3 +659,143 @@
     transform: translateY(0);
   }
 }
+
+/* ==================== FULLSCREEN MODE STYLING ==================== */
+
+.programming-container.fullscreen-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  margin: 0;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.fullscreen-button-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fullscreen-toggle-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 45px;
+  height: 45px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.fullscreen-toggle-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.fullscreen-toggle-btn:active {
+  transform: scale(0.98);
+}
+
+.programming-container.fullscreen-mode .back-button {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.programming-container.fullscreen-mode .back-button:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+}
+
+.programming-container.fullscreen-mode .language-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.programming-container.fullscreen-mode .topic-content {
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.programming-container.fullscreen-mode .topic-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.programming-container.fullscreen-mode .topic-content::-webkit-scrollbar-track {
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 4px;
+}
+
+.programming-container.fullscreen-mode .topic-content::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.4);
+  border-radius: 4px;
+}
+
+.programming-container.fullscreen-mode .topic-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.6);
+}
+
+.programming-container.fullscreen-mode .code-editor-container {
+  height: 70vh;
+  overflow-y: auto;
+}
+
+/* ===== TEXT VISIBILITY RULES FOR PROGRAMMING LANGUAGES ===== */
+.programming-container h1,
+.programming-container h2,
+.programming-container h3,
+.programming-container h4,
+.programming-container p,
+.programming-container label,
+.programming-container span {
+  color: #111827 !important;
+}
+
+.language-card h3,
+.language-card p,
+.concept-item h4,
+.section-title h2 {
+  color: #111827 !important;
+}
+
+.programming-container input,
+.programming-container select,
+.programming-container textarea {
+  color: #111827 !important;
+  background-color: #FFFFFF !important;
+}
+
+.programming-container .btn {
+  color: #111827 !important;
+}
+
+/* Ensure topic headings, counts and Enter buttons are high-contrast */
+.topics-grid .topic-level,
+.topics-grid .topic-content-count {
+  color: #111827 !important;
+}
+
+.topics-grid .topic-card .enter {
+  background: #F3F4F6 !important;
+  color: #111827 !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+/* When content sections use dark backgrounds, force readable text */
+.section-box .content-text,
+.section-box .content-icon,
+.section-box .resource-link {
+  color: #111827 !important;
+}
+

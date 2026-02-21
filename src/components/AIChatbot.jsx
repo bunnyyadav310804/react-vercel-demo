@@ -3,11 +3,12 @@ import { chatWithAI } from "../services/aiChatbotService";
 import "../styles/Chatbot.css";
 
 const AIChatbot = ({ context = "general" }) => {
+  // State for component
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi! I'm your AI Assistant. Ask me anything about DSA, programming, placements, career guidance, or questions about our project!",
+      text: "🤖 Gemini AI Assistant\n\nAsk me anything about programming, DSA, web development, backend, databases, DevOps, cloud platforms, system design, interviews, or any technical topic!\n\n💡 Tip: The more specific your question, the better my answer!",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -16,6 +17,32 @@ const AIChatbot = ({ context = "general" }) => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const [error, setError] = useState(null);
+  const [Renderer, setRenderer] = useState(null);
+  const [remarkPlugins, setRemarkPlugins] = useState([]);
+
+  // Load markdown dependencies on mount - only once
+  useEffect(() => {
+    let mounted = true;
+
+    // Dynamic import with proper error handling
+    Promise.all([
+      import("react-markdown").catch(() => null),
+      import("remark-gfm").catch(() => null),
+    ]).then(([markdownModule, remarkGfmModule]) => {
+      if (mounted) {
+        if (markdownModule) {
+          setRenderer(() => markdownModule.default);
+        }
+        if (remarkGfmModule) {
+          setRemarkPlugins([remarkGfmModule.default || remarkGfmModule]);
+        }
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []); // Empty dependency array - run only once on mount
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -74,7 +101,7 @@ const AIChatbot = ({ context = "general" }) => {
     setMessages([
       {
         id: 1,
-        text: "Hi! I'm your AI Assistant. Ask me anything about DSA, programming, placements, or career guidance!",
+        text: "🤖 Gemini AI Assistant\n\nAsk me anything about programming, DSA, web development, backend, databases, DevOps, cloud platforms, system design, interviews, or any technical topic!\n\n💡 Tip: The more specific your question, the better my answer!",
         sender: "bot",
         timestamp: new Date(),
       },
@@ -127,7 +154,17 @@ const AIChatbot = ({ context = "general" }) => {
               >
                 <div className="message-content">
                   {msg.sender === "bot" && <span className="bot-avatar">🤖</span>}
-                  <p>{msg.text}</p>
+                  {msg.sender === "bot" ? (
+                    <div className="bot-message-body">
+                      {Renderer ? (
+                        <Renderer remarkPlugins={remarkPlugins}>{msg.text}</Renderer>
+                      ) : (
+                        <p>{msg.text}</p>
+                      )}
+                    </div>
+                  ) : (
+                    <p>{msg.text}</p>
+                  )}
                   {msg.sender === "user" && <span className="user-avatar">👤</span>}
                 </div>
                 <span className="message-time">

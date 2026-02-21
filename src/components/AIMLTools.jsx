@@ -244,7 +244,7 @@ const AIMLTools = () => {
                             background: "#d8deff",
                             borderRadius: "6px",
                             textDecoration: "none",
-                            color: "#3d4a7f",
+                            color: "#000000",
                             transition: "all 0.2s ease",
                             fontSize: "12px",
                             fontWeight: "500",

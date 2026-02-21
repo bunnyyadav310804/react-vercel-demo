@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import '../styles/AuthPages.css';
 
 export default function LoginRegister() {
+
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,6 +12,7 @@ export default function LoginRegister() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [passwordRequirements, setPasswordRequirements] = useState({
     hasUpperCase: false,
     hasSpecialChar: false,
@@ -23,7 +25,7 @@ export default function LoginRegister() {
   // Validate password requirements
   const validatePassword = (pwd) => {
     const hasUpperCase = /[A-Z]/.test(pwd);
-    const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pwd);
+    const hasSpecialChar = /[!@#$%^&*()_+=[\]{};':"\\|,.<>/?]/.test(pwd);
     const hasMinLength = pwd.length >= 8;
     
     setPasswordRequirements({
@@ -208,18 +210,37 @@ export default function LoginRegister() {
             {/* Password */}
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                placeholder={isLogin ? '••••••••' : 'Min 8 chars, 1 Upper, 1 Special'}
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (!isLogin) validatePassword(e.target.value);
-                }}
-                disabled={loading}
-                className="form-input"
-              />
+              <div style={{ position: "relative" }}>
+  <input
+    id="password"
+    type={showPassword ? "text" : "password"}
+    placeholder={isLogin ? '••••••••' : 'Min 8 chars, 1 Upper, 1 Special'}
+    value={password}
+    onChange={(e) => {
+      setPassword(e.target.value);
+      if (!isLogin) validatePassword(e.target.value);
+    }}
+    disabled={loading}
+    className="form-input"
+  />
+
+  <span
+    onClick={() => setShowPassword(!showPassword)}
+    style={{
+      position: "absolute",
+      right: "12px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      cursor: "pointer",
+      fontSize: "14px",
+      color: "#6b7280",
+      userSelect: "none"
+    }}
+  >
+    {showPassword ? " 👁 Hide" : "👁 Show"}
+  </span>
+</div>
+
               {!isLogin && password && (
                 <div style={{ marginTop: '8px', display: 'grid', gap: '4px' }}>
                   <div style={{
@@ -256,7 +277,16 @@ export default function LoginRegister() {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={loading || (!isLogin && !validatePassword(password) && password.length > 0)}
+disabled={
+  loading ||
+  (!isLogin &&
+    password.length > 0 &&
+    !(
+      passwordRequirements.hasUpperCase &&
+      passwordRequirements.hasSpecialChar &&
+      passwordRequirements.hasMinLength
+    ))
+}
               className="auth-submit-btn"
             >
               {loading ? (
@@ -275,24 +305,33 @@ export default function LoginRegister() {
               <span>🔐 Demo@123!</span>
             </div>
           </div>
-        </div>
 
-        {/* Footer */}
-        <div className="auth-footer">
-          <p>
-            {isLogin ? "Don't have an account? " : 'Already have an account? '}
-            <button
-              type="button"
-              onClick={() => {
-                setIsLogin(!isLogin);
-                setError('');
-                setSuccess('');
-              }}
-              className="footer-link"
-            >
-              {isLogin ? 'Sign Up' : 'Sign In'}
-            </button>
-          </p>
+          {/* Inline switch below form: shows the opposite action visibly */}
+          <div className="auth-switch">
+            {isLogin ? (
+              <p>
+                Don't have an account?{' '}
+                <button 
+                  type="button" 
+                  className="footer-link" 
+                  onClick={() => { setIsLogin(false); setError(''); setSuccess(''); }}
+                >
+                  Sign Up
+                </button>
+              </p>
+            ) : (
+              <p>
+                Already have an account?{' '}
+                <button 
+                  type="button" 
+                  className="footer-link" 
+                  onClick={() => { setIsLogin(true); setError(''); setSuccess(''); }}
+                >
+                  Sign In
+                </button>
+              </p>
+            )}
+          </div>
         </div>
       </div>
 

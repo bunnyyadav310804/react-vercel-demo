@@ -33,7 +33,7 @@ export const userPerformance = {
   },
   
   // VARC Preparation
-  varc: {
+  vacr: {
     completed: 0,
     total: 30,
     percentage: 0,
@@ -110,6 +110,76 @@ export const userPerformance = {
     timeSpent: 0,
     lastAccessed: 'Never',
     rating: 0
+  },
+
+  // BTECH Guidance
+  btechGuides: {
+    completed: 0,
+    total: 15,
+    percentage: 0,
+    timeSpent: 0,
+    lastAccessed: 'Never',
+    rating: 0
+  },
+
+  // AI & ML Tools
+  aiTools: {
+    completed: 0,
+    total: 18,
+    percentage: 0,
+    timeSpent: 0,
+    lastAccessed: 'Never',
+    rating: 0
+  },
+
+  // Power BI & Analytics
+  powerBI: {
+    completed: 0,
+    total: 16,
+    percentage: 0,
+    timeSpent: 0,
+    lastAccessed: 'Never',
+    rating: 0
+  },
+
+  // Data Engineering
+  dataEngineering: {
+    completed: 0,
+    total: 20,
+    percentage: 0,
+    timeSpent: 0,
+    lastAccessed: 'Never',
+    rating: 0
+  },
+
+  // Web Frameworks
+  webFrameworks: {
+    completed: 0,
+    total: 17,
+    percentage: 0,
+    timeSpent: 0,
+    lastAccessed: 'Never',
+    rating: 0
+  },
+
+  // Mobile Development
+  mobileDevelopment: {
+    completed: 0,
+    total: 19,
+    percentage: 0,
+    timeSpent: 0,
+    lastAccessed: 'Never',
+    rating: 0
+  },
+
+  // DevOps & Cloud
+  devopsCloud: {
+    completed: 0,
+    total: 21,
+    percentage: 0,
+    timeSpent: 0,
+    lastAccessed: 'Never',
+    rating: 0
   }
 };
 
@@ -137,18 +207,18 @@ export const sectionsInfo = [
     path: '/qar'
   },
   {
-    id: 'varc',
-    name: 'VARC',
+    id: 'vacr',
+    name: 'VACR',
     icon: '📚',
     color: '#f59e0b',
-    path: '/varc'
+    path: '/vacr'
   },
   {
     id: 'programming',
     name: 'Programming',
     icon: '🚀',
     color: '#60a5fa',
-    path: '/programming'
+    path: '/programming-languages'
   },
   {
     id: 'certifications',
@@ -162,35 +232,84 @@ export const sectionsInfo = [
     name: 'Career Paths',
     icon: '🎯',
     color: '#10b981',
-    path: '/careers'
+    path: '/career-path'
   },
   {
     id: 'resume',
     name: 'Resume Builder',
     icon: '📄',
     color: '#ec4899',
-    path: '/resume'
+    path: '/resume-builder'
   },
   {
     id: 'jobSearch',
     name: 'Job Search',
     icon: '💼',
     color: '#8b5cf6',
-    path: '/jobsearch'
+    path: '/job-search'
   },
   {
     id: 'companySpecific',
     name: 'Company Prep',
     icon: '🏛️',
     color: '#06b6d4',
-    path: '/company'
+    path: '/company-specific'
   },
   {
     id: 'entranceExams',
     name: 'Entrance Exams',
     icon: '🎓',
     color: '#f97316',
-    path: '/exams'
+    path: '/entrance-exams'
+  },
+  {
+    id: 'btechGuides',
+    name: 'BTECH Guidance',
+    icon: '📖',
+    color: '#14b8a6',
+    path: '/btech-guides'
+  },
+  {
+    id: 'aiTools',
+    name: 'AI & ML Tools',
+    icon: '🤖',
+    color: '#8b5cf6',
+    path: '/ai-tools'
+  },
+  {
+    id: 'powerBI',
+    name: 'Power BI & Analytics',
+    icon: '📊',
+    color: '#f59e0b',
+    path: '/power-bi'
+  },
+  {
+    id: 'dataEngineering',
+    name: 'Data Engineering',
+    icon: '🏗️',
+    color: '#06b6d4',
+    path: '/data-engineering'
+  },
+  {
+    id: 'webFrameworks',
+    name: 'Web Frameworks',
+    icon: '🌐',
+    color: '#10b981',
+    path: '/web-frameworks'
+  },
+  {
+    id: 'mobileDevelopment',
+    name: 'Mobile Development',
+    icon: '📱',
+    color: '#ec4899',
+    path: '/mobile-development'
+  },
+  {
+    id: 'devopsCloud',
+    name: 'DevOps & Cloud',
+    icon: '☁️',
+    color: '#3b82f6',
+    path: '/devops-cloud'
   }
 ];
 
@@ -258,7 +377,7 @@ export const updateSectionProgress = (sectionId, completed, total, timeSpent) =>
 // Milestone data
 export const getMilestones = () => {
   const overallProgress = getOverallProgress();
-  const totalTime = getTotalTimeSpent();
+  // totalTime available for future enhancements
   
   return [
     {

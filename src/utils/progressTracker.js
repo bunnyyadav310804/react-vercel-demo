@@ -1,5 +1,6 @@
 // Progress Tracker - Manages user progress across all sections
 // Stores progress per user in localStorage
+// FIXED VERSION: Only updates on actual task completion, not page visits
 
 const progressTracker = {
   // Get user progress
@@ -15,7 +16,7 @@ const progressTracker = {
       sections: {
         placement: 0,
         qar: 0,
-        varc: 0,
+        vacr: 0,
         dsa: 0,
         programming: 0,
         blueprint: 0,
@@ -40,7 +41,8 @@ const progressTracker = {
     return progress;
   },
 
-  // Track module access and auto-increment progress
+  // Track module access - ONLY records timestamp, does NOT auto-increment progress
+  // Progress updates happen only when user completes actual tasks/questions
   trackModuleAccess(userId, section) {
     if (!userId) return null;
 
@@ -55,34 +57,23 @@ const progressTracker = {
       userProgress.moduleAccess = {};
     }
 
-    // Record access timestamp
+    // Record access timestamp ONLY - NO auto-increment
     userProgress.moduleAccess[section] = new Date().toISOString();
-
-    // Auto-increment progress when user accesses module
-    if (userProgress.sections.hasOwnProperty(section)) {
-      const currentProgress = userProgress.sections[section];
-      // If user just started (0%), increment to 10%
-      // Otherwise increment by 3-5% on each visit
-      if (currentProgress === 0) {
-        userProgress.sections[section] = 10;
-      } else if (currentProgress < 100) {
-        userProgress.sections[section] = Math.min(100, currentProgress + Math.floor(Math.random() * 3) + 3);
-      }
-    }
-
-    // Calculate total progress
-    const sections = Object.values(userProgress.sections);
-    userProgress.totalProgress = Math.round(
-      sections.reduce((a, b) => a + b, 0) / sections.length
-    );
 
     userProgress.lastUpdated = new Date().toISOString();
     localStorage.setItem(`education_path_progress_${userId}`, JSON.stringify(userProgress));
 
+    // Notify other components
+    try {
+      window.dispatchEvent(new CustomEvent('progressUpdated', { detail: { userId } }));
+    } catch (e) {
+      // ignore in non-browser contexts
+    }
+
     return userProgress;
   },
 
-  // Update section progress
+  // Update section progress - ONLY call this when user actually completes work
   updateSectionProgress(userId, section, progress) {
     if (!userId) return null;
 
@@ -92,7 +83,7 @@ const progressTracker = {
     }
 
     // Update the specific section
-    if (userProgress.sections.hasOwnProperty(section)) {
+    if (Object.prototype.hasOwnProperty.call(userProgress.sections, section)) {
       userProgress.sections[section] = Math.min(100, Math.max(0, progress)); // Clamp between 0-100
     }
 
@@ -105,13 +96,18 @@ const progressTracker = {
     userProgress.lastUpdated = new Date().toISOString();
     localStorage.setItem(`education_path_progress_${userId}`, JSON.stringify(userProgress));
 
+    try {
+      window.dispatchEvent(new CustomEvent('progressUpdated', { detail: { userId } }));
+    } catch (e) {}
+
     return userProgress;
   },
 
-  // Increment section progress
+  // Increment section progress by a specific amount
+  // Call this when user completes practice questions, answers correctly, etc.
   incrementSectionProgress(userId, section, increment = 5) {
     const userProgress = this.getUserProgress(userId);
-    if (!userProgress || !userProgress.sections.hasOwnProperty(section)) {
+    if (!userProgress || !Object.prototype.hasOwnProperty.call(userProgress.sections, section)) {
       return null;
     }
 

@@ -5,26 +5,13 @@ import { jobPlatforms, getActiveJobs, getJobsByPlatform, getUrgentJobs, formatDe
 import '../styles/JobSearch.css';
 
 export default function JobSearch() {
-  const { currentUser } = useAuth();
+  // eslint-disable-next-line no-unused-vars
+  const { currentUser } = useAuth(); // currentUser for future features
   const [activeTab, setActiveTab] = useState('all');
   const [selectedPlatform, setSelectedPlatform] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('all'); // all, internship, fulltime
-
-  // Progress updates when user applies for jobs
-  // Not just by visiting the page
-
-  useEffect(() => {
-    // Refresh jobs to remove expired ones
-    if (activeTab === 'all') {
-      setJobs(getActiveJobs());
-    } else if (activeTab === 'urgent') {
-      setJobs(getUrgentJobs());
-    } else if (selectedPlatform) {
-      setJobs(getJobsByPlatform(selectedPlatform));
-    }
-  }, [activeTab, selectedPlatform]);
+  const [filterType, setFilterType] = useState('all'); // all, internship, fulltime, contest
 
   // Filter jobs based on search term and job type
   const filteredJobs = jobs.filter(job => {
@@ -35,6 +22,50 @@ export default function JobSearch() {
     return matchesSearch && matchesType;
   });
 
+  // Progress updates when user uses job search and applies
+  // Track module access
+  useEffect(() => {
+    if (currentUser?.id) {
+      progressTracker.trackModuleAccess(currentUser.id, 'jobsearch');
+    }
+  }, [currentUser?.id]);
+
+  // Update progress based on user interactions
+  useEffect(() => {
+    if (!currentUser?.id) return;
+    
+    let progress = 40;
+    if (activeTab === 'urgent') progress = 60; // Viewing urgent jobs
+    if (selectedPlatform) progress = 70;       // Viewing specific platform
+    if (filteredJobs.length > 0 && searchTerm) progress = 80; // Searching for jobs
+    
+    if (progress > 40) {
+      progressTracker.updateSectionProgress(currentUser.id, 'jobsearch', progress);
+    }
+  }, [activeTab, selectedPlatform, searchTerm, filteredJobs.length, currentUser?.id]);
+
+  useEffect(() => {
+    // Refresh jobs to remove expired ones whenever tab/platform changes.
+    // also poll periodically in case deadline passes while user is on page
+    const update = () => {
+      let jobsToShow = [];
+      if (activeTab === 'all') {
+        jobsToShow = getActiveJobs();
+      } else if (activeTab === 'urgent') {
+        jobsToShow = getUrgentJobs();
+      } else if (selectedPlatform) {
+        jobsToShow = getJobsByPlatform(selectedPlatform);
+      }
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setJobs(jobsToShow);
+    };
+
+    update();
+    const interval = setInterval(update, 60 * 1000); // refresh every minute
+    return () => clearInterval(interval);
+  }, [activeTab, selectedPlatform]);
+
+
   const handlePlatformClick = (platformName) => {
     setActiveTab('platform');
     setSelectedPlatform(platformName);
@@ -42,6 +73,14 @@ export default function JobSearch() {
 
   const urgentCount = getUrgentJobs().length;
   const activeJobCount = getActiveJobs().length;
+
+  // force a re-render every minute so daysLeft values update
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      setJobs(prev => [...prev]); // trigger render
+    }, 60 * 1000);
+    return () => clearInterval(ticker);
+  }, []);
 
   return (
     <div className="job-search-container">
@@ -71,7 +110,7 @@ export default function JobSearch() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
         />
-        <select 
+            <select 
           value={filterType} 
           onChange={(e) => setFilterType(e.target.value)}
           className="filter-select"
@@ -79,6 +118,7 @@ export default function JobSearch() {
           <option value="all">All Job Types</option>
           <option value="internship">Internships</option>
           <option value="fulltime">Full-time Jobs</option>
+          <option value="contest">Contests</option>
         </select>
       </div>
 
@@ -150,7 +190,7 @@ export default function JobSearch() {
 
       {/* Jobs List */}
       <div className="jobs-container">
-        {filteredJobs.map((job, index) => {
+        {filteredJobs.map((job) => {
           const daysLeft = Math.floor((job.deadline - new Date()) / (1000 * 60 * 60 * 24));
           const isUrgent = daysLeft <= 5;
 
@@ -168,7 +208,7 @@ export default function JobSearch() {
                   href={job.applyLink} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="apply-btn"
+                  className={`apply-btn ${daysLeft < 0 ? 'disabled' : ''}`}
                 >
                   Apply Now →
                 </a>

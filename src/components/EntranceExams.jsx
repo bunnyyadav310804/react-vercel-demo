@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import progressTracker from '../utils/progressTracker';
 import { entranceExams, getExamsByCategory, getAllCategories, searchExams } from '../data/entranceExams';
@@ -10,8 +10,26 @@ export default function EntranceExams() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Progress updates when user takes exam practice tests
-  // Not just by visiting the page
+  // Track module access
+  useEffect(() => {
+    if (currentUser?.id) {
+      progressTracker.trackModuleAccess(currentUser.id, 'exams');
+    }
+  }, [currentUser?.id]);
+
+  // Update progress based on interactions
+  useEffect(() => {
+    if (!currentUser?.id) return;
+    
+    let progress = 40;
+    if (selectedCategory !== 'All') progress = 60;  // Viewing specific category
+    if (selectedExam) progress = 80;                 // Viewing exam details
+    if (searchTerm) progress = 70;                   // Searching for exams
+    
+    if (progress > 40) {
+      progressTracker.updateSectionProgress(currentUser.id, 'exams', progress);
+    }
+  }, [selectedExam, selectedCategory, searchTerm, currentUser?.id]);
 
   const categories = ['All', ...getAllCategories()];
 

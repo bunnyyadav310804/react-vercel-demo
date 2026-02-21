@@ -42,7 +42,7 @@ function ProtectedRoute({ element }) {
         alignItems: 'center',
         height: '100%',
         width: '100%',
-        background: '#ffffff',
+        background: '#FFFFFF',
         color: '#1f2937',
         fontSize: '18px',
         margin: 0,
@@ -60,17 +60,26 @@ function ProtectedRoute({ element }) {
 function App() {
   const { isAuthenticated, loading } = useAuth();
   const [hasSeenWelcome, setHasSeenWelcome] = React.useState(false);
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   React.useEffect(() => {
-    // Check if user has already seen the welcome page
-    // This effect runs whenever isAuthenticated changes (after login/signup)
-    const welcomeSeen = localStorage.getItem('education_path_welcome_seen');
-    if (welcomeSeen === 'true') {
-      setHasSeenWelcome(true);
-    } else {
-      setHasSeenWelcome(false); // Reset to show welcome page on new login
+    // Whenever authentication status changes, check welcome flag
+    if (!isAuthenticated) {
+      setHasSeenWelcome(false);
+      return;
     }
+    
+    // User is authenticated
+    // FORCE clear the welcome flag so welcome shows for EVERY login/signup
+    localStorage.removeItem('education_path_welcome_seen');
+    setHasSeenWelcome(false);
+    console.log('🎯 Welcome - showing for every authentication session');
   }, [isAuthenticated]);
+
+  // Close sidebar when route changes
+  React.useEffect(() => {
+    setSidebarOpen(false);
+  }, []);
 
   if (loading) {
     return (
@@ -80,7 +89,7 @@ function App() {
         alignItems: 'center',
         height: '100vh',
         width: '100vw',
-        background: '#ffffff',
+        background: '#FFFFFF',
         color: '#1f2937',
         fontSize: '18px'
       }}>
@@ -91,62 +100,85 @@ function App() {
 
   return (
     <Router>
-      {isAuthenticated ? (
-        // Check if user needs to see welcome page
-        !hasSeenWelcome ? (
-          // Show only welcome page if not yet seen
-          <Routes>
-            <Route path="/*" element={<Welcome onGetStarted={() => {
-              localStorage.setItem('education_path_welcome_seen', 'true');
-              setHasSeenWelcome(true);
-            }} />} />
-          </Routes>
-        ) : (
-          // Authenticated Layout - Show after welcome
-          <div className="app">
-            <Sidebar />
-            <div className="main-content">
+      <Routes>
+        {/* ADMIN ROUTES - GLOBALLY ACCESSIBLE FROM ANYWHERE */}
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/admin/*" element={<AdminPanel />} />
+        
+        {/* ALL OTHER ROUTES - Check authentication first */}
+        <Route 
+          path="*" 
+          element={
+            isAuthenticated ? (
+              // Authenticated Layout
+              <>
+                {/* If user hasn't seen welcome, show ONLY welcome page */}
+                {!hasSeenWelcome ? (
+                  <Welcome onGetStarted={() => {
+                    console.log('✅ Welcome dismissed - showing dashboard');
+                    localStorage.setItem('education_path_welcome_seen', 'true');
+                    setHasSeenWelcome(true);
+                  }} />
+                ) : (
+                  // After welcome, show the full app with sidebar
+                  <div className="app">
+                    <button 
+                      className="sidebar-toggle" 
+                      onClick={() => setSidebarOpen(!sidebarOpen)}
+                      title={sidebarOpen ? "Close Menu" : "Open Menu"}
+                    >
+                      {sidebarOpen ? '✕' : '☰'}
+                    </button>
+                    <div className={`sidebar ${sidebarOpen ? 'active' : ''}`}>
+                      <Sidebar onNavigate={() => setSidebarOpen(false)} />
+                    </div>
+                    <div className="main-content" onClick={() => sidebarOpen && setSidebarOpen(false)}>
+                      <Routes>
+                        {/* Main dashboard routes */}
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/placement" element={<Placement />} />
+                        <Route path="/placement-enhanced" element={<PlacementEnhanced />} />
+                        <Route path="/qar" element={<QARPreparation />} />
+                        <Route path="/vacr" element={<VARCPreparation />} />
+                        <Route path="/dsa" element={<DSAPractice />} />
+                        <Route path="/btech-guides" element={<BTechGuide />} />
+                        <Route path="/programming-languages" element={<ProgrammingLanguages />} />
+                        <Route path="/career-path" element={<CareerPath />} />
+                        <Route path="/resume-builder" element={<ResumeBuilder />} />
+                        <Route path="/job-search" element={<JobSearch />} />
+                        <Route path="/company-specific" element={<CompanySpecific />} />
+                        <Route path="/entrance-exams" element={<EntranceExams />} />
+                        <Route path="/ai-chatbot" element={<AIChatbot />} />
+                        <Route path="/ai-tools" element={<AIMLTools />} />
+                        <Route path="/power-bi" element={<PowerBIAnalytics />} />
+                        <Route path="/data-engineering" element={<DataEngineering />} />
+                        <Route path="/web-frameworks" element={<WebFrameworks />} />
+                        <Route path="/mobile-development" element={<MobileDevelopment />} />
+                        <Route path="/devops-cloud" element={<DevOpsCloud />} />
+                        <Route path="/certifications" element={<Certifications />} />
+                        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                      </Routes>
+                      <AIChatbot context="main-dashboard" />
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              // Not authenticated - Show login/signup
               <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/admin" element={<AdminPanel />} />
-                <Route path="/welcome" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/placement" element={<PlacementEnhanced />} />
-              <Route path="/certifications" element={<Certifications />} />
-              <Route path="/qar" element={<QARPreparation />} />
-              <Route path="/varc" element={<VARCPreparation />} />
-              <Route path="/dsa" element={<DSAPractice />} />
-              <Route path="/blueprint" element={<BTechGuide />} />
-              <Route path="/programming" element={<ProgrammingLanguages />} />
-              <Route path="/careers" element={<CareerPath />} />
-              <Route path="/resume" element={<ResumeBuilder />} />
-              <Route path="/jobsearch" element={<JobSearch />} />
-              <Route path="/company" element={<CompanySpecific />} />
-              <Route path="/exams" element={<EntranceExams />} />
-              <Route path="/aiml" element={<AIMLTools />} />
-              <Route path="/powerbi" element={<PowerBIAnalytics />} />
-              <Route path="/dataeng" element={<DataEngineering />} />
-              <Route path="/webframes" element={<WebFrameworks />} />
-              <Route path="/mobile" element={<MobileDevelopment />} />
-              <Route path="/devops" element={<DevOpsCloud />} />
-              <Route path="/login" element={<Navigate to="/" replace />} />
-              <Route path="/" element={<Dashboard />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-            </div>
-            <AIChatbot context="main-dashboard" />
-          </div>
-        )
-      ) : (
-        // Public Routes - Show login/registration when not authenticated
-        <Routes>
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/welcome" element={<Welcome />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        </Routes>
-      )}
+                <Route path="/login" element={<LogIn />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/welcome" element={<Welcome />} />
+                <Route path="*" element={<Navigate to="/login" replace />} />
+              </Routes>
+            )
+          } 
+        />
+      </Routes>
     </Router>
   );
 }
 
 export default App;
+

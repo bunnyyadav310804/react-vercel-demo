@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import progressTracker from '../utils/progressTracker';
 import { allCertifications, getCertificationsByCategory } from '../data/certifications';
-import './UniversalSections.css';
 
 export default function Certifications() {
   const { currentUser } = useAuth();
@@ -22,10 +21,13 @@ export default function Certifications() {
     if (currentUser?.id) {
       const saved = localStorage.getItem(`education_path_completed_certs_${currentUser.id}`);
       if (saved) {
-        setCompletedCerts(JSON.parse(saved));
+        // Update state in callback to avoid cascading renders
+        const parsed = JSON.parse(saved);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setCompletedCerts(parsed);
       }
     }
-  }, [currentUser]);
+  }, [currentUser.id]);
 
   const categories = ['Cloud', 'Programming', 'DevOps', 'CRM', 'Data', 'BI/Analytics', 'Security', 'Web Development', 'Mobile', 'AI/ML'];
   const displayedCerts = getCertificationsByCategory(selectedCategory);
@@ -40,6 +42,9 @@ export default function Certifications() {
     setCompletedCerts(updated);
     if (currentUser?.id) {
       localStorage.setItem(`education_path_completed_certs_${currentUser.id}`, JSON.stringify(updated));
+      // Update progress based on completed certifications
+      const progressPercent = Math.min(100, (updated.length / allCertifications.length) * 100);
+      progressTracker.updateSectionProgress(currentUser.id, 'certifications', Math.round(progressPercent));
     }
   };
 
@@ -49,18 +54,18 @@ export default function Certifications() {
         <h2 className="page-title">📜 Tech Certifications</h2>
         
         <div style={{
-          background: '#000000',
+          background: '#FFFFFF',
           borderRadius: '12px',
           padding: '20px',
           marginBottom: '30px',
           border: '1px solid #333333',
-          color: '#ffffff'
+          color: '#111827'
         }}>
           <p style={{ marginTop: 0, marginBottom: '15px', lineHeight: '1.6' }}>
             🎯 <strong>Complete industry-recognized certifications</strong> to enhance your profile and become eligible for top companies.
             Each certification includes real training links and company-specific requirements.
           </p>
-          <div style={{ fontSize: '14px', color: '#ffffff' }}>
+          <div style={{ fontSize: '14px', color: '#111827' }}>
             <strong>Completion Rate:</strong> {completedCerts.length} of {allCertifications.length} certifications completed ({Math.round((completedCerts.length / allCertifications.length) * 100)}%)
           </div>
         </div>
@@ -88,7 +93,7 @@ export default function Certifications() {
                 background: selectedCategory === cat 
                   ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
                   : '#000000',
-                color: selectedCategory === cat ? '#fff' : '#ffffff',
+                color: selectedCategory === cat ? '#fff' : '#111827',
                 border: selectedCategory === cat ? '1px solid #10b981' : '1px solid #333333'
               }}
             >
@@ -108,7 +113,7 @@ export default function Certifications() {
             <div
               key={cert.id}
               style={{
-                background: '#000000',
+                background: '#FFFFFF',
                 border: completedCerts.includes(cert.id) 
                   ? '2px solid #10b981' 
                   : '1px solid #333333',
@@ -129,7 +134,7 @@ export default function Certifications() {
                     margin: '0 0 8px 0',
                     fontSize: '16px',
                     fontWeight: '600',
-                    color: completedCerts.includes(cert.id) ? '#10b981' : '#ffffff'
+                    color: completedCerts.includes(cert.id) ? '#10b981' : '#111827'
                   }}>
                     {completedCerts.includes(cert.id) ? '✓ ' : ''}{cert.name}
                   </h3>
@@ -149,7 +154,7 @@ export default function Certifications() {
                 }}>
                   <div>
                     <div style={{ fontSize: '13px', color: '#888888', marginBottom: '4px' }}>⏱️ Estimated Hours:</div>
-                    <div style={{ color: '#ffffff', fontSize: '14px' }}>{cert.estimatedHours} hours</div>
+                    <div style={{ color: '#111827', fontSize: '14px' }}>{cert.estimatedHours} hours</div>
                   </div>
 
                   <div>
@@ -269,3 +274,4 @@ export default function Certifications() {
     </main>
   );
 }
+

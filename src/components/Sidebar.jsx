@@ -1,30 +1,30 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import "./UniversalSections.css";
 
 const menu = [
   { name: "Dashboard", path: "/" },
   { name: "Placement Preparation", path: "/placement" },
   { name: "Tech Certifications", path: "/certifications" },
   { name: "QAR Preparation", path: "/qar" },
-  { name: "VACR Preparation", path: "/varc" },
+  { name: "VACR Preparation", path: "/vacr" },
   { name: "DSA Practice", path: "/dsa" },
-  { name: "Programming Language Preperation", path: "/programming" },
-  { name: "BTECH GUIDENCE", path: "/blueprint" },
-  { name: "Career Paths", path: "/careers" },
-  { name: "Resume Builder", path: "/resume" },
-  { name: "Job Search", path: "/jobsearch" },
-  { name: "Company Specific", path: "/company" },
-  { name: "Entrance Exams", path: "/exams" },
-  { name: "AI & ML Tools", path: "/aiml" },
-  { name: "Power BI & Analytics", path: "/powerbi" },
-  { name: "Data Engineering", path: "/dataeng" },
-  { name: "Web Frameworks", path: "/webframes" },
-  { name: "Mobile Development", path: "/mobile" },
-  { name: "DevOps & Cloud", path: "/devops" },
+  { name: "Coding Contests", path: "/job-search" },
+  { name: "Programming Language Preparation", path: "/programming-languages" },
+  { name: "BTECH Guidance", path: "/btech-guides" },
+  { name: "Career Paths", path: "/career-path" },
+  { name: "Resume Builder", path: "/resume-builder" },
+  { name: "Job Search", path: "/job-search" },
+  { name: "Company Specific", path: "/company-specific" },
+  { name: "Entrance Exams", path: "/entrance-exams" },
+  { name: "AI & ML Tools", path: "/ai-tools" },
+  { name: "Power BI & Analytics", path: "/power-bi" },
+  { name: "Data Engineering", path: "/data-engineering" },
+  { name: "Web Frameworks", path: "/web-frameworks" },
+  { name: "Mobile Development", path: "/mobile-development" },
+  { name: "DevOps & Cloud", path: "/devops-cloud" },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ onNavigate }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { currentUser, signOut } = useAuth();
@@ -34,16 +34,55 @@ const Sidebar = () => {
     navigate("/login");
   };
 
+  const handleNavigation = (path) => {
+    navigate(path);
+    if (onNavigate) {
+      onNavigate();
+    }
+  };
+
   return (
     <aside className="sidebar">
-      <div className="logo">
-        ⚡ <span style={{ fontFamily: 'Arial', fontSize: '18px', fontWeight: '900', letterSpacing: '1px', textTransform: 'uppercase' }}>EDUCATION PATHWAY</span>
+      {/* Branding Card */}
+      <div className="sidebar-card branding-card">
+        <div className="branding-icon">⚡</div>
+        <div className="branding-content">
+          <h2 className="branding-title">EDUCATION PATHWAY</h2>
+        </div>
       </div>
 
+      {/* User Profile Card */}
       {currentUser && (
-        <div className="user-profile">
-          <p className="user-name">{currentUser.fullName || currentUser.email}</p>
-          <span className="user-email">{currentUser.email}</span>
+        <div className="sidebar-card user-profile-card">
+          {currentUser.photoURL && (
+            <div className="profile-avatar">
+              <img src={currentUser.photoURL} alt="avatar" />
+            </div>
+          )}
+          <div className="profile-info">
+            <div className="profile-name">{(function getSafe(v){
+                if (!v) return '';
+                if (typeof v === 'string') return v;
+                if (typeof v === 'object') {
+                  if (typeof v.fullName === 'string') return v.fullName;
+                  if (typeof v.email === 'string' && v.email.indexOf('@')>-1) return v.email;
+                  // avoid exposing passwords — try to find a readable id
+                  if (v.id) return String(v.id);
+                  return '';
+                }
+                return '';
+              })(currentUser.fullName || currentUser.email || currentUser)}
+            </div>
+            <div className="profile-email">{(function getSafeEmail(v){
+                if (!v) return '';
+                if (typeof v === 'string') return v.indexOf('@')>-1? v : '';
+                if (typeof v === 'object') {
+                  if (typeof v.email === 'string') return v.email;
+                  return '';
+                }
+                return '';
+              })(currentUser.email)}</div>
+          </div>
         </div>
       )}
 
@@ -52,7 +91,7 @@ const Sidebar = () => {
           <a
             key={i}
             className={location.pathname === item.path ? "active" : ""}
-            onClick={() => navigate(item.path)}
+            onClick={() => handleNavigation(item.path)}
           >
             {item.name}
           </a>
@@ -61,7 +100,7 @@ const Sidebar = () => {
 
       <div className="sidebar-footer">
         <button className="logout-btn" onClick={handleLogout}>
-          👋 Logout
+           Logout
         </button>
       </div>
     </aside>

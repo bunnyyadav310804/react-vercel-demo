@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import progressTracker from '../utils/progressTracker';
 import { Compass, BookOpen, Users, Rocket, Target, Star, ShieldCheck, Sparkles, Zap, Cpu, GraduationCap } from 'lucide-react';
@@ -6,9 +6,26 @@ import "./BTechGuides.css";
 
 const BTechGuide = () => {
   const { currentUser } = useAuth();
+  const [expandedYear, setExpandedYear] = useState(null);
 
-  // Progress updates when user follows blueprint recommendations
-  // Not just by visiting the page
+  // Track module access and update progress
+  useEffect(() => {
+    if (currentUser?.id) {
+      progressTracker.trackModuleAccess(currentUser.id, 'blueprint');
+      // Set initial progress for viewing blueprint
+      progressTracker.updateSectionProgress(currentUser.id, 'blueprint', 50);
+    }
+  }, [currentUser?.id]);
+
+  // Update progress when user expands/reads guide sections
+  useEffect(() => {
+    if (!currentUser?.id || expandedYear === null) return;
+    
+    let progress = 50;
+    if (expandedYear !== null) progress = 75; // Reading a year section
+    
+    progressTracker.updateSectionProgress(currentUser.id, 'blueprint', progress);
+  }, [expandedYear, currentUser?.id]);
 
   const years = [
     {

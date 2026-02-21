@@ -1,4 +1,4 @@
-export const varcTheory = [
+export const vacrTheory = [
   {
     topic: 'Reading Comprehension',
     subtopics: [

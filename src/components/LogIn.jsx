@@ -4,6 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import '../styles/AuthPages.css';
 
 export default function LogIn() {
+  const [showPassword, setShowPassword] = useState(false);
+
   const [email, setEmail] = useState('demo@example.com');
   const [password, setPassword] = useState('Demo@123!');
   const [loading, setLoading] = useState(false);
@@ -42,19 +44,27 @@ export default function LogIn() {
     setLoading(true);
 
     try {
+      console.log('🔑 Starting login process...');
       const result = await signIn(email, password);
       
       if (result?.error) {
+        console.error('❌ Login returned error:', result.error.message);
         setError('❌ Invalid email or password');
+        setLoading(false);
       } else {
-        setSuccess('✓ Login successful! Redirecting...');
+        console.log('✅ Login returned successfully');
+        setSuccess('✓ Login successful! Loading dashboard...');
+        localStorage.removeItem('education_path_welcome_seen');
+        console.log('🔄 Cleared welcome flag, navigating...');
+        
+        // Immediate navigation - App.jsx will detect auth state change
         setTimeout(() => {
-          navigate('/');
-        }, 1500);
+          navigate('/', { replace: true });
+        }, 500);
       }
     } catch (err) {
+      console.error('❌ Login exception:', err);
       setError('❌ ' + (err.message || 'Login failed'));
-    } finally {
       setLoading(false);
     }
   };
@@ -97,15 +107,34 @@ export default function LogIn() {
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={loading}
-                className="form-input"
-              />
+             <div style={{ position: "relative" }}>
+  <input
+    id="password"
+    type={showPassword ? "text" : "password"}
+    placeholder="••••••••"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    disabled={loading}
+    className="form-input"
+  />
+
+  <span
+    onClick={() => setShowPassword(!showPassword)}
+    style={{
+      position: "absolute",
+      right: "12px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      cursor: "pointer",
+      fontSize: "14px",
+      color: "#6b7280",
+      userSelect: "none"
+    }}
+  >
+    {showPassword ? "🙈 Hide" : "👁 Show"}
+  </span>
+</div>
+
             </div>
 
             <button

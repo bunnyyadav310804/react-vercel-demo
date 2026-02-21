@@ -50,27 +50,9 @@ export const placementData = [
       }
     ],
     companies: [
-      "LTIMindtree", "Accenture", "Cognizant", "Infosys", "Virtuosa", "Amazon", "Microsoft", "Google", "TCS", "Wipro",
-      "Capgemini", "Tech Mahindra", "IBM", "Intel", "HCL Technologies", "Deloitte", "Goldman Sachs", "Oracle", "Cisco",
-      "Adobe", "Salesforce", "SAP", "Wipro", "Mindtree", "CGI", "Softvan", "DRDoS Technologies", "Nivia Software"
-    ]
-  },
-  {
-    collegeId: "previous_anurag",
-    collegeName: "Anurag University (Previous Year - Class 2025)",
-    location: "Ghatkesar, Telangana",
-    description: "Class of 2025 placement statistics",
-    placementStats: {
-      year: "2025",
-      totalStudents: 126,
-      placementRate: "100%",
-      avgPackage: "4.75 LPA",
-      highestPackage: "6.75 LPA",
-      image: "anurag_2025_placement.jpg"
-    },
-    companies: [
-      "Cognizant", "TCS", "Infosys", "Wipro", "Capgemini", "Accenture", "Tech Mahindra",
-      "Amazon", "Microsoft", "IBM", "HCL Technologies", "Deloitte", "Cisco", "Adobe"
+      "TCS", "Accenture", "Cognizant", "Infosys", "Wipro", "Amazon India", "Microsoft India", "Google India",
+      "Capgemini", "IBM", "Intel", "HCL Technologies", "Deloitte", "Oracle", "Cisco",
+      "Adobe", "Salesforce", "SAP", "Qualcomm", "Meta (Facebook)"
     ]
   },
   {
@@ -86,9 +68,9 @@ export const placementData = [
       highestPackage: "12 LPA"
     },
     companies: [
-      "TCS", "Infosys", "Wipro", "Tech Mahindra", "Cognizant", "Amazon", "Microsoft",
-      "Capgemini", "Accenture", "IBM", "HCL Technologies", "Deloitte", "Nielsen",
-      "Exl Analytics", "JPMorgan Chase", "Morgan Stanley", "Twitter", "Flipkart", "Uber"
+      "TCS", "Infosys", "Wipro", "Cognizant", "Amazon India", "Microsoft India",
+      "Capgemini", "Accenture", "IBM", "HCL Technologies", "Deloitte", "Flipkart",
+      "Oracle", "Cisco", "Adobe", "Salesforce"
     ]
   },
   {
@@ -104,9 +86,8 @@ export const placementData = [
       highestPackage: "14 LPA"
     },
     companies: [
-      "Amazon", "Microsoft", "Google", "Deloitte", "Accenture", "Capgemini", "TCS",
-      "Infosys", "Wipro", "Goldman Sachs", "Morgan Stanley", "JPMorgan Chase", "Citrix",
-      "VMware", "Salesforce", "Adobe", "Oracle", "Cisco", "Intel", "Samsung"
+      "Amazon India", "Microsoft India", "Google India", "Deloitte", "Accenture", "Capgemini", "TCS",
+      "Infosys", "Wipro", "Adobe", "Salesforce", "Oracle", "Cisco", "Intel", "IBM", "Qualcomm", "SAP", "Meta (Facebook)"
     ]
   },
   {
@@ -122,9 +103,9 @@ export const placementData = [
       highestPackage: "13 LPA"
     },
     companies: [
-      "TCS", "Infosys", "Wipro", "Accenture", "Amazon", "Microsoft", "Capgemini",
-      "Cognizant", "Tech Mahindra", "IBM", "HCL Technologies", "Deloitte", "Cisco",
-      "Adobe", "Twitter", "Snapchat", "ZS Associates", "Mahindra", "Bosch"
+      "TCS", "Infosys", "Wipro", "Accenture", "Amazon India", "Microsoft India", "Capgemini",
+      "Cognizant", "IBM", "HCL Technologies", "Deloitte", "Cisco",
+      "Adobe", "Salesforce", "Oracle", "SAP", "Qualcomm"
     ]
   },
   {
@@ -140,9 +121,9 @@ export const placementData = [
       highestPackage: "11 LPA"
     },
     companies: [
-      "Amazon", "Cognizant", "Capgemini", "Tech Mahindra", "TCS", "Infosys", "Wipro",
-      "Accenture", "Microsoft", "IBM", "HCL Technologies", "Deloitte", "Mahindra Finance",
-      "GlaxoSmithKline", "Bosch", "Siemens", "Ericsson", "Qualcomm", "Virtusa"
+      "Amazon India", "Cognizant", "Capgemini", "TCS", "Infosys", "Wipro",
+      "Accenture", "Microsoft India", "IBM", "HCL Technologies", "Deloitte", 
+      "Intel", "Qualcomm", "Cisco", "Oracle"
     ]
   },
   {
@@ -150,9 +131,9 @@ export const placementData = [
     collegeName: "Vardhaman College of Engineering",
     location: "Shamshabad, Telangana",
     companies: [
-      "TCS", "Wipro", "Infosys", "Accenture", "Capgemini", "Cognizant", "Tech Mahindra",
-      "Amazon", "Microsoft", "IBM", "HCL Technologies", "Deloitte", "Yahoo", "Flipkart",
-      "Snapdeal", "Paytm", "OLX", "Ola", "Amazon Pay"
+      "TCS", "Wipro", "Infosys", "Accenture", "Capgemini", "Cognizant",
+      "Amazon India", "Microsoft India", "IBM", "HCL Technologies", "Deloitte", "Flipkart",
+      "Orange", "Salesforce", "Adobe", "Oracle"
     ]
   },
   {
@@ -160,9 +141,9 @@ export const placementData = [
     collegeName: "NIT Warangal",
     location: "Warangal, Telangana",
     companies: [
-      "Google", "Amazon", "Microsoft", "Goldman Sachs", "Morgan Stanley", "JPMorgan Chase",
-      "TCS", "Infosys", "Wipro", "Capgemini", "Accenture", "Deloitte", "McKinsey",
-      "Bain & Company", "Boston Consulting Group", "Apple", "Facebook", "Intel", "Qualcomm"
+      "Google India", "Amazon India", "Microsoft India", 
+      "TCS", "Infosys", "Wipro", "Capgemini", "Accenture", "Deloitte",
+      "Intel", "Qualcomm", "Oracle", "Cisco", "IBM", "Adobe", "SAP", "Meta (Facebook)"
     ]
   },
   {
@@ -170,9 +151,9 @@ export const placementData = [
     collegeName: "IIIT Hyderabad",
     location: "Gachibowli, Hyderabad",
     companies: [
-      "Google", "Amazon", "Microsoft", "Facebook", "Apple", "Goldman Sachs", "Morgan Stanley",
-      "TCS", "Infosys", "Deloitte", "McKinsey", "Bain & Company", "Citrix", "Qualcomm",
-      "Intel", "Adobe", "Cisco", "Oracle", "Samsung", "IBM"
+      "Google India", "Amazon India", "Microsoft India", "Meta (Facebook)",
+      "TCS", "Infosys", "Deloitte", "Qualcomm",
+      "Intel", "Adobe", "Cisco", "Oracle", "IBM", "SAP", "Salesforce", "HCL Technologies"
     ]
   },
   {
@@ -180,9 +161,9 @@ export const placementData = [
     collegeName: "KMIT Hyderabad",
     location: "Serilingampally, Hyderabad",
     companies: [
-      "Amazon", "Microsoft", "TCS", "Infosys", "Wipro", "Capgemini", "Cognizant",
-      "Tech Mahindra", "Accenture", "Deloitte", "IBM", "HCL Technologies", "Cisco",
-      "Oracle", "Salesforce", "Adobe", "Google", "Twitter", "LinkedIn", "Uber"
+      "Amazon India", "Microsoft India", "TCS", "Infosys", "Wipro", "Capgemini", "Cognizant",
+      "Accenture", "Deloitte", "IBM", "HCL Technologies", "Cisco",
+      "Oracle", "Salesforce", "Adobe", "Google India", "SAP", "Qualcomm", "Intel"
     ]
   },
   {
@@ -190,9 +171,9 @@ export const placementData = [
     collegeName: "IIIT Bangalore",
     location: "Bangalore, Karnataka",
     companies: [
-      "Google", "Amazon", "Microsoft", "Facebook", "Apple", "Goldman Sachs", "Morgan Stanley",
-      "JPMorgan Chase", "McKinsey", "Bain & Company", "Deloitte", "TCS", "Infosys",
-      "Intel", "Qualcomm", "NVIDIA", "AMD", "Uber", "Airbnb", "Twitter"
+      "Google India", "Amazon India", "Microsoft India", "Meta (Facebook)",
+      "Deloitte", "TCS", "Infosys", "Wipro", "Capgemini", "Accenture",
+      "Intel", "Qualcomm", "Oracle", "IBM", "Cisco", "Adobe", "Salesforce", "SAP"
     ]
   }
 ];

@@ -1,19 +1,6 @@
-// Initialize Demo Account in localStorage
+// Initialize Demo Account
+// Demo user is now created on the backend (server/users.json)
+// This file is kept for reference only as authentication is backend-driven
 export const initializeDemoAccount = () => {
-  const existingUsers = localStorage.getItem('education_path_users');
-  
-  if (!existingUsers) {
-    const demoUsers = [
-      {
-        id: 'demo-user-001',
-        email: 'demo@example.com',
-        password: 'Demo@123!',
-        fullName: 'Demo User',
-        createdAt: new Date().toISOString()
-      }
-    ];
-    
-    localStorage.setItem('education_path_users', JSON.stringify(demoUsers));
-    console.log('✓ Demo account initialized');
-  }
+  console.log('✓ Demo account initialized on backend (demo@example.com / Demo@123!)');
 };

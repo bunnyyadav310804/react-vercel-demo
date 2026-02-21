@@ -281,6 +281,31 @@ export const companyCertifications = {
     { certId: 'tableau-analyst', priority: 'Must Have' },
     { certId: 'salesforce-admin', priority: 'Important' }
   ],
+  // Additional companies seen across colleges (Anurag, SRM, PEC, VJTI, CBIT, JNTU, Osmania)
+  'LTIMindtree': [
+    { certId: 'aws-ccp', priority: 'Important' },
+    { certId: 'java-associate', priority: 'Important' }
+  ],
+  'Virtusa': [
+    { certId: 'gcp-associate', priority: 'Optional' },
+    { certId: 'kubernetes-ckad', priority: 'Important' }
+  ],
+  'Flipkart': [
+    { certId: 'aws-ccp', priority: 'Important' },
+    { certId: 'java-associate', priority: 'Important' }
+  ],
+  'Mindtree': [
+    { certId: 'aws-ccp', priority: 'Important' },
+    { certId: 'azure-fundamentals', priority: 'Optional' }
+  ],
+  'Goldman Sachs': [
+    { certId: 'tableau-analyst', priority: 'Important' },
+    { certId: 'powerbi-analyst', priority: 'Optional' }
+  ],
+  'JPMorgan Chase': [
+    { certId: 'tableau-analyst', priority: 'Important' },
+    { certId: 'powerbi-analyst', priority: 'Optional' }
+  ],
 };
 
 // Helper functions

@@ -17,7 +17,7 @@ export const jobPlatforms = [
     logo: '🌟',
     description: 'Internships & Entry-level jobs',
     url: 'https://www.internshala.com',
-    color: '#FF6B35',
+    color: '#2563EB',
     jobs: 'Internships & Jobs'
   },
   {
@@ -55,6 +55,51 @@ export const jobPlatforms = [
     url: 'https://wellfound.com',
     color: '#000000',
     jobs: 'Startup Opportunities'
+  },
+  {
+    id: 7,
+    name: 'LeetCode Contests',
+    logo: '🏁',
+    description: 'Coding contests & weekly challenges',
+    url: 'https://leetcode.com/contest/',
+    color: '#FFA116',
+    jobs: 'Upcoming Contests'
+  },
+  {
+    id: 8,
+    name: 'CodeChef Contests',
+    logo: '👨‍💻',
+    description: 'Indian programming contests',
+    url: 'https://www.codechef.com/contests',
+    color: '#5B4085',
+    jobs: 'Monthly Events'
+  },
+  {
+    id: 9,
+    name: 'HackerRank Contests',
+    logo: '🎯',
+    description: 'Coding competitions & challenges',
+    url: 'https://www.hackerrank.com/contests',
+    color: '#2EC866',
+    jobs: 'Weekly Contests'
+  },
+  {
+    id: 10,
+    name: 'CodeWars',
+    logo: '⚔️',
+    description: 'Ranked coding challenges',
+    url: 'https://www.codewars.com',
+    color: '#B13400',
+    jobs: 'Continuous Practice'
+  },
+  {
+    id: 11,
+    name: 'AtCoder',
+    logo: '🇯🇵',
+    description: 'Competitive programming contests',
+    url: 'https://atcoder.jp/contests/',
+    color: '#FF8C00',
+    jobs: 'ABC & ARC'
   }
 ];
 
@@ -70,7 +115,7 @@ export const currentJobs = [
     location: 'Bangalore, India',
     salary: '₹4.5L - ₹6.5L PA',
     experience: '0-2 years',
-    deadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+    deadlineOffsetDays: 7, // 7 days from now
     applyLink: 'https://www.naukri.com/job-listings-software-engineer-bangalore',
     description: 'Looking for Java developers with knowledge of Spring Boot',
     skills: ['Java', 'Spring Boot', 'MySQL', 'REST APIs'],
@@ -84,7 +129,7 @@ export const currentJobs = [
     location: 'Pune, India',
     salary: '₹5L - ₹7L PA',
     experience: '1-3 years',
-    deadline: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000), // 10 days
+    deadlineOffsetDays: 10, // 10 days
     applyLink: 'https://www.naukri.com/job-listings-frontend-developer-pune',
     description: 'React and modern JavaScript expertise required',
     skills: ['React', 'JavaScript', 'CSS', 'Redux'],
@@ -98,7 +143,7 @@ export const currentJobs = [
     location: 'Delhi, India',
     salary: '₹3.5L - ₹5.5L PA',
     experience: '0-1 years',
-    deadline: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000), // 5 days
+    deadlineOffsetDays: 5, // 5 days
     applyLink: 'https://www.naukri.com/job-listings-data-analyst-delhi',
     description: 'Analyze data using SQL and Excel. Experience with Tableau preferred.',
     skills: ['SQL', 'Excel', 'Data Analysis', 'Tableau'],
@@ -112,7 +157,7 @@ export const currentJobs = [
     location: 'Bangalore, India',
     salary: '₹6L - ₹8.5L PA',
     experience: '2-4 years',
-    deadline: new Date(Date.now() + 12 * 24 * 60 * 60 * 1000), // 12 days
+    deadlineOffsetDays: 12, // 12 days
     applyLink: 'https://www.naukri.com/job-listings-backend-developer-bangalore',
     description: 'Python developer for scalable backend systems',
     skills: ['Python', 'Django', 'PostgreSQL', 'Docker'],
@@ -126,7 +171,7 @@ export const currentJobs = [
     location: 'Noida, India',
     salary: '₹3L - ₹4.5L PA',
     experience: '1-2 years',
-    deadline: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000), // 6 days
+    deadlineOffsetDays: 6, // 6 days
     applyLink: 'https://www.naukri.com/job-listings-qa-engineer-noida',
     description: 'Manual and Automation testing. Selenium or Cypress experience.',
     skills: ['QA', 'Selenium', 'TestNG', 'Jira'],
@@ -142,7 +187,7 @@ export const currentJobs = [
     location: 'Remote',
     salary: '₹15,000 - ₹25,000 (Monthly)',
     experience: 'Fresher',
-    deadline: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000), // 8 days
+    deadlineOffsetDays: 8, // 8 days
     applyLink: 'https://internshala.com/internship/web-development-internship',
     description: 'Build responsive websites with HTML, CSS, JavaScript, and React',
     skills: ['HTML', 'CSS', 'JavaScript', 'React'],
@@ -156,7 +201,7 @@ export const currentJobs = [
     location: 'Bangalore',
     salary: '₹20,000 - ₹30,000 (Monthly)',
     experience: 'Fresher/1st Year',
-    deadline: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), // 14 days
+    deadlineOffsetDays: 14, // 14 days
     applyLink: 'https://internshala.com/internship/machine-learning-internship',
     description: 'Work on ML projects. Python, TensorFlow, and Deep Learning knowledge.',
     skills: ['Python', 'TensorFlow', 'Pandas', 'Scikit-learn'],
@@ -170,7 +215,7 @@ export const currentJobs = [
     location: 'Hyderabad',
     salary: '₹18,000 - ₹28,000 (Monthly)',
     experience: 'Fresher',
-    deadline: new Date(Date.now() + 9 * 24 * 60 * 60 * 1000), // 9 days
+    deadlineOffsetDays: 9, // 9 days
     applyLink: 'https://internshala.com/internship/android-development-internship',
     description: 'Develop Android apps using Kotlin or Java',
     skills: ['Android', 'Kotlin', 'Java', 'Firebase'],
@@ -184,7 +229,7 @@ export const currentJobs = [
     location: 'Remote',
     salary: '₹12,000 - ₹18,000 (Monthly)',
     experience: 'Fresher',
-    deadline: new Date(Date.now() + 4 * 24 * 60 * 60 * 1000), // 4 days (urgent)
+    deadlineOffsetDays: 4, // 4 days (urgent)
     applyLink: 'https://internshala.com/internship/content-writing-internship',
     description: 'Create engaging educational content for online courses',
     skills: ['Writing', 'Research', 'Communication', 'SEO'],
@@ -198,7 +243,7 @@ export const currentJobs = [
     location: 'Pune',
     salary: '₹22,000 - ₹32,000 (Monthly)',
     experience: 'Fresher',
-    deadline: new Date(Date.now() + 11 * 24 * 60 * 60 * 1000), // 11 days
+    deadlineOffsetDays: 11, // 11 days
     applyLink: 'https://internshala.com/internship/devops-internship',
     description: 'Work with Docker, Kubernetes, AWS, and CI/CD pipelines',
     skills: ['Docker', 'Kubernetes', 'AWS', 'Git'],
@@ -214,7 +259,7 @@ export const currentJobs = [
     location: 'Bangalore, India',
     salary: '₹5L - ₹8L PA',
     experience: '1-3 years',
-    deadline: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000), // 15 days
+    deadlineOffsetDays: 15, // 15 days
     applyLink: 'https://www.linkedin.com/jobs/search/?keywords=full-stack-developer',
     description: 'MERN stack developer for fast-growing startup',
     skills: ['MERN', 'MongoDB', 'Node.js', 'React'],
@@ -228,18 +273,121 @@ export const currentJobs = [
     location: 'Remote',
     salary: '₹8L - ₹12L PA',
     experience: '3-5 years',
-    deadline: new Date(Date.now() + 13 * 24 * 60 * 60 * 1000), // 13 days
+    deadlineOffsetDays: 13, // 13 days
     applyLink: 'https://www.linkedin.com/jobs/search/?keywords=product-manager',
     description: 'Lead product strategy for growing SaaS platform',
     skills: ['Product Strategy', 'Analytics', 'Leadership', 'JIRA'],
     jobType: 'Full-time'
+  },
+  // sample LeetCode contest entries
+  {
+    id: 13,
+    platform: 'LeetCode Contests',
+    title: 'Weekly Contest #350',
+    company: 'LeetCode',
+    location: 'Online',
+    salary: '-',
+    experience: 'All Levels',
+    deadlineOffsetDays: 3, // 3 days until contest start
+    applyLink: 'https://leetcode.com/contest/weekly-contest-350',
+    description: 'Participate in the weekly LeetCode coding contest. Open to everyone.',
+    skills: ['Algorithms', 'Data Structures', 'Problem Solving'],
+    jobType: 'Contest'
+  },
+  {
+    id: 14,
+    platform: 'LeetCode Contests',
+    title: 'Biweekly Contest #120',
+    company: 'LeetCode',
+    location: 'Online',
+    salary: '-',
+    experience: 'All Levels',
+    deadlineOffsetDays: 10, // 10 days
+    applyLink: 'https://leetcode.com/contest/biweekly-contest-120',
+    description: 'Biweekly challenge from LeetCode. Sharpen your competitive programming skills.',
+    skills: ['Algorithms', 'Math', 'Optimization'],
+    jobType: 'Contest'
+  },
+  // CodeChef Contests
+  {
+    id: 15,
+    platform: 'CodeChef Contests',
+    title: 'CodeChef Starters',
+    company: 'CodeChef',
+    location: 'Online',
+    salary: '-',
+    experience: 'All Levels',
+    deadlineOffsetDays: 7,
+    applyLink: 'https://www.codechef.com/contests',
+    description: 'CodeChef Starters - beginner-friendly coding contests',
+    skills: ['Algorithms', 'Problem Solving', 'Coding'],
+    jobType: 'Contest'
+  },
+  // HackerRank Contests
+  {
+    id: 16,
+    platform: 'HackerRank Contests',
+    title: 'HackerRank Monthly Challenge',
+    company: 'HackerRank',
+    location: 'Online',
+    salary: '-',
+    experience: 'All Levels',
+    deadlineOffsetDays: 5,
+    applyLink: 'https://www.hackerrank.com/contests',
+    description: 'Monthly coding contests with real-world problem solving',
+    skills: ['Algorithms', 'Data Structures', 'Implementation'],
+    jobType: 'Contest'
+  },
+  // CodeWars
+  {
+    id: 17,
+    platform: 'CodeWars',
+    title: 'CodeWars Ranked Challenges',
+    company: 'CodeWars',
+    location: 'Online',
+    salary: '-',
+    experience: 'All Levels',
+    deadlineOffsetDays: 14,
+    applyLink: 'https://www.codewars.com',
+    description: 'Continuous coding challenges and rank progression system',
+    skills: ['Multiple Languages', 'Algorithm Practice', 'Code Golf'],
+    jobType: 'Contest'
+  },
+  // AtCoder Contests
+  {
+    id: 18,
+    platform: 'AtCoder',
+    title: 'AtCoder Beginner Contest',
+    company: 'AtCoder',
+    location: 'Online',
+    salary: '-',
+    experience: 'Beginner',
+    deadlineOffsetDays: 4,
+    applyLink: 'https://atcoder.jp/contests/',
+    description: 'Japanese competitive programming contests backed by major tech companies',
+    skills: ['Competitive Programming', 'Algorithms', 'Math'],
+    jobType: 'Contest'
   }
 ];
+
+// Helper to compute a real deadline from an entry (offset or explicit)
+const computeDeadline = (job) => {
+  if (job.deadlineOffsetDays != null) {
+    return new Date(Date.now() + job.deadlineOffsetDays * 24 * 60 * 60 * 1000);
+  }
+  return job.deadline;
+};
+
+// Builds a fresh list of jobs with deadlines recalculated each call
+const withDeadlines = () => {
+  const now = new Date();
+  return currentJobs.map(job => ({ ...job, deadline: computeDeadline(job) }));
+};
 
 // Function to get active jobs (filter expired ones)
 export const getActiveJobs = () => {
   const now = new Date();
-  return currentJobs.filter(job => job.deadline > now);
+  return withDeadlines().filter(job => job.deadline > now);
 };
 
 // Function to get jobs by platform
@@ -272,3 +420,4 @@ export const getDaysRemaining = (deadline) => {
   const diff = deadline - now;
   return Math.floor(diff / (1000 * 60 * 60 * 24));
 };
+

@@ -32,7 +32,6 @@ export const skillsMapping = {
   'Automation': { type: 'external', link: 'https://testautomationu.applitools.com', title: 'Test Automation' },
 
   // Data Science & ML
-  'Python': { type: 'internal', route: '/programming', title: 'Programming Languages' },
   'ML': { type: 'external', link: 'https://www.tensorflow.org', title: 'TensorFlow ML' },
   'Statistics': { type: 'external', link: 'https://www.khanacademy.org', title: 'Khan Academy Statistics' },
   'Data Visualization': { type: 'external', link: 'https://www.tableau.com', title: 'Tableau' },

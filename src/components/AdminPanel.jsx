@@ -1,30 +1,120 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import supabase from '../services/supabaseClient';
 import '../styles/AdminPanel.css';
+import '../styles/DeleteConfirmModal.css';
 
 export default function AdminPanel() {
-  const { currentUser } = useAuth();
+  const { currentUser: _, deleteUser } = useAuth();
+  
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   useEffect(() => {
     loadUsers();
   }, []);
 
-  const loadUsers = () => {
+  const loadUsers = async () => {
     try {
       setLoading(true);
-      const storedUsers = localStorage.getItem('education_path_users');
-      const usersList = storedUsers ? JSON.parse(storedUsers) : [];
-      setUsers(usersList);
-      setFilteredUsers(usersList);
-      setError('');
+      
+      // Try to fetch from the users table
+      let usersList = [];
+      let tableError = null;
+
+      // Attempt 1: Try standard query
+      try {
+        const { data: tableUsers, error: err } = await supabase
+          .from('users')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (!err && tableUsers && tableUsers.length > 0) {
+          console.log('✅ Successfully fetched users from table:', tableUsers);
+          usersList = tableUsers.map(u => ({
+            id: u.id || u.user_id,
+            email: u.email || 'N/A',
+            fullName: u.full_name || u.fullName || 'N/A',
+            createdAt: u.created_at || u.created || 'N/A'
+          }));
+          setUsers(usersList);
+          setFilteredUsers(usersList);
+          setError('');
+          setLoading(false);
+          return;
+        } else if (err) {
+          console.warn('Query error:', err.message);
+          tableError = err;
+        }
+      } catch (e) {
+        console.warn('Attempt 1 failed:', e.message);
+      }
+
+      // Attempt 2: Try without ordering if Attempt 1 failed
+      try {
+        const { data: tableUsers, error: err } = await supabase
+          .from('users')
+          .select('id, email, full_name, created_at');
+
+        if (!err && tableUsers && tableUsers.length > 0) {
+          console.log('✅ Fetched users (Attempt 2):', tableUsers);
+          usersList = tableUsers.map(u => ({
+            id: u.id,
+            email: u.email || 'N/A',
+            fullName: u.full_name || 'N/A',
+            createdAt: u.created_at || 'N/A'
+          }));
+          setUsers(usersList);
+          setFilteredUsers(usersList);
+          setError('');
+          setLoading(false);
+          return;
+        }
+      } catch (e) {
+        console.warn('Attempt 2 failed:', e.message);
+      }
+
+      // If no data found, show currently logged in user
+      const storedUser = localStorage.getItem('education_path_current_user');
+      if (storedUser) {
+        try {
+          const currentUser = JSON.parse(storedUser);
+          if (currentUser && currentUser.id) {
+            usersList = [{
+              id: currentUser.id,
+              email: currentUser.email,
+              fullName: currentUser.fullName || 'N/A',
+              createdAt: currentUser.createdAt
+            }];
+            
+            setUsers(usersList);
+            setFilteredUsers(usersList);
+            
+            // Show helpful error message
+            if (tableError) {
+              setError(`⚠️ Using logged-in user only. Table error: ${tableError.message}. Enable RLS policies to show all users.`);
+            } else {
+              setError('ℹ️ Table not found or empty. Showing currently logged-in user. Create a "users" table to see all registered users.');
+            }
+          }
+        } catch (e) {
+          setError('❌ Table error: ' + (tableError?.message || e.message));
+        }
+      } else {
+        setError('❌ No users table found and no logged-in user. Please sign up first.');
+        setUsers([]);
+        setFilteredUsers([]);
+      }
     } catch (err) {
-      setError('Failed to load users');
-      console.error(err);
+      console.error('Admin Panel Error:', err);
+      setError('❌ Error: ' + (err.message || 'Failed to load users'));
+      setUsers([]);
+      setFilteredUsers([]);
     } finally {
       setLoading(false);
     }
@@ -38,28 +128,74 @@ export default function AdminPanel() {
       setFilteredUsers(users);
     } else {
       const filtered = users.filter(user =>
-        user.email.toLowerCase().includes(term) ||
-        user.fullName.toLowerCase().includes(term)
+        (user.email || '').toLowerCase().includes(term) ||
+        (user.fullName || '').toLowerCase().includes(term)
       );
       setFilteredUsers(filtered);
     }
   };
 
   const handleDeleteUser = (userId) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
-      try {
-        const updatedUsers = users.filter(u => u.id !== userId);
-        localStorage.setItem('education_path_users', JSON.stringify(updatedUsers));
-        setUsers(updatedUsers);
-        setFilteredUsers(updatedUsers);
-      } catch (err) {
-        setError('Failed to delete user');
+    const user = users.find(u => u.id === userId);
+    setDeleteConfirm({
+      userId,
+      userName: user?.fullName || user?.email || 'Unknown'
+    });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteConfirm) return;
+
+    setDeleteLoading(true);
+    try {
+      // Delete from Supabase users table
+      const { error: tableError } = await supabase
+        .from('users')
+        .delete()
+        .eq('id', deleteConfirm.userId);
+
+      if (tableError) {
+        throw new Error(`Failed to delete from users table: ${tableError.message}`);
       }
+
+      // Try to call backend delete endpoint
+      try {
+        const response = await fetch('/api/delete-user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userId: deleteConfirm.userId })
+        });
+
+        if (!response.ok) {
+          console.warn('Backend delete warning:', response.statusText);
+        }
+      } catch (fetchErr) {
+        console.warn('Backend delete endpoint not available:', fetchErr);
+      }
+
+      // Remove from UI
+      const updatedUsers = users.filter(u => u.id !== deleteConfirm.userId);
+      setUsers(updatedUsers);
+      setFilteredUsers(filteredUsers.filter(u => u.id !== deleteConfirm.userId));
+
+      setError('');
+      setDeleteConfirm(null);
+    } catch (err) {
+      setError('❌ Error deleting user: ' + (err.message || 'Unknown error'));
+    } finally {
+      setDeleteLoading(false);
     }
+  };
+
+  const cancelDelete = () => {
+    setDeleteConfirm(null);
   };
 
   const handleExportUsers = () => {
     try {
+      // Export users (without passwords since they're not sent from backend)
       const dataStr = JSON.stringify(users, null, 2);
       const dataBlob = new Blob([dataStr], { type: 'application/json' });
       const url = URL.createObjectURL(dataBlob);
@@ -70,20 +206,15 @@ export default function AdminPanel() {
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
-    } catch (err) {
+    } catch (_err) { // eslint-disable-line no-unused-vars
       setError('Failed to export users');
     }
   };
 
-  if (!currentUser) {
-    return (
-      <div className="admin-container">
-        <div style={{ padding: '20px', color: '#ef4444' }}>
-          You must be logged in to access this page.
-        </div>
-      </div>
-    );
-  }
+  // Admin panel is intentionally accessible without login so an administrator
+  // can manage stored users on any host. We still show the current user
+  // status if someone is logged in.
+  
 
   return (
     <div className="admin-container">
@@ -160,10 +291,10 @@ export default function AdminPanel() {
               {filteredUsers.map((user, index) => (
                 <tr key={user.id}>
                   <td>{index + 1}</td>
-                  <td className="name-cell">{user.fullName || 'N/A'}</td>
-                  <td className="email-cell">{user.email}</td>
+                  <td className="name-cell">{typeof user.fullName === 'string' ? (user.fullName || 'N/A') : 'N/A'}</td>
+                  <td className="email-cell">{typeof user.email === 'string' ? user.email : 'N/A'}</td>
                   <td className="date-cell">
-                    {new Date(user.createdAt).toLocaleDateString()}
+                    {typeof user.createdAt === 'string' ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
                   </td>
                   <td className="action-cell">
                     <button
@@ -178,6 +309,52 @@ export default function AdminPanel() {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {deleteConfirm && (
+        <div className="modal-overlay">
+          <div className="delete-modal">
+            <div className="modal-header">
+              <h2>⚠️ Confirm Delete</h2>
+              <button 
+                className="modal-close-btn"
+                onClick={cancelDelete}
+                disabled={deleteLoading}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="modal-content">
+              <p>Are you sure you want to delete this user?</p>
+              <div className="user-info">
+                <strong>{deleteConfirm.userName}</strong>
+              </div>
+              <p className="warning-text">
+                ⚠️ This action is <strong>permanent</strong> and cannot be undone. 
+                All user data and progress will be deleted.
+              </p>
+            </div>
+
+            <div className="modal-actions">
+              <button
+                className="btn btn-cancel"
+                onClick={cancelDelete}
+                disabled={deleteLoading}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-delete"
+                onClick={confirmDelete}
+                disabled={deleteLoading}
+              >
+                {deleteLoading ? 'Deleting...' : 'Yes, Delete User'}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

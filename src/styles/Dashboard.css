@@ -6,19 +6,43 @@
   gap: 30px;
 }
 
+/* Hero Section */
+.hero h1 {
+  color: #111827;
+}
+
+.hero h2,
+.hero h3,
+.hero h4,
+.hero h5,
+.hero h6 {
+  color: #111827 !important;
+}
+
+/* All dashboard headings - WHITE */
+.dashboard-main h1,
+.dashboard-main h2,
+.dashboard-main h3,
+.dashboard-main h4,
+.dashboard-main h5,
+.dashboard-main h6 {
+  color: #111827 !important;
+}
+
 /* Section Progress */
 .section-progress {
   padding: 30px;
-  background: #000000;
-  border: 1px solid #333333;
+  background: #FFFFFF;
+  border: 2px solid rgba(0, 180, 216, 0.3);
   border-radius: 16px;
   backdrop-filter: blur(10px);
 }
 
 .section-progress h2 {
   margin: 0 0 25px 0;
-  font-size: 1.5rem;
-  color: #ffffff;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #111827;
 }
 
 .sections-grid {
@@ -29,9 +53,9 @@
 
 .section-card {
   padding: 20px;
-  background: #111111;
-  border: 1px solid #333333;
-  border-left: 4px solid;
+  background: #FFFFFF;
+  border: 2px solid rgba(0, 180, 216, 0.25);
+  border-left: 5px solid #2563EB;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -41,9 +65,9 @@
 }
 
 .section-card:hover {
-  background: #222222;
+  background: rgba(240, 249, 255, 0.9);
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.25);
 }
 
 .section-header {
@@ -60,7 +84,7 @@
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #111827;
 }
 
 .section-stats {
@@ -78,19 +102,20 @@
 .stat-value {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #a78bfa;
+  color: #111827;
 }
 
 .stat-label {
   font-size: 0.8rem;
-  color: #888888;
+  color: #2563EB;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .progress-bar {
   width: 100%;
   height: 6px;
-  background: rgba(102, 126, 234, 0.2);
+  background: rgba(0, 102, 204, 0.2);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -99,19 +124,20 @@
   height: 100%;
   border-radius: 3px;
   transition: width 0.3s ease;
+  background: linear-gradient(90deg, #2563EB 0%, #2563EB 100%);
 }
 
 .last-accessed {
   margin: 0;
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #111827;
 }
 
 /* Performance Section */
 .performance-section {
   padding: 30px;
-  background: #000000;
-  border: 1px solid #333333;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 180, 216, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(10px);
 }
@@ -122,17 +148,36 @@
   gap: 25px;
 }
 
+/* Mobile tweaks for dashboard */
+@media (max-width: 768px) {
+  .section-progress, .performance-section, .milestones-section, .achievements-section, .quick-access {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .sections-grid { gap: 12px; }
+  .section-card { padding: 14px; }
+  .section-stats { grid-template-columns: 1fr; gap: 8px; }
+  .perf-grid { grid-template-columns: 1fr; gap: 14px; }
+  .perf-card { padding: 16px; }
+}
+
+@media (max-width: 420px) {
+  .section-header h4 { font-size: 1rem; }
+  .stat-value { font-size: 1.1rem; }
+}
+
 .perf-card {
   padding: 25px;
-  background: #111111;
-  border: 1px solid #333333;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 180, 216, 0.2);
   border-radius: 12px;
 }
 
 .perf-card h3 {
   margin: 0 0 20px 0;
   font-size: 1.2rem;
-  color: #ffffff;
+  color: #111827;
 }
 
 .perf-list {
@@ -146,19 +191,19 @@
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: #222222;
+  background: rgba(0, 102, 204, 0.08);
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .perf-item:hover {
-  background: #333333;
+  background: rgba(0, 102, 204, 0.15);
   transform: translateX(5px);
 }
 
 .perf-item.needs-focus {
-  background: rgba(245, 158, 11, 0.08);
-  border-left: 3px solid #f59e0b;
+  background: rgba(255, 107, 53, 0.1);
+  border-left: 3px solid #2563EB;
 }
 
 .perf-icon {
@@ -175,13 +220,13 @@
   margin: 0 0 4px 0;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #111827;
 }
 
 .perf-progress {
   margin: 0;
   font-size: 0.8rem;
-  color: #888888;
+  color: #111827;
 }
 
 .rating {
@@ -192,14 +237,14 @@
 }
 
 .rating-value {
-  color: #a78bfa;
+  color: #111827;
   font-weight: 600;
 }
 
 .perf-percent {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #a78bfa;
+  color: #111827;
   min-width: 50px;
   text-align: right;
 }
@@ -207,16 +252,15 @@
 /* Milestones Section */
 .milestones-section {
   padding: 30px;
-  background: #000000;
-  border: 1px solid #333333;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 180, 216, 0.06);
   border-radius: 16px;
-  backdrop-filter: blur(10px);
 }
 
 .milestones-section h2 {
   margin: 0 0 25px 0;
   font-size: 1.5rem;
-  color: #ffffff;
+  color: #111827;
 }
 
 .milestones-grid {
@@ -227,8 +271,8 @@
 
 .milestone {
   padding: 20px;
-  background: #111111;
-  border: 2px solid #333333;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 180, 216, 0.06);
   border-radius: 12px;
   text-align: center;
   transition: all 0.3s ease;
@@ -259,34 +303,33 @@
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #111827;
 }
 
 .milestone p {
   margin: 0;
   font-size: 0.85rem;
-  color: #888888;
+  color: #111827;
 }
 
 .milestone-progress {
   font-size: 0.9rem;
-  color: #a78bfa;
+  color: #111827;
   font-weight: 600;
 }
 
 /* Achievements Section */
 .achievements-section {
   padding: 30px;
-  background: #000000;
-  border: 1px solid #333333;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 180, 216, 0.06);
   border-radius: 16px;
-  backdrop-filter: blur(10px);
 }
 
 .achievements-section h2 {
   margin: 0 0 25px 0;
   font-size: 1.5rem;
-  color: #ffffff;
+  color: #111827;
 }
 
 .achievements-grid {
@@ -297,8 +340,8 @@
 
 .achievement {
   padding: 20px;
-  background: #111111;
-  border: 2px dashed #333333;
+  background: #FFFFFF;
+  border: 2px solid #E5E7EB;
   border-radius: 12px;
   text-align: center;
   display: flex;
@@ -306,11 +349,13 @@
   align-items: center;
   gap: 10px;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .achievement.unlocked {
-  background: rgba(245, 158, 11, 0.1);
+  background: #FFFBEB;
   border-color: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
 }
 
 .achievement.locked {
@@ -329,13 +374,13 @@
   margin: 0;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #111827;
 }
 
 .achievement p {
   margin: 0;
   font-size: 0.8rem;
-  color: #888888;
+  color: #111827;
 }
 
 .unlock-date {
@@ -348,16 +393,17 @@
 /* Quick Access */
 .quick-access {
   padding: 30px;
-  background: #000000;
-  border: 1px solid #333333;
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  border: 2px solid #2563EB;
   border-radius: 16px;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
 }
 
 .quick-access h2 {
   margin: 0 0 25px 0;
   font-size: 1.5rem;
-  color: #ffffff;
+  color: #111827;
+  font-weight: 700;
 }
 
 .quick-access-grid {
@@ -368,11 +414,11 @@
 
 .quick-btn {
   padding: 16px;
-  background: #111111;
-  border: 1px solid #333333;
-  border-left: 3px solid;
+  background: #FFFFFF;
+  border: 2px solid #E0E7FF;
+  border-left: 4px solid #2563EB;
   border-radius: 10px;
-  color: #ffffff;
+  color: #111827;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -380,13 +426,15 @@
   justify-content: space-between;
   gap: 10px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .quick-btn:hover {
-  background: #222222;
+  background: #F0F9FF;
+  border-left-color: #1d4ed8;
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
 }
 
 .quick-icon {
@@ -399,10 +447,18 @@
 }
 
 .quick-arrow {
-  color: #a78bfa;
+  color: #2563EB;
   font-weight: bold;
+  font-size: 1.1rem;
 }
 
+/* Force pure black text for Quick Access options to improve contrast */
+.quick-access .quick-btn,
+.quick-access .quick-btn .quick-name,
+.quick-access .quick-btn .quick-icon,
+.quick-access .quick-btn .quick-arrow {
+  color: #000000 !important;
+}
 /* Time Spent */
 .time-spent {
   margin: 8px 0 0 0;
@@ -498,3 +554,42 @@
     text-align: center;
   }
 }
+
+/* ===== TEXT VISIBILITY RULES FOR DASHBOARD ===== */
+.dashboard-main h1,
+.dashboard-main h2,
+.dashboard-main h3,
+.dashboard-main h4,
+.dashboard-main p,
+.dashboard-main span,
+.dashboard-main label {
+  color: #111827 !important;
+}
+
+.section-card h4,
+.section-card p,
+.section-card span,
+.achievement-item h3,
+.achievement-item p,
+.achievement-item .detail {
+  color: #111827 !important;
+}
+
+.quick-stats .stat-value,
+.quick-stats .stat-label,
+.quick-stats p {
+  color: #111827 !important;
+}
+
+.quick-stats .stat-label {
+  color: #111827 !important;
+}
+
+.hero h1,
+.hero h2,
+.hero p {
+  color: #111827 !important;
+}
+
+
+

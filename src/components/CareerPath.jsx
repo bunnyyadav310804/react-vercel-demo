@@ -15,9 +15,22 @@ const CareerPath = () => {
   // Track when user visits this section
   useEffect(() => {
     if (currentUser?.id) {
-      progressTracker.incrementSectionProgress(currentUser.id, 'careers', 10);
+      progressTracker.trackModuleAccess(currentUser.id, 'careers');
     }
   }, [currentUser?.id]);
+
+  // Update progress when user explores career paths
+  useEffect(() => {
+    if (!currentUser?.id) return;
+    
+    let progress = 30;
+    if (selectedDept) progress = 60;
+    if (selectedJob) progress = 90;
+    
+    if (progress > 30) {
+      progressTracker.updateSectionProgress(currentUser.id, 'careers', progress);
+    }
+  }, [selectedDept, selectedJob, currentUser?.id]);
 
   // Handler for skill badge click
   const handleSkillClick = (skillName) => {
@@ -181,7 +194,15 @@ const CareerPath = () => {
             <div className="dept-icon">{dept.icon}</div>
             <h3>{dept.name}</h3>
             <p>{dept.description}</p>
-            <div className="job-count">{dept.jobs.length}+ Jobs Available</div>
+                <div className="job-count" style={{ 
+                  color: '#000000', 
+                  fontWeight: '700', 
+                  fontSize: '14px',
+                  background: 'rgba(16, 185, 129, 0.15)',
+                  padding: '4px 8px',
+                  borderRadius: '4px',
+                  display: 'inline-block'
+                }}>{dept.jobs.length}+ Jobs Available</div>
             <button className="explore-btn">Explore →</button>
           </div>
         ))}

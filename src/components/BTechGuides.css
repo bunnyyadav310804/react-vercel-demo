@@ -4,16 +4,16 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 50px 20px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d1b4e 100%);
+  background: #F9FAFB;
   min-height: 100vh;
 }
 
 /* Header Section */
 .blueprint-header {
-  background: rgba(30, 41, 59, 0.7);
+  background: #FFFFFF;
   border-radius: 20px;
   padding: 50px 40px;
-  border: 2px solid rgba(102, 126, 234, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   position: relative;
@@ -28,13 +28,13 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .blueprint-badge {
   display: inline-block;
   padding: 10px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
   color: white;
   border-radius: 12px;
   font-size: 0.8rem;
@@ -42,7 +42,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 15px;
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .blueprint-title {
@@ -51,14 +51,14 @@
   color: #fff;
   letter-spacing: -1px;
   margin-bottom: 15px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
+  background: #2563EB;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .blueprint-subtitle {
-  color: #cbd5e1;
+  color: #6B7280;
   font-size: 1.1rem;
   line-height: 1.8;
   max-width: 800px;
@@ -74,10 +74,10 @@
 }
 
 .year-card {
-  background: rgba(30, 41, 59, 0.7);
+  background: #FFFFFF;
   border-radius: 18px;
   padding: 40px;
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   transition: all 0.4s ease;
@@ -92,12 +92,12 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .year-card:hover {
-  border-color: rgba(102, 126, 234, 0.5);
-  box-shadow: 0 20px 80px rgba(102, 126, 234, 0.3);
+  border-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
   transform: translateY(-8px);
 }
 
@@ -116,48 +116,48 @@
 .year-icon-box {
   width: 80px;
   height: 80px;
-  background: rgba(102, 126, 234, 0.15);
-  border: 2px solid rgba(102, 126, 234, 0.3);
+  background: rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.3);
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .year-card:hover .year-icon-box {
-  background: rgba(102, 126, 234, 0.25);
-  border-color: rgba(102, 126, 234, 0.6);
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(0, 0, 0, 0.6);
   transform: scale(1.1);
 }
 
 .year-icon-box svg {
   width: 40px;
   height: 40px;
-  color: #a5b4fc;
+  color: #000000;
 }
 
 .year-info h3 {
   font-size: 1.8rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #111827;
   letter-spacing: -0.5px;
   margin-bottom: 10px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
+  background: #2563EB;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .year-description {
-  color: #cbd5e1;
+  color: #6B7280;
   font-size: 0.95rem;
   line-height: 1.6;
   font-style: italic;
   padding: 12px 15px;
-  background: rgba(102, 126, 234, 0.1);
-  border-left: 3px solid #667eea;
+  background: rgba(0, 0, 0, 0.1);
+  border-left: 3px solid #000000;
   border-radius: 6px;
 }
 
@@ -166,7 +166,7 @@
 }
 
 .focus-label {
-  color: #a5b4fc;
+  color: #000000;
   font-size: 0.8rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -182,19 +182,19 @@
 
 .focus-tag {
   padding: 8px 14px;
-  background: rgba(102, 126, 234, 0.15);
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  color: #cbd5e1;
+  color: #6B7280;
   font-size: 0.85rem;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .focus-tag:hover {
-  background: rgba(102, 126, 234, 0.3);
-  border-color: rgba(102, 126, 234, 0.6);
-  color: #a5b4fc;
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0.6);
+  color: #000000;
 }
 
 /* Action Points */
@@ -255,7 +255,7 @@
 }
 
 .action-text {
-  color: #cbd5e1;
+  color: #1a1a2e;
   font-size: 0.95rem;
   line-height: 1.6;
   font-weight: 500;
@@ -549,3 +549,31 @@
     padding: 12px 16px;
   }
 }
+
+/* ===== TEXT VISIBILITY RULES FOR BTECH GUIDES ===== */
+.btech-guides-container h1,
+.btech-guides-container h2,
+.btech-guides-container h3,
+.btech-guides-container h4,
+.btech-guides-container p,
+.btech-guides-container label,
+.btech-guides-container span {
+  color: #111827 !important;
+}
+
+.guide-card h3,
+.guide-card p,
+.guide-section h4,
+.blueprint-content h3 {
+  color: #111827 !important;
+}
+
+.btech-guides-container input,
+.btech-guides-container select,
+.btech-guides-container textarea {
+  color: #111827 !important;
+    background-color: #FFFFFF !important;
+  color: #111827 !important;
+}
+
+

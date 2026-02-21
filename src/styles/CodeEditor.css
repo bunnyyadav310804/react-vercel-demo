@@ -1,23 +1,33 @@
 /* Code Editor Styles */
 
+/* warning banner shown when all compiler backends are down */
+.compiler-warning-banner {
+  background: #fdecea;
+  color: #b71c1c;
+  padding: 8px 12px;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid #f5c6cb;
+}
+
 .code-editor-wrapper {
   display: flex;
   flex-direction: column;
-  background: #1e1e1e;
+  background: #FFFFFF;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
   font-family: 'Fira Code', 'Courier New', monospace;
-  border: 1px solid #333;
+  border: 1px solid rgba(0, 102, 204, 0.2);
 }
 
 .editor-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #252526;
+  background: linear-gradient(90deg, #F9FAFB, #FFFFFF);
   padding: 12px 16px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid rgba(0, 102, 204, 0.2);
 }
 
 .editor-controls {
@@ -30,7 +40,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #d4d4d4;
+  color: #111827;
 }
 
 .language-selector label {
@@ -39,9 +49,9 @@
 }
 
 .language-selector select {
-  background: #3c3c3c;
-  color: #d4d4d4;
-  border: 1px solid #555;
+  background: #FFFFFF;
+  color: #2563EB;
+  border: 1px solid rgba(0, 102, 204, 0.3);
   border-radius: 4px;
   padding: 6px 12px;
   font-family: 'Fira Code', monospace;
@@ -51,8 +61,8 @@
 }
 
 .language-selector select:hover:not(:disabled) {
-  background: #454545;
-  border-color: #0e639c;
+  background: #0055bb;
+  border-color: #2563EB;
 }
 
 .language-selector select:disabled {
@@ -66,21 +76,21 @@
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
-  background: #3c3c3c;
-  border: 1px solid #555;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 180, 216, 0.06);
   border-radius: 4px;
-  color: #d4d4d4;
+  color: #111827;
   font-size: 13px;
 }
 
 .language-display label {
   font-weight: 500;
   font-size: 14px;
-  color: #8ab4f8;
+  color: #2563EB;
 }
 
 .locked-language {
-  color: #d4d4d4;
+  color: #111827;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -100,8 +110,8 @@
 .btn {
   padding: 8px 16px;
   border: 1px solid #555;
-  background: #3c3c3c;
-  color: #d4d4d4;
+  background: #2563EB;
+  color: #1a1a2e;
   border-radius: 4px;
   font-size: 13px;
   font-weight: 500;
@@ -134,6 +144,16 @@
   color: #fff;
 }
 
+.btn-check {
+  background: #2b6cb0;
+  border-color: #2b6cb0;
+  color: #fff;
+}
+
+.btn-check:hover:not(:disabled) {
+  background: #2c5282;
+  border-color: #2c5282;
+}
 .btn-execute:hover:not(:disabled) {
   background: #1177bb;
   border-color: #1177bb;
@@ -157,8 +177,8 @@
 }
 
 .btn-clear:hover:not(:disabled) {
-  background: #8a3a3a;
-  border-color: #8a3a3a;
+  background: #990000;
+  border-color: #990000;
 }
 
 .editor-body {
@@ -185,8 +205,8 @@
 
 .code-editor {
   flex: 1;
-  background: #1e1e1e;
-  color: #d4d4d4;
+  background: #FFFFFF;
+  color: #1a1a2e;
   border: none;
   padding: 16px;
   font-family: 'Fira Code', 'Courier New', monospace;
@@ -202,21 +222,21 @@
 }
 
 .code-editor::placeholder {
-  color: #666;
+  color: #cbd5e1;
 }
 
 .stdin-section {
-  border-top: 1px solid #333;
-  background: #252526;
+  border-top: 1px solid rgba(0, 180, 216, 0.2);
+  background: #FFFFFF;
 }
 
 .toggle-input {
   width: 100%;
   padding: 8px 16px;
-  background: #2d2d30;
+  background: #FFFFFF;
   border: none;
-  border-bottom: 1px solid #333;
-  color: #d4d4d4;
+  border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+  color: #111827;
   cursor: pointer;
   text-align: left;
   font-size: 13px;
@@ -225,7 +245,7 @@
 }
 
 .toggle-input:hover {
-  background: #3c3c3c;
+  background: #2563EB;
 }
 
 .input-area {
@@ -236,8 +256,8 @@
 }
 
 .input-editor {
-  background: #1e1e1e;
-  color: #d4d4d4;
+  background: #FFFFFF;
+  color: #1a1a2e;
   border: none;
   padding: 12px 16px;
   font-family: 'Fira Code', 'Courier New', monospace;
@@ -250,12 +270,12 @@
 }
 
 .input-editor::placeholder {
-  color: #666;
+  color: #cbd5e1;
 }
 
 .output-section {
-  border-top: 1px solid #333;
-  background: #1e1e1e;
+  border-top: 1px solid #e2e8f0;
+  background: #FFFFFF;
   max-height: 250px;
   display: flex;
   flex-direction: column;
@@ -267,13 +287,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  border-bottom: 1px solid #333;
-  background: #252526;
+  border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+  background: #FFFFFF;
 }
 
 .output-header h4 {
   margin: 0;
-  color: #d4d4d4;
+  color: #1a1a2e;
   font-size: 13px;
   font-weight: 600;
 }
@@ -281,7 +301,7 @@
 .toggle-output {
   background: none;
   border: none;
-  color: #d4d4d4;
+  color: #1a1a2e;
   cursor: pointer;
   font-size: 16px;
   padding: 0;
@@ -296,7 +316,7 @@
   padding: 8px 16px;
   font-size: 12px;
   font-weight: 500;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .execution-status.success {
@@ -332,7 +352,7 @@
 
 .output-content pre {
   margin: 0;
-  color: #d4d4d4;
+  color: #1a1a2e;
   font-family: 'Fira Code', 'Courier New', monospace;
   font-size: 13px;
   line-height: 1.6;
@@ -350,7 +370,7 @@
 .code-editor::-webkit-scrollbar-track,
 .input-editor::-webkit-scrollbar-track,
 .output-content::-webkit-scrollbar-track {
-  background: #1e1e1e;
+  background: #F3F4F6;
 }
 
 .code-editor::-webkit-scrollbar-thumb,
@@ -407,3 +427,39 @@
     max-height: 200px;
   }
 }
+
+/* ===== TEXT VISIBILITY RULES FOR CODE EDITOR ===== */
+.code-editor-wrapper h2,
+.code-editor-wrapper h3,
+.code-editor-wrapper label,
+.code-editor-wrapper span {
+  color: #111827 !important;
+}
+
+.language-selector label {
+  color: #111827 !important;
+}
+
+.language-display label {
+  color: #111827 !important;
+}
+
+.language-display {
+  color: #111827 !important;
+}
+
+.editor-header button,
+.editor-button,
+.output-label,
+.error-message,
+.success-message {
+  color: #111827 !important;
+}
+
+.code-output p,
+.code-output span,
+.output-text {
+  color: #111827 !important;
+}
+
+

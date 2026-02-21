@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import progressTracker from '../utils/progressTracker';
-import { indianCompanies, getCompanyById, getJobsByCompany, getJobDetails } from '../data/companySpecific';
+import { indianCompanies, getCompanyById, getJobDetails } from '../data/companySpecific'; // getJobsByCompany available for future use
 import '../styles/CompanySpecific.css';
 
 // Skill to Learning Path Mapping

@@ -3,7 +3,7 @@
 .resume-builder-container {
   max-width: 1400px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d1b4e 100%);
+  background: #F9FAFB;
   min-height: 100vh;
   padding: 40px 30px;
   position: relative;
@@ -19,7 +19,7 @@
   height: 100%;
   background: radial-gradient(
     circle at 20% 50%,
-    rgba(102, 126, 234, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 0%,
     transparent 50%
   );
   pointer-events: none;
@@ -39,16 +39,16 @@
 .resume-header h1 {
   font-size: 2.5rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #111827;
   margin-bottom: 10px;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
+  background: #2563EB;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .resume-header p {
-  color: #cbd5e1;
+  color: #6B7280;
   font-size: 1.1rem;
 }
 
@@ -58,14 +58,14 @@
   display: flex;
   gap: 15px;
   margin-bottom: 40px;
-  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   flex-wrap: wrap;
 }
 
 .tab-btn {
   background: transparent;
   border: none;
-  color: #cbd5e1;
+  color: #6B7280;
   padding: 15px 30px;
   font-size: 1rem;
   font-weight: 700;
@@ -77,13 +77,13 @@
 }
 
 .tab-btn:hover {
-  color: #e0e7ff;
+  color: #111827;
 }
 
 .tab-btn.active {
-  color: #a5b4fc;
-  border-bottom-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background: rgba(102, 126, 234, 0.1);
+  color: #000000;
+  border-bottom-color: #000000;
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 8px 8px 0 0;
 }
 
@@ -96,10 +96,10 @@
 }
 
 .form-section {
-  background: rgba(30, 41, 59, 0.8);
+  background: #FFFFFF;
   border-radius: 14px;
   padding: 30px;
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   position: relative;
@@ -113,15 +113,15 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: #2563EB;
 }
 
 .form-section h2 {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #e0e7ff;
+  color: #111827;
   margin: 0 0 25px 0;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+  background: #2563EB;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -141,7 +141,7 @@
 }
 
 .add-btn {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  background: #34d399;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -169,8 +169,8 @@
 .form-input,
 .form-textarea {
   background: rgba(15, 23, 42, 0.6);
-  border: 2px solid rgba(102, 126, 234, 0.2);
-  color: #e0e7ff;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  color: #111827;
   padding: 12px 15px;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -186,9 +186,9 @@
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: rgba(102, 126, 234, 0.6);
+  border-color: rgba(0, 0, 0, 0.6);
   background: rgba(15, 23, 42, 0.8);
-  box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .form-textarea {
@@ -211,7 +211,7 @@
 }
 
 .checkbox-group label {
-  color: #cbd5e1;
+  color: #6B7280;
   cursor: pointer;
   font-size: 0.95rem;
 }
@@ -299,20 +299,20 @@
 }
 
 .word-btn {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
   color: white;
 }
 
 .word-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.5);
 }
 
 /* ==================== RESUME TEMPLATE ==================== */
 
 .resume-template {
   background: white;
-  color: #1f2937;
+  color: #1a1a2e;
   padding: 40px;
   border-radius: 0;
   font-family: 'Calibri', 'Arial', sans-serif;
@@ -326,7 +326,7 @@
 .resume-header-section {
   text-align: center;
   margin-bottom: 20px;
-  border-bottom: 2px solid #1f2937;
+  border-bottom: 2px solid #1a1a2e;
   padding-bottom: 15px;
 }
 
@@ -347,7 +347,7 @@
 }
 
 .resume-contact a {
-  color: #2563eb;
+  color: #7c3aed;
   text-decoration: none;
 }
 
@@ -363,7 +363,7 @@
   font-size: 13px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #1f2937;
+  color: #1a1a2e;
   margin: 12px 0 10px 0;
   padding-bottom: 5px;
   border-bottom: 1px solid #d1d5db;
@@ -384,13 +384,13 @@
 .resume-item-title {
   font-size: 12px;
   font-weight: bold;
-  color: #1f2937;
+  color: #1a1a2e;
   margin: 0;
 }
 
 .resume-date {
   font-size: 11px;
-  color: #6b7280;
+  color: #4a5568;
   margin: 0;
   white-space: nowrap;
 }
@@ -427,7 +427,7 @@
 
 .resume-skill-label {
   font-weight: bold;
-  color: #1f2937;
+  color: #1a1a2e;
 }
 
 .resume-skill-items {
@@ -436,12 +436,12 @@
 
 .resume-link {
   font-size: 11px;
-  color: #2563eb;
+  color: #7c3aed;
   margin: 2px 0;
 }
 
 .resume-link a {
-  color: #2563eb;
+  color: #7c3aed;
   text-decoration: none;
   word-break: break-all;
 }
@@ -573,3 +573,32 @@
     font-size: 11px;
   }
 }
+
+/* ===== TEXT VISIBILITY RULES FOR RESUME BUILDER ===== */
+.resume-builder-container h1,
+.resume-builder-container h2,
+.resume-builder-container h3,
+.resume-builder-container h4,
+.resume-builder-container p,
+.resume-builder-container label,
+.resume-builder-container span {
+  color: #111827 !important;
+}
+
+.resume-template h3,
+.resume-template p,
+.form-section h3,
+.resume-section h4 {
+  color: #111827 !important;
+}
+
+.resume-builder-container input,
+.resume-builder-container select,
+.resume-builder-container textarea {
+  color: #111827 !important;
+    background-color: #FFFFFF !important;
+.save-resume-btn {
+  color: #111827 !important;
+}
+
+

@@ -1,0 +1,42 @@
+# ngrok Configuration Template
+# Save as: ~/.ngrok2/ngrok.yml (Linux/macOS) or %APPDATA%/ngrok/ngrok.yml (Windows)
+
+# Your authentication token (get from https://dashboard.ngrok.com/auth)
+authtoken: YOUR_AUTH_TOKEN_HERE
+
+# Default settings
+version: "2"
+region: us  # us, eu, au, ap, sa, jp, in
+
+# Web interface (for monitoring)
+web_addr: 127.0.0.1:4040
+
+# Log file location
+log: "ngrok.log"
+
+# Sessions (tunnels)
+tunnels:
+  # Development tunnel
+  dev:
+    proto: http
+    addr: 5173
+    inspect: true
+    bind_tls: true
+    # Uncomment to use static domain (requires ngrok pro)
+    # domain: your-app-dev.ngrok.io
+    
+  # Production tunnel
+  prod:
+    proto: http
+    addr: 4173
+    inspect: true
+    bind_tls: true
+    # Uncomment to use static domain (requires ngrok pro)
+    # domain: your-app-prod.ngrok.io
+
+  # API tunnel (if you add backend)
+  api:
+    proto: http
+    addr: 3001
+    inspect: true
+    bind_tls: true
